@@ -1,0 +1,41 @@
+[debug] [2018-10-30T22:18:30.075Z] ----------------------------------------------------------------------
+[debug] [2018-10-30T22:18:30.077Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy
+[debug] [2018-10-30T22:18:30.078Z] CLI Version:   6.0.0
+[debug] [2018-10-30T22:18:30.078Z] Platform:      linux
+[debug] [2018-10-30T22:18:30.078Z] Node Version:  v11.0.0
+[debug] [2018-10-30T22:18:30.081Z] Time:          Wed Oct 31 2018 00:18:30 GMT+0200 (Eastern European Standard Time)
+[debug] [2018-10-30T22:18:30.081Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-10-30T22:18:30.090Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-10-30T22:18:30.090Z] > authorizing via signed-in user
+[debug] [2018-10-30T22:18:30.090Z] [iam] checking project ko-osakunta for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2018-10-30T22:18:30.092Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-10-30T22:18:30.092Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2018-10-30T22:18:30.585Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-30T22:18:30.599Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/ko-osakunta:testIamPermissions  
+
+[debug] [2018-10-30T22:18:32.277Z] <<< HTTP RESPONSE 200
+[debug] [2018-10-30T22:18:32.282Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/ko-osakunta  
+ 
+[debug] [2018-10-30T22:18:32.783Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'ko-osakunta'...
+[info] 
+[info] i  deploying database, storage, functions, hosting
+[info] i  database: checking rules syntax...
+[debug] [2018-10-30T22:18:34.649Z] >>> HTTP REQUEST PUT https://ko-osakunta.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null"
+  }
+}
+[debug] [2018-10-30T22:18:35.651Z] <<< HTTP RESPONSE 200
+[info] ✔  database: rules syntax for database ko-osakunta is valid
+[debug] [2018-10-30T22:18:35.657Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/ko-osakunta  
+ 
+[debug] [2018-10-30T22:18:36.982Z] <<< HTTP RESPONSE 200
+[info] i  storage: checking storage.rules for compilation errors...
+[debug] [2018-10-30T22:18:36.988Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/ko-osakunta:test  
+
