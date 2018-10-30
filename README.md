@@ -1,4 +1,4 @@
-# osakunta
+# Osakunta
 Osakunnan sivut
 
 https://ko-osakunta.firebaseapp.com/
