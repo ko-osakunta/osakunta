@@ -17,7 +17,12 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.tyomaara.txt
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+dev.js
+//tämä pois gitignoresta jatkossa, konffaa kunnolla
+prod.js
