@@ -1,15 +1,27 @@
 import React from 'react'
-import juhaJaOtso from '../juhoJaOtso.jpg'
+import { storage } from '../config/firebase'
+
 class TopImage extends React.Component {
-
-    state = {
-
+    
+    constructor() {
+        super()
+        this.state = {
+            pic: ''
+        }
+        this.getImage('karjalaolut.jpeg')
     }
+
+    getImage (image) {
+        storage.ref().child(`${image}`).getDownloadURL().then((url) => {
+            this.setState({ pic : url })
+        })
+    }
+    
 
     render() {
         return (
             <div>
-                <img src={juhaJaOtso} width="661" height="160" />
+                <img src={this.state.pic} width="945" height="200" />
             </div>
         )
     }
