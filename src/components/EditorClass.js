@@ -50,7 +50,6 @@ class EditorClass extends React.Component {
             this.onChange(newState);
             return 'handled';
         }
-        
         return 'not-handled';
     }
 

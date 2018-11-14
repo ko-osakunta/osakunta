@@ -1,30 +1,38 @@
-import React from 'react'
-import { storage } from '../config/firebase'
+import React from 'react';
+import { connect } from "react-redux";
+import * as actions from "../actions";
 
 class TopImage extends React.Component {
     
-    constructor() {
-        super()
-        this.state = {
-            pic: ''
-        }
-        this.getImage('karjalaolut.jpeg')
+    componentWillMount() {
+        this.props.fetchTopImage('karjalaolut.jpeg');
     }
 
-    getImage (image) {
+    renderTopImage() {
+        const { topImage } = this.props
+        console.log(topImage)
+        return  <img src={topImage} width="945" height="200" />
+    }
+     /* getImage (image) {
         storage.ref().child(`${image}`).getDownloadURL().then((url) => {
             this.setState({ pic : url })
         })
-    }
+    } */
     
 
     render() {
         return (
             <div>
-                <img src={this.state.pic} width="945" height="200" />
+                {this.renderTopImage()}
             </div>
         )
     }
 }
 
-export default TopImage;
+const mapStateToProps = ({ topImage }) => {
+    return {
+        topImage
+    };
+};
+
+export default connect(mapStateToProps, actions)(TopImage);

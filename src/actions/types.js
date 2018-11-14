@@ -1,2 +1,5 @@
+export const FETCH_TOPIMAGE = "FETCH_TOPIMAGE"
+export const FETCH_HOMETEXT = "FETCH_HOMETEXT"
+
 export const FETCH_TODOS = "FETCH_TODOS";
 export const FETCH_USER = "FETCH_USER";
