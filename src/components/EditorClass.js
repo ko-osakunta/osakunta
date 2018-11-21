@@ -1,9 +1,10 @@
 
 import React from 'react'
-import { Editor, EditorState, convertToRaw, convertFromRaw, RichUtils } from 'draft-js';
+import { Editor, EditorState, convertToRaw, RichUtils } from 'draft-js';
 import { databaseRef } from '../config/firebase'
 import './EditorClass.css'
 
+//Not reduxified.. yet
 class EditorClass extends React.Component {
 
     constructor() {
@@ -15,7 +16,6 @@ class EditorClass extends React.Component {
 
     onChange = (editorState) => {
         const contentState = editorState.getCurrentContent();
-        console.log('content state', convertToRaw(contentState));
         this.setState({ editorState });
     }
 
@@ -81,5 +81,7 @@ class EditorClass extends React.Component {
         )
     }
 }
+
+
 
 export default EditorClass;

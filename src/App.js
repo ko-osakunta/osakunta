@@ -1,6 +1,5 @@
 import React from "react";
-import ToDoList from "./components/ToDoList";
-import Home from "./components/Home";
+import Page from "./components/Page";
 
 class App extends React.Component {
 
@@ -8,7 +7,7 @@ class App extends React.Component {
     return (
       <div className="container">
         {/* <ToDoList /> */}
-        <Home />
+        <Page />
       </div>
     );
   }

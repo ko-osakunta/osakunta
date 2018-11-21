@@ -10,7 +10,6 @@ class TopImage extends React.Component {
 
     renderTopImage() {
         const { topImage } = this.props
-        console.log(topImage)
         return  <img src={topImage} width="945" height="200" />
     }
      /* getImage (image) {

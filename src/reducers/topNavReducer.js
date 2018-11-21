@@ -1,8 +1,8 @@
-import { FETCH_TEXT } from "../actions/types";
+import { FETCH_TOPNAV } from "../actions/types";
 
 export default (state = {}, action) => {
     switch (action.type) {
-        case FETCH_TEXT:
+        case FETCH_TOPNAV:
             return action.payload;
         default:
             return state;

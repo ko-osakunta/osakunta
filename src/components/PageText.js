@@ -2,7 +2,8 @@ import React from 'react'
 import { connect } from "react-redux";
 import * as actions from "../actions";
 
-class HomeText extends React.Component {
+//Here is the main text of the page that admin can edit
+class PageText extends React.Component {
 
     componentWillMount() {
         this.props.fetchHomeText();
@@ -32,4 +33,4 @@ const mapStateToProps = ({ text }) => {
     };
 };
 
-export default connect(mapStateToProps, actions)(HomeText);
+export default connect(mapStateToProps, actions)(PageText);

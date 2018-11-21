@@ -1,22 +1,19 @@
 import React from 'react'
 import TopImage from './TopImage'
 import TopNav from './TopNav'
-import HomeText from './HomeText'
-import EditorClass from './EditorClass'
+import PageContent from './PageContent'
 
-class Home extends React.Component {
-
+class Page extends React.Component {
 
     render() {
         return (
             <div>
                 <TopImage />
                 <TopNav />
-                <HomeText />
-                <EditorClass />
+                <PageContent />
             </div>
         )
     }
 }
 
-export default Home;
+export default Page;
