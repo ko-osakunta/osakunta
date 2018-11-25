@@ -9,7 +9,6 @@ class TopNav extends React.Component {
 
     componentDidMount() {
         this.props.fetchTopNav();
-        
     }
 
     renderTopNav() {
@@ -24,7 +23,6 @@ class TopNav extends React.Component {
             })
         }
        return buttons
-        
     }
 
     render() {

@@ -1,6 +1,7 @@
 export const FETCH_TOPIMAGE = "FETCH_TOPIMAGE"
 export const FETCH_TEXT = "FETCH_TEXT"
 export const FETCH_TOPNAV = "FETCH_TOPNAV"
+export const FETCH_PAGES = "FETCH_TOPNAV"
 export const UPDATE_EDITOR_STATE = "UPDATE_EDITOR_STATE"
 
 export const FETCH_TODOS = "FETCH_TODOS";

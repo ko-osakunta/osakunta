@@ -1,7 +1,7 @@
 import React from 'react'
 import { todosRef } from "../config/firebase";
 import { database, storage } from '../config/firebase';
-import { FETCH_TODOS, FETCH_TOPIMAGE, FETCH_TEXT, FETCH_TOPNAV, UPDATE_EDITOR_STATE } from "./types";
+import { FETCH_TODOS, FETCH_TOPIMAGE, FETCH_TEXT, FETCH_TOPNAV, UPDATE_EDITOR_STATE, FETCH_PAGES } from "./types";
 import { convertFromRaw } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
 import NavButton from '../components/NavButton'
@@ -48,8 +48,19 @@ export const fetchTopImage = (image) => async dispatch => {
 	)
 }
 
+export const fetchPages = () => async dispatch => {
+	database.ref('pages')
+		.once('value')
+		.then(snapshot => {
+			dispatch({
+				type: FETCH_PAGES,
+				payload: snapshot.val()
+			})
+        })
+}
+
+//currently the same as pages.. might have different functionality in the future
 export const fetchTopNav = () => async dispatch => {
-	let navTabs = []
 	database.ref('pages')
 		.once('value')
 		.then(snapshot => {

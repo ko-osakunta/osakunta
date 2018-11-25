@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { Editor, EditorState, convertToRaw, RichUtils } from 'draft-js';
 import { databaseRef } from '../config/firebase'
