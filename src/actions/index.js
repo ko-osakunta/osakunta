@@ -1,7 +1,7 @@
 import React from 'react'
 import { todosRef } from "../config/firebase";
 import { database, storage } from '../config/firebase';
-import { FETCH_TOPIMAGE, FETCH_PAGE_BY_PATH, FETCH_TOPNAV, UPDATE_EDITOR_STATE, FETCH_PAGES } from "./types";
+import { FETCH_TOPIMAGE, FETCH_PAGE_BY_PATH, FETCH_TOPNAV, FETCH_PAGES, FETCH_KEY_BY_PATH } from "./types";
 import NavButton from '../components/NavButton'
 
 /* export const addToDo = newToDo => async dispatch => {
@@ -54,6 +54,25 @@ export const fetchPageByPath = (path) => async dispatch => {
 	)
 }
 
+export const fetchKeyByPath = (path) => async dispatch => {
+	database.ref('pages')
+		.orderByChild('path')
+		.equalTo(`${path}`)
+		.once('value')
+		.then(snapshot => {
+			var data;
+			snapshot.forEach(snap => {
+				data = Object.keys(snapshot.val())[0];
+			});
+			console.log(data)
+			dispatch({
+				type: FETCH_KEY_BY_PATH,
+				payload: data
+			})
+		}
+	)
+} 
+
 
 //currently the same as pages.. might have different functionality in the future
 export const fetchTopNav = () => async dispatch => {
@@ -65,12 +84,4 @@ export const fetchTopNav = () => async dispatch => {
 				payload: snapshot.val()
 			})
         })
-}
-
-
-export const updateEditorState = (editorState) => async dispatch => {
-	dispatch({
-		type: UPDATE_EDITOR_STATE,
-		payload: editorState
-	})
 }

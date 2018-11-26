@@ -5,12 +5,16 @@ import pageReducer from './reducers/pageReducer'
 import topImageReducer from './reducers/topImageReducer'
 import topNavReducer from './reducers/topNavReducer'
 import pagesReducer from './reducers/pagesReducer';
+import keyReducer from './reducers/keyReducer';
+import editorStateReducer from './reducers/editorStateReducer';
 
 const reducer = combineReducers({
     page: pageReducer,
     topImage: topImageReducer,
     topNav: topNavReducer,
-    pages: pagesReducer
+    pages: pagesReducer,
+    key: keyReducer,
+    editorState: editorStateReducer
 })
 
 const store = createStore(

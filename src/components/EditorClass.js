@@ -1,16 +1,32 @@
 import React from 'react'
 import { Editor, EditorState, convertToRaw, RichUtils } from 'draft-js';
-import { databaseRef } from '../config/firebase'
+import { databaseRef, database } from '../config/firebase'
+import { connect } from "react-redux";
+import * as actions from "../actions";
 import './EditorClass.css'
 
-//Not reduxified.. yet
+//This is an editor tool for the admin to change pages.
 class EditorClass extends React.Component {
-
+    
     constructor() {
         super();
         this.state = {
-            editorState: EditorState.createEmpty()
+            editorState: EditorState.createEmpty(),
+            key: ''
         }
+    }
+
+    componentWillMount() {
+        const path = window.location.pathname
+        database.ref('pages')
+            .orderByChild('path')
+            .equalTo(path)
+            .once('value')
+            .then(snapshot => {
+                this.setState({key : Object.keys(snapshot.val())[0]})
+            }
+        )
+        console.log(this.state.key)
     }
 
     onChange = (editorState) => {
@@ -36,8 +52,8 @@ class EditorClass extends React.Component {
         console.log(convertToRaw(contentState))
         
         var updates = {}
-        updates['hometext'] = JSON.stringify(convertToRaw(contentState));
         
+        updates['pages/' + this.state.key + '/text'] = JSON.stringify(convertToRaw(contentState));
         databaseRef.update(updates);
 
         window.location.reload();
@@ -54,6 +70,7 @@ class EditorClass extends React.Component {
 
 
     render() {
+        console.log(this.state.key)
         return (
             <div>
                 <button className="button" onClick={this.onUnderlineClick}>
@@ -80,7 +97,5 @@ class EditorClass extends React.Component {
         )
     }
 }
-
-
 
 export default EditorClass;
