@@ -4,7 +4,7 @@ import TopNav from './TopNav'
 import PageContent from './PageContent'
 
 class Page extends React.Component {
-
+    
     render() {
         return (
             <div>

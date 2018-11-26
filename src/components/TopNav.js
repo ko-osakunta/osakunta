@@ -14,11 +14,8 @@ class TopNav extends React.Component {
     renderTopNav() {
         var buttons = []
         const { topNav } = this.props
-        console.log(topNav)
-        console.log(Object.keys(topNav).length === 0)
         if (!(Object.keys(topNav).length === 0)) {
             Object.keys(topNav).forEach(function(key){
-                console.log(topNav[key])
                 buttons.push(<NavButton data={topNav[key]}/>)
             })
         }

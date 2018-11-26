@@ -1,13 +1,13 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import textReducer from './reducers/textReducer'
+import pageReducer from './reducers/pageReducer'
 import topImageReducer from './reducers/topImageReducer'
 import topNavReducer from './reducers/topNavReducer'
 import pagesReducer from './reducers/pagesReducer';
 
 const reducer = combineReducers({
-    text: textReducer,
+    page: pageReducer,
     topImage: topImageReducer,
     topNav: topNavReducer,
     pages: pagesReducer

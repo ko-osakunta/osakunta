@@ -19,16 +19,16 @@ class RouteComponent extends React.Component {
 		if (!(Object.keys(pages).length === 0)) {
 			Object.keys(pages).forEach(function(key){
 				console.log(pages[key].path)
-				routes.push((<Route key={pages[key].path} path={"/" + pages[key].path} component={App} />))
-				// components.push([pages[key].path, <App />])
+				routes.push(<Route key={pages[key].path} path={pages[key].path} component={App} />)
 			})
 		}
 		return routes
 	}
 
 	render() {
+		
 		return (
-			<Router >
+			<Router>
 				<div>
 					{this.renderRoutes()}
 				</div>

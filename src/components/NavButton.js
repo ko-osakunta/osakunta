@@ -1,6 +1,6 @@
-
 import React from 'react'
 
+//A single button that's rendered on the nav bar
 class NavButton extends React.Component {
 
     constructor(props) {
@@ -10,11 +10,9 @@ class NavButton extends React.Component {
         }
     }
 
-    //data tarvitsee erillisen pathin..
     render() {
-        console.log(this.state.data)
         return (
-            <a href={this.state.data.title}>{this.state.data.title}</a>
+            <a href={this.state.data.path}>{this.state.data.title}</a>
        )
     }
 }

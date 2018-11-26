@@ -1,39 +1,16 @@
 import React from 'react'
 import { todosRef } from "../config/firebase";
 import { database, storage } from '../config/firebase';
-import { FETCH_TODOS, FETCH_TOPIMAGE, FETCH_TEXT, FETCH_TOPNAV, UPDATE_EDITOR_STATE, FETCH_PAGES } from "./types";
-import { convertFromRaw } from 'draft-js';
-import { stateToHTML } from 'draft-js-export-html';
+import { FETCH_TOPIMAGE, FETCH_PAGE_BY_PATH, FETCH_TOPNAV, UPDATE_EDITOR_STATE, FETCH_PAGES } from "./types";
 import NavButton from '../components/NavButton'
 
-export const addToDo = newToDo => async dispatch => {
+/* export const addToDo = newToDo => async dispatch => {
   	todosRef.push().set(newToDo);
 };
 
 export const completeToDo = completeToDoId => async dispatch => {
  	todosRef.child(completeToDoId).remove();
-};
-
-export const fetchToDos = () => async dispatch => {
-	todosRef.on("value", snapshot => {
-		dispatch({
-			type: FETCH_TODOS,
-			payload: snapshot.val()
-		});
-	});
-}
-
-export const fetchHomeText = () => async dispatch => {
-	database.ref('hometext')
-		.once('value')
-		.then(snapshot => {
-			dispatch({
-				type: FETCH_TEXT,
-				payload: stateToHTML(convertFromRaw(JSON.parse(snapshot.val())))
-			})
-		}
-	)
-}
+}; */
 
 export const fetchTopImage = (image) => async dispatch => {
 	storage.ref()
@@ -58,6 +35,25 @@ export const fetchPages = () => async dispatch => {
 			})
         })
 }
+
+export const fetchPageByPath = (path) => async dispatch => {
+	database.ref('pages')
+		.orderByChild('path')
+		.equalTo(`${path}`)
+		.once('value')
+		.then(snapshot => {
+			var data;
+			snapshot.forEach(snap => {
+				data = snap.child('text').val();
+			});
+			dispatch({
+				type: FETCH_PAGE_BY_PATH,
+				payload: data
+			})
+		}
+	)
+}
+
 
 //currently the same as pages.. might have different functionality in the future
 export const fetchTopNav = () => async dispatch => {
