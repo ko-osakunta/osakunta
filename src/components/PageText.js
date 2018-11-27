@@ -17,6 +17,7 @@ class PageText extends React.Component {
         const { page } = this.props
         console.log(page)
         if (!(Object.keys(page).length === 0)) {
+            console.log(page)
             const text = stateToHTML(convertFromRaw(JSON.parse(page)))
             return <div dangerouslySetInnerHTML={{ __html: text}} />
         }

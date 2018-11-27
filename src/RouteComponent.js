@@ -17,10 +17,9 @@ class RouteComponent extends React.Component {
 		const { pages } = this.props
 		console.log(pages)
 		if (!(Object.keys(pages).length === 0)) {
-			Object.keys(pages).forEach(function(key){
-				console.log(pages[key].path)
-				routes.push(<Route key={pages[key].path} path={pages[key].path} component={App} />)
-			})
+			//fetchPages() returns index path as well when not in index, but indexing it to 0 fixes it
+			var key = Object.keys(pages)[0]
+			routes.push(<Route key={pages[key].path} path={pages[key].path} component={App} />)
 		}
 		return routes
 	}
