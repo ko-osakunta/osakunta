@@ -13,7 +13,7 @@ const reducer = combineReducers({
     topImage: topImageReducer,
     topNav: topNavReducer,
     pages: pagesReducer,
-    key: keyReducer,
+    pageKey: keyReducer,
     editorState: editorStateReducer
 })
 

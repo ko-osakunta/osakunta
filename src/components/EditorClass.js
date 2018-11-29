@@ -11,22 +11,28 @@ class EditorClass extends React.Component {
     constructor() {
         super();
         this.state = {
-            editorState: EditorState.createEmpty(),
-            key: ''
+            editorState: EditorState.createEmpty()
         }
     }
 
     componentWillMount() {
         const path = window.location.pathname
-        database.ref('pages')
-            .orderByChild('path')
-            .equalTo(path)
-            .once('value')
-            .then(snapshot => {
-                this.setState({key : Object.keys(snapshot.val())[0]})
-            }
-        )
-        console.log(this.state.key)
+        this.props.fetchKeyByPath(path)
+    }
+
+    onClick = (event) => {
+        event.preventDefault();
+        const contentState = this.state.editorState.getCurrentContent();
+        console.log(contentState)
+        console.log(convertToRaw(contentState))
+        
+        var updates = {}
+        const { pageKey } = this.props
+
+        updates['pages/' + pageKey + '/text'] = JSON.stringify(convertToRaw(contentState));
+        databaseRef.update(updates);
+
+        window.location.reload();
     }
 
     onChange = (editorState) => {
@@ -46,19 +52,6 @@ class EditorClass extends React.Component {
         this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'))
     }
 
-    onClick = () => {
-        const contentState = this.state.editorState.getCurrentContent();
-        console.log(contentState)
-        console.log(convertToRaw(contentState))
-        
-        var updates = {}
-        
-        updates['pages/' + this.state.key + '/text'] = JSON.stringify(convertToRaw(contentState));
-        databaseRef.update(updates);
-
-        window.location.reload();
-    }
-
     handleKeyCommand = (command) => {
         const newState = RichUtils.handleKeyCommand(this.state.editorState, command)
         if (newState) {
@@ -70,7 +63,6 @@ class EditorClass extends React.Component {
 
 
     render() {
-        console.log(this.state.key)
         return (
             <div>
                 <button className="button" onClick={this.onUnderlineClick}>
@@ -98,4 +90,10 @@ class EditorClass extends React.Component {
     }
 }
 
-export default EditorClass;
+const mapStateToProps = ({ pageKey }) => {
+    return {
+        pageKey
+    };
+};
+
+export default connect(mapStateToProps, actions)(EditorClass);

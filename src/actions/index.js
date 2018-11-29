@@ -42,7 +42,7 @@ export const fetchPageByPath = (path) => async dispatch => {
 		.equalTo(`${path}`)
 		.once('value')
 		.then(snapshot => {
-			var data;
+			var data = null
 			snapshot.forEach(snap => {
 				data = snap.child('text').val();
 			});
@@ -60,17 +60,22 @@ export const fetchKeyByPath = (path) => async dispatch => {
 		.equalTo(`${path}`)
 		.once('value')
 		.then(snapshot => {
-			var data;
+			var key = '';
 			snapshot.forEach(snap => {
-				data = Object.keys(snapshot.val())[0];
+				key = Object.keys(snapshot.val())[0];
 			});
-			console.log(data)
+			console.log(key)
 			dispatch({
 				type: FETCH_KEY_BY_PATH,
-				payload: data
+				payload: key
 			})
+			console.log("done!")
 		}
 	)
+}
+
+export const removePageByKey = (pageKey) => async dispatch => {
+	database.ref('/pages').child(`${pageKey}`).remove();
 } 
 
 
