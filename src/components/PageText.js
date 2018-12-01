@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import * as actions from "../actions";
 import { convertFromRaw } from 'draft-js';
 import { stateToHTML } from 'draft-js-export-html';
-
+import  { Redirect } from 'react-router-dom'
 //Here is the main text of the page that admin can edit
 class PageText extends React.Component {
 
@@ -16,6 +16,9 @@ class PageText extends React.Component {
     renderText() {
         const { page } = this.props
         console.log(page)
+        if (page === null) {
+            //redirect to index
+        }
         if (!(Object.keys(page).length === 0)) {
             console.log(page)
             const text = stateToHTML(convertFromRaw(JSON.parse(page)))

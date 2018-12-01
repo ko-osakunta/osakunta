@@ -1,7 +1,7 @@
 import React from 'react'
 import { todosRef } from "../config/firebase";
 import { database, storage } from '../config/firebase';
-import { FETCH_TOPIMAGE, FETCH_PAGE_BY_PATH, FETCH_TOPNAV, FETCH_PAGES, FETCH_KEY_BY_PATH } from "./types";
+import { FETCH_TOPIMAGE, FETCH_PAGE_BY_PATH, FETCH_TOPNAV, FETCH_PAGES, FETCH_KEY_BY_PATH, FETCH_PAGE_BY_TITLE } from "./types";
 import NavButton from '../components/NavButton'
 
 /* export const addToDo = newToDo => async dispatch => {
@@ -54,6 +54,24 @@ export const fetchPageByPath = (path) => async dispatch => {
 	)
 }
 
+export const fetchPageByTitle = (page) => async dispatch => {
+	database.ref('pages')
+		.orderByChild('page')
+		.equalTo(`${page}`)
+		.once('value')
+		.then(snapshot => {
+			var data = null
+			snapshot.forEach(snap => {
+				data = snap.child('text').val();
+			});
+			dispatch({
+				type: FETCH_PAGE_BY_TITLE,
+				payload: data
+			})
+		}
+	)
+}
+
 export const fetchKeyByPath = (path) => async dispatch => {
 	database.ref('pages')
 		.orderByChild('path')
@@ -64,12 +82,10 @@ export const fetchKeyByPath = (path) => async dispatch => {
 			snapshot.forEach(snap => {
 				key = Object.keys(snapshot.val())[0];
 			});
-			console.log(key)
 			dispatch({
 				type: FETCH_KEY_BY_PATH,
 				payload: key
 			})
-			console.log("done!")
 		}
 	)
 }

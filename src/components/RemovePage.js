@@ -15,7 +15,6 @@ class RemovePage extends React.Component {
     onClick = (event) => {
         event.preventDefault();
         const { pageKey } = this.props
-        console.log(pageKey)
         if (pageKey !== undefined) {
             this.props.removePageByKey(pageKey);
         }
