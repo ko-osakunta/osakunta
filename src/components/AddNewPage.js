@@ -14,33 +14,26 @@ class AddNewPage extends React.Component {
         }
     }
 
+    //When called this method will check if formatted path and title exist, 
+    //and creates a new page if they don't
     onClick = () => {
         var pagePath = this.convertValueToPath();
-        console.log(pagePath)   
-
-        var pagesRef = database.ref('pages')
 
         if (this.titleIsUsed(this.state.value.toLowerCase())) {
             window.alert("Sivu on jo olemassa tällä nimellä!");
         } else if (this.pathIsUsed(pagePath)) {
             window.alert("Sivu on jo olemassa tällä polulla!");
         } else {
-            pagesRef.push().set({
-                path: pagePath,
-                text: "{\"blocks\":[{\"key\":\"67ca\",\"text\":\"Uusi sivu luotu! Adminina voit muokata sitä oheisesta lomakkeesta.\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}", 
-                title: this.state.value
-            })
+            this.props.createNewPage(pagePath, this.state.value)
             window.location.reload()
         }
-        console.log(this.state.value)
     }
 
     titleIsUsed(title) {
         const { pages } = this.props
         var containsValue = false;
         Object.keys(pages).forEach(function(key) {
-            console.log(pages[key].title + ' ' + title)
-            if (pages[key].title == title) {
+            if (pages[key].title === title) {
                 containsValue = true
                 //Break doesn't work in map, but practically irrelevant in case of performance?
             }
@@ -52,7 +45,6 @@ class AddNewPage extends React.Component {
         const { pages } = this.props
         var containsValue = false;
         Object.keys(pages).forEach(function(key) {
-            console.log(pages[key].path + '-' + path)
             if (pages[key].path === path) {
                 containsValue = true
             }
@@ -75,7 +67,7 @@ class AddNewPage extends React.Component {
         return (
             <div>
                 <div>
-                        Uuden sivun nimi    :
+                        Uuden sivun nimi:
                     <input type="text" name="text" value={this.state.value} onChange={this.onChange}/>
                     <button className="button" onClick={this.onClick}>
                         Lisää uusi sivu

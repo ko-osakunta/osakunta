@@ -1,16 +1,15 @@
 import React from 'react'
-import { todosRef } from "../config/firebase";
 import { database, storage } from '../config/firebase';
-import { FETCH_TOPIMAGE, FETCH_PAGE_BY_PATH, FETCH_TOPNAV, FETCH_PAGES, FETCH_KEY_BY_PATH, FETCH_PAGE_BY_TITLE } from "./types";
+import * as types from "./types";
 import NavButton from '../components/NavButton'
 
-/* export const addToDo = newToDo => async dispatch => {
-  	todosRef.push().set(newToDo);
-};
-
-export const completeToDo = completeToDoId => async dispatch => {
- 	todosRef.child(completeToDoId).remove();
-}; */
+export const createNewPage = (pagePath, value) => async dispatch => {
+	database.ref('pages').push().set({
+		path: pagePath,
+		text: "<p>Uusi sivu luotu! Adminina voit muokata sitä oheisesta lomakkeesta.</p>", 
+		title: value
+	})
+}
 
 export const fetchTopImage = (image) => async dispatch => {
 	storage.ref()
@@ -18,7 +17,7 @@ export const fetchTopImage = (image) => async dispatch => {
 		.getDownloadURL()
 		.then((url) => {
 			dispatch({
-				type: FETCH_TOPIMAGE,
+				type: types.FETCH_TOPIMAGE,
 				payload: url
 			})
 		}
@@ -30,7 +29,7 @@ export const fetchPages = () => async dispatch => {
 		.once('value')
 		.then(snapshot => {
 			dispatch({
-				type: FETCH_PAGES,
+				type: types.FETCH_PAGES,
 				payload: snapshot.val()
 			})
         })
@@ -47,7 +46,7 @@ export const fetchPageByPath = (path) => async dispatch => {
 				data = snap.child('text').val();
 			});
 			dispatch({
-				type: FETCH_PAGE_BY_PATH,
+				type: types.FETCH_PAGE_BY_PATH,
 				payload: data
 			})
 		}
@@ -65,7 +64,7 @@ export const fetchPageByTitle = (page) => async dispatch => {
 				data = snap.child('text').val();
 			});
 			dispatch({
-				type: FETCH_PAGE_BY_TITLE,
+				type: types.FETCH_PAGE_BY_TITLE,
 				payload: data
 			})
 		}
@@ -83,17 +82,16 @@ export const fetchKeyByPath = (path) => async dispatch => {
 				key = Object.keys(snapshot.val())[0];
 			});
 			dispatch({
-				type: FETCH_KEY_BY_PATH,
+				type: types.FETCH_KEY_BY_PATH,
 				payload: key
 			})
 		}
 	)
 }
-
+ 
 export const removePageByKey = (pageKey) => async dispatch => {
 	database.ref('/pages').child(`${pageKey}`).remove();
-} 
-
+}
 
 //currently the same as pages.. might have different functionality in the future
 export const fetchTopNav = () => async dispatch => {
@@ -101,7 +99,7 @@ export const fetchTopNav = () => async dispatch => {
 		.once('value')
 		.then(snapshot => {
 			dispatch({
-				type: FETCH_TOPNAV,
+				type: types.FETCH_TOPNAV,
 				payload: snapshot.val()
 			})
         })

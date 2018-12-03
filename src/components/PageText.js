@@ -15,18 +15,16 @@ class PageText extends React.Component {
 
     renderText() {
         const { page } = this.props
-        console.log(page)
-        if (page === null) {
-            //redirect to index
-        }
+        
         if (!(Object.keys(page).length === 0)) {
             console.log(page)
-            const text = stateToHTML(convertFromRaw(JSON.parse(page)))
-            return <div dangerouslySetInnerHTML={{ __html: text}} />
+            /* const text = stateToHTML(JSON.parse(page), { inlineStyles }); */
+            return <div dangerouslySetInnerHTML={{ __html: page}} />
         }
     }
 
     render() {
+        const { page } = this.props
         return (
             <div>
                 {this.renderText()}
