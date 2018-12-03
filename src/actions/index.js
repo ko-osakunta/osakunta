@@ -7,7 +7,8 @@ export const createNewPage = (pagePath, value) => async dispatch => {
 	database.ref('pages').push().set({
 		path: pagePath,
 		text: "<p>Uusi sivu luotu! Adminina voit muokata sitä oheisesta lomakkeesta.</p>", 
-		title: value
+		title: value,
+		deletable: true
 	})
 }
 
@@ -35,7 +36,7 @@ export const fetchPages = () => async dispatch => {
         })
 }
 
-export const fetchPageByPath = (path) => async dispatch => {
+export const fetchPageTextByPath = (path) => async dispatch => {
 	database.ref('pages')
 		.orderByChild('path')
 		.equalTo(`${path}`)
@@ -46,14 +47,14 @@ export const fetchPageByPath = (path) => async dispatch => {
 				data = snap.child('text').val();
 			});
 			dispatch({
-				type: types.FETCH_PAGE_BY_PATH,
+				type: types.FETCH_PAGE_TEXT_BY_PATH,
 				payload: data
 			})
 		}
 	)
 }
 
-export const fetchPageByTitle = (page) => async dispatch => {
+export const fetchPageTextByTitle = (page) => async dispatch => {
 	database.ref('pages')
 		.orderByChild('page')
 		.equalTo(`${page}`)
@@ -64,7 +65,7 @@ export const fetchPageByTitle = (page) => async dispatch => {
 				data = snap.child('text').val();
 			});
 			dispatch({
-				type: types.FETCH_PAGE_BY_TITLE,
+				type: types.FETCH_PAGE_TEXT_BY_TITLE,
 				payload: data
 			})
 		}
