@@ -25,7 +25,7 @@ class RemovePage extends React.Component {
         return (
             <div>
                 <div>
-                    <button className="button" onClick={this.onClick}>
+                    <button className="btn-primary" onClick={this.onClick}>
                         Poista nykyinen sivu
                     </button>
                 </div>

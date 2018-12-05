@@ -21,7 +21,9 @@
 }
 
 .select {
-    background-color: rgb(255, 59, 196);
+    background-color: rgb(255, 9, 196);
+    width: 10%;
+    height: 5%;
     border: none;
     color: black;
     padding: 5px 5px;

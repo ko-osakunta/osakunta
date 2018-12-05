@@ -69,9 +69,9 @@ class AddNewPage extends React.Component {
                 <div>
                         Uuden sivun nimi:
                     <input type="text" name="text" value={this.state.value} onChange={this.onChange}/>
-                    <button className="button" onClick={this.onClick}>
-                        Lisää uusi sivu
-                    </button>
+                        <button className="btn-primary" onClick={this.onClick}>
+                            Lisää uusi sivu
+                        </button>
                 </div>
             </div>
             

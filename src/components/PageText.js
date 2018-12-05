@@ -18,7 +18,6 @@ class PageText extends React.Component {
         
         if (!(Object.keys(pageText).length === 0)) {
             console.log(pageText)
-            /* const text = stateToHTML(JSON.parse(page), { inlineStyles }); */
             return <div dangerouslySetInnerHTML={{ __html: pageText}} />
         }
     }

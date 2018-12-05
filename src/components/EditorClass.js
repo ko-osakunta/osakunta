@@ -3,7 +3,7 @@ import { Editor, EditorState, convertToRaw, RichUtils } from 'draft-js';
 import { databaseRef, database } from '../config/firebase'
 import { connect } from "react-redux";
 import * as actions from "../actions";
-import './EditorClass.css'
+
 import createStyles from 'draft-js-custom-styles';
 import { stateToHTML } from 'draft-js-export-html';
 
@@ -51,32 +51,21 @@ class EditorClass extends React.Component {
         this.setState({ editorState });
     }
 
-    toggleFontSize = fontSize => {
-        const newEditorState = styles.fontSize.toggle(this.state.editorState, fontSize);
-        return this.onChange(newEditorState);
+    toggleFontSize = (fontSize) => {
+        this.onChange(styles.fontSize.toggle(this.state.editorState, fontSize));
     };
 
     removeFontSize = () => {
-        const newEditorState = styles.fontSize.remove(this.state.editorState);
-        
-        return this.onChange(newEditorState);
+        return this.onChange(styles.fontSize.remove(this.state.editorState));
     };
     
-    addFontSize = val => () => {
-        const newEditorState = styles.fontSize.add(this.state.editorState, val);
-        return this.onChange(newEditorState);
+    toggleColor = (color) => {
+        this.onChange(styles.color.toggle(this.state.editorState, color));
     };
-    
-    toggleColor = color => {
-        const newEditorState = styles.color.toggle(this.state.editorState, color);
-        return this.onChange(newEditorState);
+
+    removeFontSize = () => {
+        this.onChange(styles.color.remove(this.state.editorState));
     };
-    
-    toggleTextTransform = color => {
-        const newEditorState = styles.textTransform.toggle(this.state.editorState, color); 
-        return this.onChange(newEditorState);
-    };
-     
 
     onStyleClick = (style) => {
         this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, style));
@@ -100,36 +89,27 @@ class EditorClass extends React.Component {
         })
         const html = stateToHTML(this.state.editorState.getCurrentContent(), { inlineStyles });
         return (
-            <div>
-                <select className="select" onChange={e => this.toggleFontSize(e.target.value)}>
-                    {options(['12px', '24px', '36px', '50px', '72px'])}
+            <div portfolio-filter text-center>
+                <select className="btn-primary" onChange={e => this.toggleFontSize(e.target.value)}>
+                    {options(['9px', '10px', '11px', '12px', '14px',
+                            '18px','24px', '36px', '50px', '72px'])}
                 </select>
-                <select className="select" onChange={e => this.toggleColor(e.target.value)}>
-                    {options(['green', 'blue', 'red', 'purple', 'orange'])}
+                <select className="btn-primary" onChange={e => this.toggleColor(e.target.value)}>
+                    {options(['black', 'green', 'blue', 'red', 'purple', 'orange'])}
                 </select>
-                <select className="select" onChange={e => this.toggleTextTransform(e.target.value)}>
-                    {options(['uppercase', 'capitalize'])}
-                </select>
-                <button className="button"
-                    onClick={this.removeFontSize}
-                >
-                    Remove FontSize
+                <button className="btn-primary" onClick={this.removeFontSize}>
+                    Poista fontin koko
                 </button>
-                <button className="button"
-                    onClick={this.addFontSize('24px')}
-                >
-                    Add FontSize
+                <button className="btn-primary" onClick={this.removeColor}>
+                    Poista väri
                 </button>
-                <button className="button" onClick={() => this.onStyleClick('header-two')}>
-                    H2
-                </button>
-                <button className="button" onClick={() => this.onStyleClick('UNDERLINE')}>
+                <button className="btn-primary" onClick={() => this.onStyleClick('UNDERLINE')}>
                     U
                 </button>
-                <button className="button" onClick={() => this.onStyleClick('BOLD')}>
+                <button className="btn-primary" onClick={() => this.onStyleClick('BOLD')}>
                     <b>B</b>
                 </button>
-                <button className="button" onClick={() => this.onStyleClick('ITALIC')}>
+                <button className="btn-primary" onClick={() => this.onStyleClick('ITALIC')}>
                     <em>I</em>
                 </button>
                 <div className="editorclass">
@@ -141,7 +121,7 @@ class EditorClass extends React.Component {
                         onChange={this.onChange} 
                     />
                 </div>
-                    <button className="button" onClick={this.onClick}>
+                    <button className="btn-primary" onClick={this.onClick}>
                         Vaihda teksti!
                     </button>
 
