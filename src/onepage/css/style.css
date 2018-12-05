@@ -21,7 +21,7 @@ p {
 
 .btn-primary {
   padding: 8px 20px;
-  background: #910000;
+  background: #db8a87;
   color: #000;
   border-radius: 0;
   border:none;
@@ -32,7 +32,7 @@ p {
 .btn-primary:hover, 
 .btn-primary:focus{
   background: #fff;
-  color:#910000;
+  color:#000;
   outline: none;
   box-shadow: none;
 } 
