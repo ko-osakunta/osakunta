@@ -1,6 +1,6 @@
 /* import "materialize-css/dist/css/materialize.min.css";
 import "materialize-css/dist/js/materialize.min.js"; */
-import "./onepage/css/style.css"
+import "./assets/css/styles.css"
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";

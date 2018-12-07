@@ -25,7 +25,7 @@ class PageText extends React.Component {
     render() {
         const { pageText } = this.props
         return (
-            <div>
+            <div className="pageText">
                 {this.renderText()}
             </div>
         )

@@ -1,5 +1,5 @@
 import React from 'react'
-import '../onepage/css/style.css'
+import '../innova/css/style.css'
 import { connect } from "react-redux";
 import * as actions from "../actions";
 import { database } from '../config/firebase';
@@ -24,13 +24,15 @@ class TopNav extends React.Component {
 
     render() {
         return (
-            <div class="navbar navbar-default navbar-fixed-top">
-                <div class ="col-md-10">
-                    <div class="nav navbar-nav navbar-right">
-                        {this.renderTopNav()}
+            <nav nav id="menu" class="navbar navbar-default navbar-fixed-top">
+                <div class="navbar-default">
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+                        <ul class="nav navbar-nav navbar-right">
+                            {this.renderTopNav()}
+                        </ul>
                     </div>
                 </div>
-            </div>
+            </nav>
         )
     }
 }
