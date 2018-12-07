@@ -1,5 +1,4 @@
 import React from 'react'
-import '../innova/css/style.css'
 import { connect } from "react-redux";
 import * as actions from "../actions";
 import { database } from '../config/firebase';
