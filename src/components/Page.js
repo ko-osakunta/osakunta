@@ -2,14 +2,14 @@ import React from 'react'
 import Banner from './Banner'
 import TopNav from './TopNav'
 import PageContent from './PageContent'
-import PageBottom from './PageBottom'
+import Footer from './Footer'
 
 const Page = () =>
-    <div>
-        <Banner />
-        <TopNav />
-        <PageContent />
-        <PageBottom />
-    </div>
+  <div>
+      <Banner />
+      <TopNav />
+      <PageContent />
+      <Footer />
+  </div>
 
 export default Page;

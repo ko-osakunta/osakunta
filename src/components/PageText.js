@@ -1,9 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux";
 import * as actions from "../actions";
-import { convertFromRaw } from 'draft-js';
-import { stateToHTML } from 'draft-js-export-html';
-import  { Redirect } from 'react-router-dom'
 //Here is the main text of the page that admin can edit
 class PageText extends React.Component {
 
@@ -23,7 +20,6 @@ class PageText extends React.Component {
     }
 
     render() {
-        const { pageText } = this.props
         return (
             <div className="pageText">
                 {this.renderText()}

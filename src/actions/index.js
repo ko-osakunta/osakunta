@@ -36,6 +36,17 @@ export const fetchPages = () => async dispatch => {
         })
 }
 
+export const fetchContact = () => async dispatch => {
+	database.ref('contact')
+		.once('value')
+		.then(snapshot => {
+			dispatch({
+				type: types.FETCH_CONTACT,
+				payload: snapshot.val()
+			})
+        })
+}
+
 export const fetchPageTextByPath = (path) => async dispatch => {
 	database.ref('pages')
 		.orderByChild('path')
