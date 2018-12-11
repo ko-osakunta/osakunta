@@ -5,26 +5,41 @@ import { database } from '../config/firebase';
 
 class PageBottom extends React.Component {
 
-    
+
 
     render() {
         return (
-            <div className="bottomPage">
-                <div className="row">
-                    <div class="col-sm-4">
-                        <p>Domus Gaudium</p>
-                        <p>Leppäsuonkatu 11</p>
-                        <p>00100 Helsinki</p>
+            <div className="footer">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-3 offset-lg-1 offset-xl-0">
+                            <p>Karjalainen Osakunta</p>
+                        </div>
+                        <div className="col-lg-2 col-xl-3 offset-lg-2 offset-xl-3">
+                            <p>Sosiaaliset mediat</p>
+                        </div>
                     </div>
-                    <div class="col-sm-4">
-                        <p>Domus Gaudium</p>
-                        <p>Leppäsuonkatu 11</p>
-                        <p>00100 Helsinki</p>
+                    <div className="row">
+                        <div className="col-lg-3 offset-lg-1 offset-xl-0">
+                            <p>Domus Gaudium</p>
+                        </div>
+                        <div className="col-lg-2 col-xl-3 offset-lg-0">
+                            <p>Helsingin yliopiston osakunta</p>
+                        </div>
+                        <div className="col-lg-2 col-xl-3">
+                            <p>fb: <a href="https://www.facebook.com/KarjalainenOsakunta">Karjalainen Osakunta</a></p>
+                        </div>
                     </div>
-                    <div class="col-sm-4">
-                        <p>Domus Gaudium</p>
-                        <p>Leppäsuonkatu 11</p>
-                        <p>00100 Helsinki</p>
+                    <div className="row">
+                        <div className="col-lg-3 offset-lg-1 offset-xl-0">
+                            <p>Leppäsuonkatu 11</p>
+                        </div>
+                        <div className="col-lg-2 col-xl-3 offset-lg-0">
+                            <p>Paragraph</p>
+                        </div>
+                        <div className="col-lg-2 col-xl-3 offset-xl-0">
+                            <p>ig: <a href="https://instagram.com/karjalainenosakunta/">@karjalainenosakunta</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
