@@ -5,11 +5,11 @@ import PageContent from './PageContent'
 import PageBottom from './PageBottom'
 
 const Page = () =>
-  <div>
-      <Banner />
-      <TopNav />
-      <PageContent />
-      <PageBottom />
-  </div>
+    <div>
+        <Banner />
+        <TopNav />
+        <PageContent />
+        <PageBottom />
+    </div>
 
 export default Page;
