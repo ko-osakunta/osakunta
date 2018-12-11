@@ -19,9 +19,9 @@ class AddNewPage extends React.Component {
     onClick = () => {
         var pagePath = this.convertValueToPath();
 
-        if (this.titleIsUsed(this.state.value.toLowerCase())) {
+        if (this.isUsed("title", this.state.value.toLowerCase())) {
             window.alert("Sivu on jo olemassa tällä nimellä!");
-        } else if (this.pathIsUsed(pagePath)) {
+        } else if (this.isUsed("path", pagePath)) {
             window.alert("Sivu on jo olemassa tällä polulla!");
         } else {
             this.props.createNewPage(pagePath, this.state.value)
@@ -29,26 +29,14 @@ class AddNewPage extends React.Component {
         }
     }
 
-    titleIsUsed(title) {
+    isUsed(property, value) {
         const { pages } = this.props
-        var containsValue = false;
-        Object.keys(pages).forEach(function(key) {
-            if (pages[key].title === title) {
-                containsValue = true
-                //Break doesn't work in map, but practically irrelevant in case of performance?
-            }
-        });
-        return containsValue
-    }
-
-    pathIsUsed(path) {
-        const { pages } = this.props
-        var containsValue = false;
-        Object.keys(pages).forEach(function(key) {
-            if (pages[key].path === path) {
+        let containsValue = false
+        for (const key in pages) {
+            if (pages[key][property] === value) {
                 containsValue = true
             }
-        });
+        }
         return containsValue
     }
 
