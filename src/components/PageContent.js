@@ -4,18 +4,12 @@ import EditorClass from './EditorClass'
 import AddNewPage from './AddNewPage';
 import RemovePage from './RemovePage';
 
-class PageContent extends React.Component {
-
-    render() {
-        return (
-            <div id="page">
-                <PageText />
-                <EditorClass />
-                <AddNewPage />
-                <RemovePage />
-            </div>
-        )
-    }
-}
+const PageContent = () =>
+    <div id="page">
+        <PageText />
+        <EditorClass />
+        <AddNewPage />
+        <RemovePage />
+    </div>
 
 export default PageContent;
