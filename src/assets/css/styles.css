@@ -10,6 +10,8 @@ body {
   height: 110%;
   background-position: top;
   background-size: cover;
+  position: relative;
+  width: 100%;
 }
 
 .banner {
@@ -32,10 +34,21 @@ body {
   box-shadow: 0px 0px 10px -1px #000;
 }
 
-.bottomPage {
-  background-color: #585858;
-  height: 100px;
-  width: 100%;
+.footer {
   position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /*padding: 1rem;*/
+  background-color: #232222;
+  text-align: center;
+  color: #ffffff;
+  height: 133px;
+}
+
+body::after {
+  content: '';
+  display: block;
+  height: 133px;
 }
 
