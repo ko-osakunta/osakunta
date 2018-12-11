@@ -13,7 +13,7 @@ class NavButton extends React.Component {
     render() {
         return (
             <li>
-            <a href={this.state.data.path}>{this.state.data.title}</a>
+                <a href={this.state.data.path}>{this.state.data.title}</a>
             </li>
        )
     }
