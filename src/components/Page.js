@@ -1,13 +1,13 @@
 import React from 'react'
 import Banner from './Banner'
-import TopNav from './TopNav'
 import PageContent from './PageContent'
 import Footer from './Footer'
+import SideNav from './SideNav';
 
 const Page = () =>
   <div>
       <Banner />
-      <TopNav />
+      <SideNav />
       <PageContent />
       <Footer />
   </div>
