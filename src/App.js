@@ -1,7 +1,6 @@
 import React from "react";
 import Page from "./components/Page";
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import AddNewPage from './components/AddNewPage'
 import * as actions from "./actions";
 import { connect } from "react-redux";
 

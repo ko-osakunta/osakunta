@@ -1,7 +1,5 @@
-import React from 'react'
 import { database, storage } from '../config/firebase';
 import * as types from "./types";
-import NavButton from '../components/NavButton'
 
 export const createNewPage = (pagePath, value) => async dispatch => {
 	database.ref('pages').push().set({

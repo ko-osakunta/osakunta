@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from "react-redux";
 import * as actions from "../actions";
 import AdminCreatedPage from './AdminCreatedPage';
-import Placeholder from './Placeholder';
+import Admin from './Admin'
 
 //This page returns the correct type of page
 class PagePicker extends React.Component {
@@ -18,8 +18,8 @@ class PagePicker extends React.Component {
         if (!(Object.keys(page).length === 0)) {
             if (page.type === "adminCreated") {
                 return <AdminCreatedPage />
-            } else if (page.type === "placeholder") {
-                return <Placeholder />
+            } else if (page.type === "admin") {
+                return <Admin />
             }
             //Return 404
         }

@@ -1,6 +1,5 @@
 import React from 'react'
 import Banner from './Banner'
-import AdminCreatedPage from './AdminCreatedPage'
 import PagePicker from './PagePicker'
 import Footer from './Footer'
 import SideNav from './SideNav';

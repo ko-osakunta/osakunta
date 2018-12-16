@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 import * as actions from "../actions";
 import './EditorClass.css'
 
-//Pressing the button in this class will remove the page
-
+//Pressing the button in this class will remove the page. Admin tool.
 class RemovePage extends React.Component {
     
     componentWillMount() {

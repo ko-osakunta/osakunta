@@ -1,6 +1,6 @@
 import React from 'react'
 import { Editor, EditorState, convertToRaw, RichUtils } from 'draft-js';
-import { databaseRef, database } from '../config/firebase'
+import { databaseRef } from '../config/firebase'
 import { connect } from "react-redux";
 import * as actions from "../actions";
 
@@ -47,7 +47,6 @@ class EditorClass extends React.Component {
     }
 
     onChange = (editorState) => {
-        const contentState = editorState.getCurrentContent();
         this.setState({ editorState });
     }
 

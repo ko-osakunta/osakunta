@@ -1,5 +1,4 @@
 import React from 'react'
-import { databaseRef, database } from '../config/firebase'
 import { connect } from "react-redux";
 import * as actions from "../actions";
 import './EditorClass.css'
