@@ -4,7 +4,8 @@ import EditorClass from './EditorClass'
 import AddNewPage from './AddNewPage';
 import RemovePage from './RemovePage';
 
-const PageContent = () =>
+//This particular type of page can be created, and removed by admin
+const AdminCreatedPage = () =>
     <div id="page">
         <PageText />
         <EditorClass />
@@ -12,4 +13,4 @@ const PageContent = () =>
         <RemovePage />
     </div>
 
-export default PageContent;
+export default AdminCreatedPage;

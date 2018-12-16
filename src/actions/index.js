@@ -8,7 +8,8 @@ export const createNewPage = (pagePath, value) => async dispatch => {
 		path: pagePath,
 		text: "<p>Uusi sivu luotu! Adminina voit muokata sitä oheisesta lomakkeesta.</p>", 
 		title: value,
-		deletable: true
+		deletable: true,
+		type: 'adminCreated'
 	})
 }
 
@@ -59,6 +60,24 @@ export const fetchPageTextByPath = (path) => async dispatch => {
 			});
 			dispatch({
 				type: types.FETCH_PAGE_TEXT_BY_PATH,
+				payload: data
+			})
+		}
+	)
+}
+
+export const fetchPageByPath = (path) => async dispatch => {
+	database.ref('pages')
+		.orderByChild('path')
+		.equalTo(`${path}`)
+		.once('value')
+		.then(snapshot => {
+			var data = null
+			snapshot.forEach(snap => {
+				data = snap.val();
+			});
+			dispatch({
+				type: types.FETCH_PAGE_BY_PATH,
 				payload: data
 			})
 		}

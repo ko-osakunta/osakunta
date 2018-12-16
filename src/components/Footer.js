@@ -15,7 +15,6 @@ class Footer extends React.Component {
     renderFooter() {
         const { contact } = this.props
         if (!(Object.keys(contact).length === 0)) {
-            console.log(contact)
             return (
                 <div className="footer">
                     <div className="container">
@@ -49,8 +48,8 @@ class Footer extends React.Component {
                                 {this.renderAsHtml(contact.ig)}
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xl-3 offset-xl-0">
+                        <div className="row">
+                            <div className="col-xl-3 offset-xl-0">
                                 {this.renderAsHtml(contact.postalCodeAndCity)}
                             </div>
                         </div>

@@ -1,13 +1,12 @@
 import React from "react";
 import Page from "./components/Page";
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-//import App from './App'
 import AddNewPage from './components/AddNewPage'
 import * as actions from "./actions";
 import { connect } from "react-redux";
 
 
-class RouteComponent extends React.Component {
+class App extends React.Component {
 
 	componentDidMount() {
 		this.props.fetchPages();
@@ -42,4 +41,4 @@ const mapStateToProps = ({ pages }) => {
 	};
 };
 
-export default connect(mapStateToProps, actions)(RouteComponent);
+export default connect(mapStateToProps, actions)(App);

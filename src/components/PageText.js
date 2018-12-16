@@ -7,15 +7,15 @@ class PageText extends React.Component {
     componentWillMount() {
         const path = window.location.pathname
         console.log(path)
-        this.props.fetchPageTextByPath(path);
+        this.props.fetchPageByPath(path);
     }
 
     renderText() {
-        const { pageText } = this.props
-        
-        if (!(Object.keys(pageText).length === 0)) {
-            console.log(pageText)
-            return <div dangerouslySetInnerHTML={{ __html: pageText}} />
+        const { page } = this.props
+        console.log(page)
+        if (!(Object.keys(page).length === 0)) {
+            console.log(page)
+            return <div dangerouslySetInnerHTML={{ __html: page.text}} />
         }
     }
 
@@ -28,9 +28,9 @@ class PageText extends React.Component {
     }
 }
 
-const mapStateToProps = ({ pageText }) => {
+const mapStateToProps = ({ page }) => {
     return {
-        pageText
+        page
     };
 };
 
