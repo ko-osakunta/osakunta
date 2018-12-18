@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux";
 import * as actions from "../actions";
-import './EditorClass.css'
 
 //This form creates a new page to the site
 class AddNewPage extends React.Component {

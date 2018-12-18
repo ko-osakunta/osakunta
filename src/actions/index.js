@@ -4,10 +4,10 @@ import * as types from "./types";
 export const createNewPage = (pagePath, value) => async dispatch => {
 	database.ref('pages').push().set({
 		path: pagePath,
-		text: "<p>Uusi sivu luotu! Adminina voit muokata sitä oheisesta lomakkeesta.</p>", 
+		text: "{\"blocks\":[{\"key\":\"2onp9\",\"text\":\"Uusi sivu luotu! Adminina voit muokata sitä oheisesta lomakkeesta.\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}", 
 		title: value,
 		deletable: true,
-		type: 'adminCreated'
+		type: 'adminCreated'	
 	})
 }
 

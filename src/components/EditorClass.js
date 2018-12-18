@@ -1,27 +1,73 @@
-import React from 'react'
-import { Editor, EditorState, convertToRaw, RichUtils } from 'draft-js';
+import React from 'react';
+import { EditorState, convertToRaw, RichUtils } from 'draft-js';
 import { databaseRef } from '../config/firebase'
 import { connect } from "react-redux";
 import * as actions from "../actions";
+import 'draft-js-alignment-plugin/lib/plugin.css';
+import 'draft-js-focus-plugin/lib/plugin.css';
+import 'draft-js-inline-toolbar-plugin/lib/plugin.css';
 
-import createStyles from 'draft-js-custom-styles';
+import Editor, { composeDecorators, createEditorStateWithText } from 'draft-js-plugins-editor';
+
+import createInlineToolbarPlugin, { Separator } from 'draft-js-inline-toolbar-plugin';
+import createLinkPlugin from 'draft-js-anchor-plugin';
+import createImagePlugin from 'draft-js-image-plugin';
+import createAlignmentPlugin from 'draft-js-alignment-plugin';
+import createFocusPlugin from 'draft-js-focus-plugin';
+import createResizeablePlugin from 'draft-js-resizeable-plugin';
+import createBlockDndPlugin from 'draft-js-drag-n-drop-plugin';
+
+import {
+    ItalicButton,
+    BoldButton,
+    UnderlineButton,
+    CodeButton,
+    UnorderedListButton,
+    OrderedListButton,
+    BlockquoteButton
+} from 'draft-js-buttons';
+
 import { stateToHTML } from 'draft-js-export-html';
+import { stateFromHTML } from 'draft-js-import-html';
+import ImageAdd from './ImageAdd';
+import HeadlinesButton from './HeadlinesButton'
 
-const customStyleMap = {
-    MARK: {
-        backgroundColor: 'White',
-        fontStyle: 'italic',
-    },
-};
+const linkPlugin = createLinkPlugin();
+const inlineToolbarPlugin = createInlineToolbarPlugin();
 
-const { styles, customStyleFn, exporter } = createStyles(['font-size', 'color', 'text-transform'], 'CUSTOM_', customStyleMap);
-//This is an editor tool for the admin to change pages.
+const { InlineToolbar } = inlineToolbarPlugin;
+const focusPlugin = createFocusPlugin();
+const resizeablePlugin = createResizeablePlugin();
+const blockDndPlugin = createBlockDndPlugin();
+const alignmentPlugin = createAlignmentPlugin();
+
+const decorator = composeDecorators(
+    resizeablePlugin.decorator,
+    alignmentPlugin.decorator,
+    focusPlugin.decorator,
+    blockDndPlugin.decorator
+);
+const imagePlugin = createImagePlugin({ decorator });
+
+
+const { AlignmentTool } = alignmentPlugin;
+
+const plugins = [inlineToolbarPlugin,
+    linkPlugin,
+    blockDndPlugin,
+    focusPlugin,
+    alignmentPlugin,
+    resizeablePlugin,
+    imagePlugin];
+
+let contentState = stateFromHTML('<em>Tämä on muokkauslomake. Voit muokata tällä oheista tekstiä. Korosta teksti niin voit tyylitellä sitä!</em>');
+
 class EditorClass extends React.Component {
 
     constructor() {
         super();
         this.state = {
-            editorState: EditorState.createEmpty()
+            editorState: EditorState.createWithContent(contentState)
         }
     }
 
@@ -30,45 +76,24 @@ class EditorClass extends React.Component {
         this.props.fetchKeyByPath(path)
     }
 
-    onClick = (event) => {
+    postNewPage = (event) => {
         event.preventDefault();
         const contentState = this.state.editorState.getCurrentContent();
         console.log(contentState)
-        console.log(convertToRaw(contentState))
 
         var updates = {}
         const { pageKey } = this.props
-
-        const inlineStyles = exporter(this.state.editorState);
-        updates['pages/' + pageKey + '/text'] = stateToHTML(contentState, { inlineStyles });
+        updates['pages/' + pageKey + '/text'] = JSON.stringify(convertToRaw(contentState))
         databaseRef.update(updates);
 
         window.location.reload();
     }
 
-    onChange = (editorState) => {
+    onChange = (editorState) =>
         this.setState({ editorState });
-    }
 
-    toggleFontSize = (fontSize) => {
-        this.onChange(styles.fontSize.toggle(this.state.editorState, fontSize));
-    };
-
-    removeFontSize = () => {
-        return this.onChange(styles.fontSize.remove(this.state.editorState));
-    };
-
-    toggleColor = (color) => {
-        this.onChange(styles.color.toggle(this.state.editorState, color));
-    };
-
-    removeFontSize = () => {
-        this.onChange(styles.color.remove(this.state.editorState));
-    };
-
-    onStyleClick = (style) => {
-        this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, style));
-    }
+    focus = () =>
+        this.editor.focus();
 
     handleKeyCommand = (command) => {
         const newState = RichUtils.handleKeyCommand(this.state.editorState, command)
@@ -79,57 +104,51 @@ class EditorClass extends React.Component {
         return 'not-handled';
     }
 
-
     render() {
-        const inlineStyles = exporter(this.state.editorState);
-        console.log(JSON.stringify(inlineStyles))
-        const options = x => x.map(fontSize => {
-            return <option key={fontSize} value={fontSize}>{fontSize}</option>;
-        })
-        const html = stateToHTML(this.state.editorState.getCurrentContent(), { inlineStyles });
+        const html = stateToHTML(this.state.editorState.getCurrentContent());
+        console.log(JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent())))
         return (
-            <div portfolio-filter text-center>
-                <select className="btn-primary" onChange={e => this.toggleFontSize(e.target.value)}>
-                    {options(['9px', '10px', '11px', '12px', '14px',
-                        '18px', '24px', '36px', '50px', '72px'])}
-                </select>
-                <select className="btn-primary" onChange={e => this.toggleColor(e.target.value)}>
-                    {options(['black', 'green', 'blue', 'red', 'purple', 'orange'])}
-                </select>
-                <button className="btn-primary" onClick={this.removeFontSize}>
-                    Poista fontin koko
-                </button>
-                <button className="btn-primary" onClick={this.removeColor}>
-                    Poista väri
-                </button>
-                <button className="btn-primary" onClick={() => this.onStyleClick('UNDERLINE')}>
-                    U
-                </button>
-                <button className="btn-primary" onClick={() => this.onStyleClick('BOLD')}>
-                    <b>B</b>
-                </button>
-                <button className="btn-primary" onClick={() => this.onStyleClick('ITALIC')}>
-                    <em>I</em>
-                </button>
-                <div className="editorclass">
+            <div>
+                <div className="editor" onClick={this.focus}>
                     <Editor
-                        customStyleFn={customStyleFn}
-                        customStyleMap={customStyleMap}
                         editorState={this.state.editorState}
-                        handleKeyCommand={this.handleKeyCommand}
                         onChange={this.onChange}
+                        plugins={plugins}
+                        ref={(element) => { this.editor = element; }}
                     />
+                    <AlignmentTool />
+                    <InlineToolbar>
+                        {
+                            // may be use React.Fragment instead of div to improve perfomance after React 16
+                            (externalProps) => (
+                                <div>
+                                    <BoldButton {...externalProps} />
+                                    <ItalicButton {...externalProps} />
+                                    <UnderlineButton {...externalProps} />
+                                    <linkPlugin.LinkButton {...externalProps} />
+                                    <Separator {...externalProps} />
+                                    <HeadlinesButton {...externalProps} />
+                                    <UnorderedListButton {...externalProps} />
+                                    <OrderedListButton {...externalProps} />
+                                </div>
+                            )
+                        }
+                    </InlineToolbar>
                 </div>
-                <button className="btn-primary" onClick={this.onClick}>
+
+                <ImageAdd
+                    editorState={this.state.editorState}
+                    onChange={this.onChange}
+                    modifier={imagePlugin.addImage}
+                />
+                <button className="btn-primary" onClick={this.postNewPage}>
                     Vaihda teksti!
-                    </button>
+            </button>
                 <div>
                     {html}
                 </div>
-
             </div>
-
-        )
+        );
     }
 }
 
