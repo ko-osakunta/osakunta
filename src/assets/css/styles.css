@@ -36,6 +36,11 @@ body {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0px 0px 10px -1px #000;
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  margin-bottom: 30px;
 }
 
 .footer {
@@ -89,6 +94,7 @@ body::after {
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
+
 }
 
 @media screen and (max-height: 450px) {
@@ -97,7 +103,7 @@ body::after {
 }
 
 .editorClass {
-  background-color: #FFF;
+  background-color:	rgb(211,211,211);
   color: #333;
   width: 75%;
   outline-style: dashed; 
@@ -146,6 +152,24 @@ body::after {
 
 .editor :global(.public-DraftEditor-content) {
   min-height: 140px;
+}
+
+.img-left {
+  display: block;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.img-right {
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.img-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .options {

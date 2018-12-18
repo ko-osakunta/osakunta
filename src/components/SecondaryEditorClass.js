@@ -1,5 +1,5 @@
 import React from 'react';
-import { convertToRaw, RichUtils } from 'draft-js';
+import { EditorState, convertToRaw, RichUtils } from 'draft-js';
 import { databaseRef } from '../config/firebase'
 import { connect } from "react-redux";
 import * as actions from "../actions";
@@ -29,59 +29,60 @@ import {
     OrderedListButton,
     BlockquoteButton,
     CodeBlockButton,
-  } from 'draft-js-buttons';
+} from 'draft-js-buttons';
 
 import { stateToHTML } from 'draft-js-export-html';
+import { stateFromHTML } from 'draft-js-import-html';
 import ImageAdd from './ImageAdd';
 
 class HeadlinesPicker extends React.Component {
     componentDidMount() {
-      setTimeout(() => { window.addEventListener('click', this.onWindowClick); });
+        setTimeout(() => { window.addEventListener('click', this.onWindowClick); });
     }
-  
+
     componentWillUnmount() {
-      window.removeEventListener('click', this.onWindowClick);
+        window.removeEventListener('click', this.onWindowClick);
     }
-  
+
     onWindowClick = () =>
-      // Call `onOverrideContent` again with `undefined`
-      // so the toolbar can show its regular content again.
-      this.props.onOverrideContent(undefined);
-  
+        // Call `onOverrideContent` again with `undefined`
+        // so the toolbar can show its regular content again.
+        this.props.onOverrideContent(undefined);
+
     render() {
-      const buttons = [HeadlineOneButton, HeadlineTwoButton, HeadlineThreeButton];
-      return (
-        <div>
-          {buttons.map((Button, i) => // eslint-disable-next-line
-            <Button key={i} {...this.props} />
-          )}
-        </div>
-      );
+        const buttons = [HeadlineOneButton, HeadlineTwoButton, HeadlineThreeButton];
+        return (
+            <div>
+                {buttons.map((Button, i) => // eslint-disable-next-line
+                    <Button key={i} {...this.props} />
+                )}
+            </div>
+        );
     }
-  }
-  
-  class HeadlinesButton extends React.Component {
+}
+
+class HeadlinesButton extends React.Component {
     // When using a click event inside overridden content, mouse down
     // events needs to be prevented so the focus stays in the editor
     // and the toolbar remains visible  onMouseDown = (event) => event.preventDefault()
     onMouseDown = (event) => event.preventDefault()
-  
+
     onClick = () =>
-      // A button can call `onOverrideContent` to replace the content
-      // of the toolbar. This can be useful for displaying sub
-      // menus or requesting additional information from the user.
-      this.props.onOverrideContent(HeadlinesPicker);
-  
+        // A button can call `onOverrideContent` to replace the content
+        // of the toolbar. This can be useful for displaying sub
+        // menus or requesting additional information from the user.
+        this.props.onOverrideContent(HeadlinesPicker);
+
     render() {
-      return (
-        <div onMouseDown={this.onMouseDown} className={'headlineButtonWrapper'}>
-          <button onClick={this.onClick} className={'headlineButton'}>
-            H
+        return (
+            <div onMouseDown={this.onMouseDown} className={'headlineButtonWrapper'}>
+                <button onClick={this.onClick} className={'headlineButton'}>
+                    H
           </button>
-        </div>
-      );
+            </div>
+        );
     }
-  }
+}
 
 const linkPlugin = createLinkPlugin();
 const inlineToolbarPlugin = createInlineToolbarPlugin();
@@ -111,12 +112,13 @@ const plugins = [inlineToolbarPlugin,
     resizeablePlugin,
     imagePlugin];
 
+let contentState = stateFromHTML('<em>Tämä on muokkauslomake. Voit muokata tällä oheista tekstiä. Korosta teksti niin voit tyylitellä sitä!</em>');
 class SecondaryEditorClass extends React.Component {
 
     constructor() {
         super();
         this.state = {
-            editorState: createEditorStateWithText('Muokkaa sivun tekstiä..')
+            editorState: EditorState.createWithContent(contentState)
         }
     }
 
@@ -129,11 +131,10 @@ class SecondaryEditorClass extends React.Component {
         event.preventDefault();
         const contentState = this.state.editorState.getCurrentContent();
         console.log(contentState)
-        console.log(convertToRaw(contentState))
 
         var updates = {}
         const { pageKey } = this.props
-        updates['pages/' + pageKey + '/text'] = stateToHTML(contentState);
+        updates['pages/' + pageKey + '/text'] = JSON.stringify(convertToRaw(contentState))
         databaseRef.update(updates);
 
         window.location.reload();
@@ -156,6 +157,7 @@ class SecondaryEditorClass extends React.Component {
 
     render() {
         const html = stateToHTML(this.state.editorState.getCurrentContent());
+        console.log(JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent())))
         return (
             <div>
                 <div className="editor" onClick={this.focus}>
@@ -163,7 +165,7 @@ class SecondaryEditorClass extends React.Component {
                         editorState={this.state.editorState}
                         onChange={this.onChange}
                         plugins={plugins}
-                        ref={(element) => { this.editor = element; }}
+                        ref=    {(element) => { this.editor = element; }}
                     />
                     <AlignmentTool />
                     <InlineToolbar>
@@ -174,13 +176,11 @@ class SecondaryEditorClass extends React.Component {
                                     <BoldButton {...externalProps} />
                                     <ItalicButton {...externalProps} />
                                     <UnderlineButton {...externalProps} />
-                                    <CodeButton {...externalProps} />
+                                    <linkPlugin.LinkButton {...externalProps} />
                                     <Separator {...externalProps} />
                                     <HeadlinesButton {...externalProps} />
                                     <UnorderedListButton {...externalProps} />
                                     <OrderedListButton {...externalProps} />
-                                    <BlockquoteButton {...externalProps} />
-                                    <CodeBlockButton {...externalProps} />
                                 </div>
                             )
                         }
