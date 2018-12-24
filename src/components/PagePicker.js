@@ -1,7 +1,7 @@
 import React from 'react'
-import { connect } from "react-redux";
-import * as actions from "../actions";
-import AdminCreatedPage from './AdminCreatedPage';
+import { connect } from "react-redux"
+import { fetchPageByPath } from "../actions"
+import AdminCreatedPage from './AdminCreatedPage'
 import Admin from './Admin'
 
 //This page returns the correct type of page
@@ -36,4 +36,4 @@ class PagePicker extends React.Component {
 
 const mapStateToProps = ({ page }) => ({ page }) // Not an identity function!
 
-export default connect(mapStateToProps, actions)(PagePicker)
+export default connect(mapStateToProps, {fetchPageByPath})(PagePicker)

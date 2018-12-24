@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux";
-import * as actions from "../actions";
+import { createNewPage } from "../actions";
 
 //This form creates a new page to the site
 class AddNewPage extends React.Component {
@@ -62,4 +62,4 @@ class AddNewPage extends React.Component {
 
 const mapStateToProps = ({ pages }) => ({ pages }) // Not an identity function!
 
-export default connect(mapStateToProps, actions)(AddNewPage);
+export default connect(mapStateToProps, {createNewPage})(AddNewPage);

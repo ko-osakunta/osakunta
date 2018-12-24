@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux";
-import * as actions from "../actions";
+import { fetchKeyByPath } from "../actions";
 
 //Pressing the button in this class will remove the page. Admin tool.
 class RemovePage extends React.Component {
@@ -35,4 +35,4 @@ class RemovePage extends React.Component {
 
 const mapStateToProps = ({ pageKey }) => ({ pageKey }) // Not an identity function!
 
-export default connect(mapStateToProps, actions)(RemovePage);
+export default connect(mapStateToProps, {fetchKeyByPath})(RemovePage);

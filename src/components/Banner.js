@@ -32,4 +32,4 @@ class Banner extends React.Component {
 
 const mapStateToProps = ({ topImage }) => ({ topImage }) // Not an identity function!
 
-export default connect(mapStateToProps, actions)(Banner)
+export default connect(mapStateToProps)(Banner)

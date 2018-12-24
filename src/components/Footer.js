@@ -1,6 +1,6 @@
 import React from 'react'
-import { connect } from "react-redux";
-import * as actions from "../actions";
+import { connect } from "react-redux"
+import { fetchContact } from "../actions"
 
 class Footer extends React.Component {
 
@@ -70,4 +70,4 @@ class Footer extends React.Component {
 
 const mapStateToProps = ({ contact }) => ({ contact }) // Not an identity function!
 
-export default connect(mapStateToProps, actions)(Footer)
+export default connect(mapStateToProps, {fetchContact})(Footer)

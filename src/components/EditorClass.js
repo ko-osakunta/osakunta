@@ -2,7 +2,7 @@ import React from 'react';
 import { EditorState, convertToRaw, RichUtils } from 'draft-js';
 import { databaseRef } from '../config/firebase'
 import { connect } from "react-redux";
-import * as actions from "../actions";
+import { fetchKeyByPath } from "../actions"
 import 'draft-js-alignment-plugin/lib/plugin.css';
 import 'draft-js-focus-plugin/lib/plugin.css';
 import 'draft-js-inline-toolbar-plugin/lib/plugin.css';
@@ -154,4 +154,4 @@ class EditorClass extends React.Component {
 
 const mapStateToProps = ({ pageKey }) => ({ pageKey }) // Not an identity function!
 
-export default connect(mapStateToProps, actions)(EditorClass);
+export default connect(mapStateToProps, {fetchKeyByPath})(EditorClass);

@@ -1,9 +1,9 @@
 import React from 'react'
-import { connect } from "react-redux";
-import * as actions from "../actions";
+import { connect } from "react-redux"
+import { fetchPageByPath } from "../actions"
 
-import { stateToHTML } from 'draft-js-export-html';
-import { convertFromRaw } from 'draft-js';
+import { stateToHTML } from 'draft-js-export-html'
+import { convertFromRaw } from 'draft-js'
 
 //Here is the main text of the page that admin can edit
 class PageText extends React.Component {
@@ -59,4 +59,4 @@ class PageText extends React.Component {
 
 const mapStateToProps = ({ page }) => ({ page }) // Not an identity function!
 
-export default connect(mapStateToProps, actions)(PageText)
+export default connect(mapStateToProps, {fetchPageByPath})(PageText)
