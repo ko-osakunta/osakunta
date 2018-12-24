@@ -68,10 +68,6 @@ class Footer extends React.Component {
     }
 }
 
-const mapStateToProps = ({ contact }) => {
-    return {
-        contact
-    };
-};
+const mapStateToProps = ({ contact }) => ({ contact }) // Not an identity function!
 
-export default connect(mapStateToProps, actions)(Footer);
+export default connect(mapStateToProps, actions)(Footer)

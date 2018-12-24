@@ -42,10 +42,6 @@ class SideNav extends React.Component {
     }
 }
 
-const mapStateToProps = ({ topNav }) => {
-    return {
-        topNav
-    };
-};
+const mapStateToProps = ({ topNav }) => ({ topNav }) // Not an identity function!
 
-export default connect(mapStateToProps, actions)(SideNav);
+export default connect(mapStateToProps, actions)(SideNav)

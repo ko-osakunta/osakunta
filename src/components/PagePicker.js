@@ -34,10 +34,6 @@ class PagePicker extends React.Component {
     }
 }
 
-const mapStateToProps = ({ page }) => {
-    return {
-        page
-    };
-};
+const mapStateToProps = ({ page }) => ({ page }) // Not an identity function!
 
-export default connect(mapStateToProps, actions)(PagePicker);
+export default connect(mapStateToProps, actions)(PagePicker)

@@ -152,10 +152,6 @@ class EditorClass extends React.Component {
     }
 }
 
-const mapStateToProps = ({ pageKey }) => {
-    return {
-        pageKey
-    };
-};
+const mapStateToProps = ({ pageKey }) => ({ pageKey }) // Not an identity function!
 
 export default connect(mapStateToProps, actions)(EditorClass);
