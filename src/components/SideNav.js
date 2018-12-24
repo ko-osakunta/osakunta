@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux"
 import { fetchTopNav } from "../actions"
-import NavButton from './NavButton'
 
 class SideNav extends React.Component {
 
@@ -18,7 +17,7 @@ class SideNav extends React.Component {
     }
 
     renderTopNav() {
-        var buttons = []
+        let buttons = []
         const { topNav } = this.props
         if (!(Object.keys(topNav).length === 0)) {
             buttons.push(<a href="javascript:void(0)" className="closebtn" onClick={e => this.closeNav()}>&times;</a>)
@@ -26,7 +25,6 @@ class SideNav extends React.Component {
                 buttons.push(<NavButton data={topNav[key]} />)
             })
         }
-        console.log(buttons)
         return buttons
     }
 
@@ -41,6 +39,8 @@ class SideNav extends React.Component {
         )
     }
 }
+
+const NavButton = ({ data }) => <a href={data.path}>{data.title}</a>
 
 const mapStateToProps = ({ topNav }) => ({ topNav }) // Not an identity function!
 
