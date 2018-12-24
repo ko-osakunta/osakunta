@@ -1,7 +1,7 @@
 import React from "react"
 import Page from "./components/Page"
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { fetchPages } from "./actions"
+import { fetchPages, fetchContact } from "./actions"
 import { connect } from "react-redux"
 
 
@@ -9,6 +9,7 @@ class App extends React.Component {
 
     componentDidMount() {
         this.props.fetchPages()
+        this.props.fetchContact()
     }
     
     render() {
@@ -29,4 +30,4 @@ class App extends React.Component {
 
 const mapStateToProps = ({ pages }) => ({ pages }) // Not an identity function!
 
-export default connect(mapStateToProps, {fetchPages})(App)
+export default connect(mapStateToProps, {fetchPages, fetchContact})(App)
