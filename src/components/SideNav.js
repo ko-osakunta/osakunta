@@ -16,25 +16,20 @@ class SideNav extends React.Component {
         this.sidenav.style.width = "0px"
     }
 
-    renderTopNav() {
-        let buttons = []
-        const { topNav } = this.props
-        console.log(this.props)
-        if (!(Object.keys(topNav).length === 0)) {
-            buttons.push(<a href="javascript:void(0)" className="closebtn" onClick={e => this.closeNav()}>&times;</a>)
-            Object.keys(topNav).forEach(function (key) {
-                buttons.push(<NavButton data={topNav[key]} />)
-            })
-        }
-        return buttons
-    }
-
     render() {
+        const { topNav } = this.props
         return (
             <div>
                 <span onClick={e => this.openNav()}>☰ open</span>
                 <div id="sideNavigation" className="sidenav" ref={sidenav => {this.sidenav=sidenav}}>
-                    {this.renderTopNav()}
+                    <a
+                        href="javascript:void(0)"
+                        classname="closebtn"
+                        onClick={() => this.closeNav()}
+                    >
+                        &times;
+                    </a>
+                    {topNav.map(page => <NavButton data={page} />)}
                 </div>
             </div>
         )
