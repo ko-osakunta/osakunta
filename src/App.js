@@ -11,22 +11,16 @@ class App extends React.Component {
         this.props.fetchPages()
     }
     
-    renderRoutes() {
-        let routes = []
-        const { pages } = this.props
-        if (!(Object.keys(pages).length === 0)) {
-            //fetchPages() returns index path as well when not in index, but indexing it to 0 fixes it
-            const key = Object.keys(pages)[0]
-            routes.push(<Route key={pages[key].path} path={pages[key].path} component={Page} />)
-        }
-        return routes
-    }
-
     render() {
+        const { pages } = this.props
         return (
             <Router>
                 <div>
-                    {this.renderRoutes()}
+                    {
+                        pages.length !== 0
+                            ? [<Route key={pages[0].path} path={pages[0].path} component={Page} />]
+                            : []
+                    }
                 </div>
             </Router>
         )
