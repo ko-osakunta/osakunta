@@ -124,9 +124,11 @@ export const fetchTopNav = () => dispatch => {
     database.ref('pages')
         .once('value')
         .then(snapshot => {
+            const pages = Object.entries(snapshot.val())
+                .map(([, page]) => page)
             dispatch({
                 type: types.FETCH_TOPNAV,
-                payload: snapshot.val()
+                payload: pages
             })
         })
 }

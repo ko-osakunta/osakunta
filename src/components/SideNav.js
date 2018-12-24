@@ -19,6 +19,7 @@ class SideNav extends React.Component {
     renderTopNav() {
         let buttons = []
         const { topNav } = this.props
+        console.log(this.props)
         if (!(Object.keys(topNav).length === 0)) {
             buttons.push(<a href="javascript:void(0)" className="closebtn" onClick={e => this.closeNav()}>&times;</a>)
             Object.keys(topNav).forEach(function (key) {
