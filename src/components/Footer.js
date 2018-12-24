@@ -16,45 +16,43 @@ class Footer extends React.Component {
         const { contact } = this.props
         if (!(Object.keys(contact).length === 0)) {
             return (
-                <div className="footer">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-3 offset-lg-1 offset-xl-0">
-                                {this.renderAsHtml(contact.nation)}
-                            </div>
-                            <div className="col-lg-2 col-xl-3 offset-lg-2 offset-xl-3">
-                                {this.renderAsHtml(contact.socialMedia)}
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-lg-3 offset-lg-1 offset-xl-0">
-                                {this.renderAsHtml(contact.address)}
-                            </div>
-                            <div className="col-lg-2 col-xl-3 offset-lg-0">
-                                {this.renderAsHtml(contact.HYnation)}
-                            </div>
-                            <div className="col-lg-2 col-xl-3">
-                                {this.renderAsHtml(contact.fb)}
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-lg-3 offset-lg-1 offset-xl-0">
-                                {this.renderAsHtml(contact.apartment)}
-                            </div>
-                            <div className="col-lg-2 col-xl-3 offset-lg-0">
-                                {this.renderAsHtml(contact.Ytieto)}
-                            </div>
-                            <div className="col-lg-2 col-xl-3 offset-xl-0">
-                                {this.renderAsHtml(contact.ig)}
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-xl-3 offset-xl-0">
-                                {this.renderAsHtml(contact.postalCodeAndCity)}
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <table className="footer">
+                    <tr className="row">
+                        <td className="col-lg-3 offset-lg-1 offset-xl-0">
+                            {this.renderAsHtml(contact.nation)}
+                        </td>
+                        <td className="col-lg-2 col-xl-3 offset-lg-2 offset-xl-3">
+                            {this.renderAsHtml(contact.socialMedia)}
+                        </td>
+                    </tr>
+                    <tr className="row">
+                        <td className="col-lg-3 offset-lg-1 offset-xl-0">
+                            {this.renderAsHtml(contact.address)}
+                        </td>
+                        <td className="col-lg-2 col-xl-3 offset-lg-0">
+                            {this.renderAsHtml(contact.HYnation)}
+                        </td>
+                        <td className="col-lg-2 col-xl-3">
+                            {this.renderAsHtml(contact.fb)}
+                        </td>
+                    </tr>
+                    <tr className="row">
+                        <td className="col-lg-3 offset-lg-1 offset-xl-0">
+                            {this.renderAsHtml(contact.apartment)}
+                        </td>
+                        <td className="col-lg-2 col-xl-3 offset-lg-0">
+                            {this.renderAsHtml(contact.Ytieto)}
+                        </td>
+                        <td className="col-lg-2 col-xl-3 offset-xl-0">
+                            {this.renderAsHtml(contact.ig)}
+                        </td>
+                    </tr>
+                    <tr className="row">
+                        <td className="col-xl-3 offset-xl-0">
+                            {this.renderAsHtml(contact.postalCodeAndCity)}
+                        </td>
+                    </tr>
+                </table>
             )
         }
     }
