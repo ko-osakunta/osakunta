@@ -29,13 +29,7 @@ class AddNewPage extends React.Component {
 
     isUsed(property, value) {
         const { pages } = this.props
-        let containsValue = false
-        for (const key in pages) {
-            if (pages[key][property] === value) {
-                containsValue = true
-            }
-        }
-        return containsValue
+        return pages.filter((page) => page[property] === value).length !== 0
     }
 
     //This method will normalize characters for path, and then remove all non-latin characters
@@ -66,10 +60,6 @@ class AddNewPage extends React.Component {
 }
 
 
-const mapStateToProps = ({ pages }) => {
-    return {
-        pages
-    };
-};
+const mapStateToProps = ({ pages }) => ({ pages }) // Not an identity function!
 
 export default connect(mapStateToProps, actions)(AddNewPage);

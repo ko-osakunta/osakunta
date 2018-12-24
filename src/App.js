@@ -27,6 +27,6 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = ({ pages }) => ({ pages })
+const mapStateToProps = ({ pages }) => ({ pages }) // Not an identity function!
 
 export default connect(mapStateToProps, {fetchPages})(App)
