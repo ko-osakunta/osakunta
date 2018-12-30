@@ -7,7 +7,8 @@ var sectionStyle = {
     width: "100%",
     height: "250px",
     backgroundImage: `url(${pic})`,
-    backgroundPosition: "center"
+    backgroundPosition: "center",
+    backgroundSize: "cover"
   };
 
 class Banner extends React.Component {

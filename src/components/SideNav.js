@@ -20,7 +20,7 @@ class SideNav extends React.Component {
         const { topNav } = this.props
         return (
             <div>
-                <span onClick={e => this.openNav()}>☰ open</span>
+                <button className="btn btn-sidenav btn-lg page-scroll" onClick={e => this.openNav()}>☰ open</button>
                 <div id="sideNavigation" className="sidenav" ref={sidenav => {this.sidenav=sidenav}}>
                     <a
                         href="javascript:void(0)"
