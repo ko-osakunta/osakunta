@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux"
-import { fetchPageByPath } from "../../actions"
+import { fetchPageByPath, loginWithGoogle } from "../../actions"
 import AdminCreatedPage from '../pagetypes/AdminCreatedPage'
 import Admin from '../admin/Admin'
 
@@ -14,7 +14,6 @@ class PagePicker extends React.Component {
 
     returnPage() {
         const { page } = this.props
-        console.log(page)
         if (!(Object.keys(page).length === 0)) {
             if (page.type === "adminCreated") {
                 return <AdminCreatedPage />
