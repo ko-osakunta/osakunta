@@ -1,5 +1,5 @@
 import React from 'react'
-import PageText from './PageText'
+import PageText from './../structure/PageText'
 import AddNewPage from './AddNewPage';
 
 //Admin tools

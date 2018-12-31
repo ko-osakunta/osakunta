@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux"
-import { fetchPageByPath } from "../actions"
+import { fetchPageByPath } from "../../actions"
 
 import { stateToHTML } from 'draft-js-export-html'
 import { convertFromRaw } from 'draft-js'

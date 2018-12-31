@@ -1,8 +1,8 @@
 import React from 'react';
 import { EditorState, convertToRaw, RichUtils } from 'draft-js';
-import { databaseRef } from '../config/firebase'
+import { databaseRef } from '../../config/firebase'
 import { connect } from "react-redux";
-import { fetchKeyByPath } from "../actions"
+import { fetchKeyByPath } from "../../actions"
 import 'draft-js-alignment-plugin/lib/plugin.css';
 import 'draft-js-focus-plugin/lib/plugin.css';
 import 'draft-js-inline-toolbar-plugin/lib/plugin.css';

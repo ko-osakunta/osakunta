@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux"
-import { fetchTopNav } from "../actions"
+import { fetchTopNav } from "../../actions"
 
 class SideNav extends React.Component {
 

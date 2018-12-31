@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from "react-redux"
-import { fetchPageByPath } from "../actions"
-import AdminCreatedPage from './AdminCreatedPage'
-import Admin from './Admin'
+import { fetchPageByPath } from "../../actions"
+import AdminCreatedPage from '../pagetypes/AdminCreatedPage'
+import Admin from '../admin/Admin'
 
 //This page returns the correct type of page
 class PagePicker extends React.Component {

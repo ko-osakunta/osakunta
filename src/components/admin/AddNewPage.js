@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux";
-import { createNewPage } from "../actions";
+import { createNewPage } from "../../actions";
 
 //This form creates a new page to the site
 class AddNewPage extends React.Component {

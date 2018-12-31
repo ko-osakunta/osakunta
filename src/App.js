@@ -1,5 +1,5 @@
 import React from "react"
-import Page from "./components/Page"
+import Page from "./components/structure/Page"
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { fetchPages, fetchContact } from "./actions"
 import { connect } from "react-redux"
