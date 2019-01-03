@@ -15,6 +15,13 @@ class PagePicker extends React.Component {
 
     returnPage() {
         const { page } = this.props
+        console.log(typeof Object.keys(page).length)
+        console.log(window.localStorage.getItem('appToken'))
+
+        if (typeof Object.keys(page).length === undefined) {
+            window.location.reload()
+        }
+
         if (!(Object.keys(page).length === 0)) {
             switch(page.type){
                 case "adminCreated":
