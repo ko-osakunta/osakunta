@@ -1,4 +1,4 @@
-import { database, storage, googleProvider, firebaseAuth } from '../config/firebase'
+import { database, storage } from '../config/firebase'
 import * as types from "./types"
 
 export const createNewPage = (pagePath, value) => () => {
@@ -118,15 +118,6 @@ export const fetchKeyByPath = (path) => dispatch => {
 export const removePageByKey = (pageKey) => () => {
     database.ref('/pages').child(`${pageKey}`).remove()
 }
-
-export function loginWithGoogle() {
-    return firebaseAuth().signInWithRedirect(googleProvider);
-}
-
-export function logout() {
-    return firebaseAuth().signOut();
-}
-
 //currently the same as pages.. might have different functionality in the future
 export const fetchTopNav = () => dispatch => {
     database.ref('pages')
