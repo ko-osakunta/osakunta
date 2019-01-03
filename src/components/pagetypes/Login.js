@@ -1,12 +1,12 @@
 import React from "react";
-import {loginWithGoogle} from "../helpers/auth";
-import {firebaseAuth} from "../../config/firebase";
+import { loginWithGoogle } from "../helpers/auth";
+import { firebaseAuth } from "../../config/firebase";
 
 
 const firebaseAuthKey = "firebaseAuthInProgress";
 const appTokenKey = "appToken";
 
-export default class Login extends React.Component {
+class Login extends React.Component {
 
     constructor(props) {
         super(props);
@@ -27,11 +27,6 @@ export default class Login extends React.Component {
     }
 
     componentWillMount() {
-        if (localStorage.getItem(appTokenKey)) {
-            this.props.history.push("/app/home");
-            return;
-        }
-
         firebaseAuth().onAuthStateChanged(user => {
             if (user) {
                 console.log("User signed in: ", JSON.stringify(user));
@@ -42,9 +37,6 @@ export default class Login extends React.Component {
                 // application specific token so that you do not have to
                 // authenticate with firebase every time a user logs in
                 localStorage.setItem(appTokenKey, user.uid);
-
-                // store the token
-                this.props.history.push("/app/home")
             }
         });
     }
@@ -52,24 +44,20 @@ export default class Login extends React.Component {
     render() {
         console.log(firebaseAuthKey + "=" + localStorage.getItem(firebaseAuthKey));
         if (localStorage.getItem(firebaseAuthKey) === "1") {
-            return <SplashScreen />;
+            return <p>Loading..</p>
         }
-        return this.handleGoogleLogin()
+        return (
+            <div>
+                <h1>Login</h1>
+                <div>
+                    <button
+                        className="btn-primary"
+                        label="Sign in with Google"
+                        onClick={this.handleGoogleLogin()}
+                    />
+                </div>
+            </div>
+        )
     }
 }
-
-const iconStyles = {
-    color: "#ffffff"
-};
-const LoginPage = ({handleGoogleLogin}) => (
-    <div>
-        <h1>Login</h1>
-        <div>
-            <button
-                label="Sign in with Google"
-                onClick={handleGoogleLogin}
-            />
-        </div>
-    </div>
-);
-const SplashScreen = () => (<p>Loading...</p>)
+export default Login

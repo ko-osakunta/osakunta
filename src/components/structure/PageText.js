@@ -39,7 +39,6 @@ class PageText extends React.Component {
               }
             },
           };
-        console.log(page)
         if (!(Object.keys(page).length === 0)) {
             console.log(JSON.parse(page.text))
             const pageText = stateToHTML(convertFromRaw(JSON.parse(page.text)), options);

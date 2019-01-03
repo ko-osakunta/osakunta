@@ -1,5 +1,3 @@
-/* import "materialize-css/dist/css/materialize.min.css";
-import "materialize-css/dist/js/materialize.min.js"; */
 import "./assets/css/styles.css"
 import './assets/bootstrap/css/bootstrap.min.css'
 import React from "react";

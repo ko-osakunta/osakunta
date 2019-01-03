@@ -2,8 +2,5 @@
   "rules": {
     ".read": true,
     ".write": "root.child('allowed_users').child(auth.uid).val() == true"
-  },
-  "allowed_users": {
-    "keremmikko.atak@gmail.com": true
   }
 }
