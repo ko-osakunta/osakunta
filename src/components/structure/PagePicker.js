@@ -4,6 +4,7 @@ import { fetchPageByPath, loginWithGoogle } from "../../actions"
 import AdminCreatedPage from '../pagetypes/AdminCreatedPage'
 import Login from '../pagetypes/Login'
 import Admin from '../admin/Admin'
+import PageNotFound from '../pagetypes/PageNotFound';
 
 //This page returns the correct type of page
 class PagePicker extends React.Component {
@@ -14,21 +15,23 @@ class PagePicker extends React.Component {
     }
 
     returnPage() {
-        /* const { page } = this.props */
-        let sitePage = this.props.page
+        const { page } = this.props
         console.log(window.localStorage.getItem('firebaseUser'))
-
-        if (!(Object.keys(sitePage).length === 0)) {
-            switch(sitePage.type){
-                case "adminCreated":
-                    return <AdminCreatedPage />
-                case "admin":
-                    return <Admin />
-                case "login":
-                    return <Login />
-            }
-            //Return 404
+        console.log(page)
+        if (page === null) {
+            return <PageNotFound />
         }
+
+         switch (page.type) {
+            case "adminCreated":
+                return <AdminCreatedPage />
+            case "admin":
+                return <Admin />
+            case "login":
+                return <Login />
+        }
+        //Return 404
+
     }
 
     render() {
@@ -42,4 +45,4 @@ class PagePicker extends React.Component {
 
 const mapStateToProps = ({ page }) => ({ page }) // Not an identity function!
 
-export default connect(mapStateToProps, {fetchPageByPath})(PagePicker)
+export default connect(mapStateToProps, { fetchPageByPath })(PagePicker)
