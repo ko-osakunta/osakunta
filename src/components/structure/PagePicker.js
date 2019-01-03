@@ -14,16 +14,12 @@ class PagePicker extends React.Component {
     }
 
     returnPage() {
-        const { page } = this.props
-        console.log(typeof Object.keys(page).length)
-        console.log(window.localStorage.getItem('appToken'))
+        /* const { page } = this.props */
+        let sitePage = this.props.page
+        console.log(window.localStorage.getItem('firebaseUser'))
 
-        if (typeof Object.keys(page).length === undefined) {
-            window.location.reload()
-        }
-
-        if (!(Object.keys(page).length === 0)) {
-            switch(page.type){
+        if (!(Object.keys(sitePage).length === 0)) {
+            switch(sitePage.type){
                 case "adminCreated":
                     return <AdminCreatedPage />
                 case "admin":

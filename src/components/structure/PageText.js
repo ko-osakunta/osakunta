@@ -11,15 +11,16 @@ class PageText extends React.Component {
     
     componentWillMount() {
         const path = window.location.pathname
-        console.log(path)
-        this.props.fetchPageByPath(path);
+        /* console.log(path)
+        this.props.fetchPageByPath(path); */
     }
 
     getAlign(alignment) {
         return (alignment === 'center' ? "middle" : alignment);
     }
+
     renderText() {
-        const { page } = this.props
+        const page = this.props.page
         let options = {
             entityStyleFn: (entity) => {
               const entityType = entity.get('type').toLowerCase();
@@ -40,7 +41,6 @@ class PageText extends React.Component {
             },
           };    
         if (!(Object.keys(page).length === 0)) {
-            console.log(JSON.parse(page.text))
             const pageText = stateToHTML(convertFromRaw(JSON.parse(page.text)), options);
             console.log(pageText)
             return <div dangerouslySetInnerHTML={{ __html: pageText}} />
