@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from "react-redux"
-import { fetchTopNav } from "../../actions"
+//import { fetchTopNav } from "../../actions"
 
 class SideNav extends React.Component {
 
     componentDidMount() {
-        this.props.fetchTopNav()
+        //this.props.fetchTopNav()
     }
 
     openNav() {
@@ -40,4 +40,4 @@ const NavButton = ({ data }) => <a href={data.path}>{data.title}</a>
 
 const mapStateToProps = ({ topNav }) => ({ topNav }) // Not an identity function!
 
-export default connect(mapStateToProps, {fetchTopNav})(SideNav)
+export default connect(mapStateToProps)(SideNav)
