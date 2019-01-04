@@ -18,10 +18,12 @@ class App extends React.Component {
         const { pages } = this.props
         console.log(pages)
         if (!(Object.keys(pages).length === 0)) {
-            let i = 0;
-            for (let page in pages) {
-                routes.push(<Route exact path={pages[i].path} page={pages[i]} component={Page} />)
-                i++;
+            for (let i in pages) {
+                if (pages[i].type === "login") {
+                    routes.push(<Route exact path="/login" component={Login} />)
+                } else {
+                    routes.push(<Route exact path={pages[i].path} page={pages[i]} component={Page} />)
+                }
             }
         }
         return routes
@@ -36,16 +38,6 @@ class App extends React.Component {
             <Router>
                 <Switch>
                     {routes}
-                    <Route exact path="/login" component={Login} />
-                    {/* <div>
-                        {
-                            pages.length !== 0
-                                ? [<Route key={pages[0].path} path={pages[0].path} component={Page} />,
-                                <NotLoggedInRoute exact path="/login" component={Login} />
-                                ]
-                                : []
-                        }
-                    </div> */}
                 </Switch>
             </Router>
         )
