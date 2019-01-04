@@ -14,19 +14,14 @@ class App extends React.Component {
     }
 
     renderRoutes = () => {
-        var routes = []
         const { pages } = this.props
-        console.log(pages)
-        if (!(Object.keys(pages).length === 0)) {
-            for (let i in pages) {
-                if (pages[i].type === "login") {
-                    routes.push(<Route exact path="/login" component={Login} key={pages[i].path} />)
-                } else {
-                    routes.push(<Route exact path={pages[i].path} page={pages[i]} component={Page} key={pages[i].path} />)
-                }
-            }
-        }
-        return routes
+        return pages.map(page =>
+            <Route
+                exact path={page.type === "login" ? "/login" : page.path}
+                component={page.type === "login" ? Login : Page}
+                key={page.path}
+            />
+        )
     }
 
     render() {
