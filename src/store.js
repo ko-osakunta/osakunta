@@ -7,6 +7,7 @@ import pagesReducer from './reducers/pagesReducer';
 import keyReducer from './reducers/keyReducer';
 import contactReducer from './reducers/contactReducer';
 import pageReducer from './reducers/pageReducer';
+import authReducer from "./reducers/authReducer";
 
 const reducer = combineReducers({
     topImage: topImageReducer,
@@ -14,7 +15,8 @@ const reducer = combineReducers({
     pages: pagesReducer,
     pageKey: keyReducer,
     contact: contactReducer,
-    page: pageReducer
+    page: pageReducer,
+    auth: authReducer
 })
 
 const store = createStore(

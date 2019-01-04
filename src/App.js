@@ -1,9 +1,8 @@
 import React from "react"
 import Page from "./components/structure/Page"
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { fetchPages, fetchContact } from "./actions"
+import { fetchPages, fetchContact, fetchUser } from "./actions"
 import { connect } from "react-redux"
-import NotLoggedInRoute from './components/helpers/NotLoggedInRoute'
 import Login from './components/pagetypes/Login'
 
 class App extends React.Component {
@@ -11,21 +10,22 @@ class App extends React.Component {
     componentDidMount() {
         this.props.fetchPages()
         this.props.fetchContact()
+        this.props.fetchUser()
     }
 
     renderRoutes = () => {
-		var routes = []
-		const { pages } = this.props
-		console.log(pages)
-		if (!(Object.keys(pages).length === 0)) {
+        var routes = []
+        const { pages } = this.props
+        console.log(pages)
+        if (!(Object.keys(pages).length === 0)) {
             let i = 0;
             for (let page in pages) {
-                routes.push(<Route page={pages[i]} component={Page} />)
+                routes.push(<Route exact path={pages[i].path} page={pages[i]} component={Page} />)
                 i++;
             }
-		}
-		return routes
-	}
+        }
+        return routes
+    }
 
     render() {
         const { pages } = this.props
@@ -36,7 +36,7 @@ class App extends React.Component {
             <Router>
                 <Switch>
                     {routes}
-                    <NotLoggedInRoute exact path="/login" component={Login} />
+                    <Route exact path="/login" component={Login} />
                     {/* <div>
                         {
                             pages.length !== 0
@@ -54,4 +54,4 @@ class App extends React.Component {
 
 const mapStateToProps = ({ pages }) => ({ pages }) // Not an identity function!
 
-export default connect(mapStateToProps, { fetchPages, fetchContact })(App)
+export default connect(mapStateToProps, { fetchPages, fetchContact, fetchUser })(App)

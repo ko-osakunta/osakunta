@@ -18,11 +18,13 @@ class PagePicker extends React.Component {
         const { page } = this.props
         console.log(window.localStorage.getItem('firebaseUser'))
         console.log(page)
-        if (page === null) {
+
+        //This will unfortunately redirect at /login
+        /* if (page === null) {
             return <PageNotFound />
         }
-
-         switch (page.type) {
+ */
+        switch (page.type) {
             case "adminCreated":
                 return <AdminCreatedPage />
             case "admin":

@@ -1,13 +1,50 @@
-import { database, storage } from '../config/firebase'
+import { database, storage, firebaseAuth, googleProvider } from '../config/firebase'
 import * as types from "./types"
+
+export const signIn = () => dispatch => {
+    firebaseAuth
+        .signInWithPopup(googleProvider)
+        .then(result => { })
+        .catch(error => {
+            console.log(error);
+        });
+};
+
+export const signOut = () => dispatch => {
+    firebaseAuth
+        .signOut()
+        .then(() => {
+            // Sign-out successful.
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
+
+export const fetchUser = () => dispatch => {
+    firebaseAuth.onAuthStateChanged(user => {
+      if (user) {
+        dispatch({
+          type: types.FETCH_USER,
+          payload: user
+        });
+      } else {
+        dispatch({
+          type: types.FETCH_USER,
+          payload: null
+        });
+      }
+    });
+  };
+  
 
 export const createNewPage = (pagePath, value) => () => {
     database.ref('pages').push().set({
         path: pagePath,
-        text: "{\"blocks\":[{\"key\":\"2onp9\",\"text\":\"Uusi sivu luotu! Adminina voit muokata sitä oheisesta lomakkeesta.\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}", 
+        text: "{\"blocks\":[{\"key\":\"2onp9\",\"text\":\"Uusi sivu luotu! Adminina voit muokata sitä oheisesta lomakkeesta.\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
         title: value,
         deletable: true,
-        type: 'adminCreated'	
+        type: 'adminCreated'
     })
 }
 
@@ -114,7 +151,7 @@ export const fetchKeyByPath = (path) => dispatch => {
             })
         })
 }
- 
+
 export const removePageByKey = (pageKey) => () => {
     database.ref('/pages').child(`${pageKey}`).remove()
 }
