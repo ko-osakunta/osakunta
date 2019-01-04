@@ -3,7 +3,7 @@ import * as types from "./types"
 
 export const signIn = () => dispatch => {
     firebaseAuth
-        .signInWithPopup(googleProvider)
+        .signInWithRedirect(googleProvider)
         .then(result => { })
         .catch(error => {
             console.log(error);

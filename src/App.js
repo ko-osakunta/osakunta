@@ -14,7 +14,9 @@ class App extends React.Component {
     }
 
     renderRoutes = () => {
+        var routes = []
         const { pages } = this.props
+        console.log(pages)
         return pages.map(page =>
             <Route
                 exact path={page.type === "login" ? "/login" : page.path}
@@ -27,12 +29,18 @@ class App extends React.Component {
     render() {
         const { pages } = this.props
 
-        let routes = this.renderRoutes();
-        console.log(routes)
         return (
             <Router>
                 <Switch>
-                    {routes}
+                    <div>
+                        {
+                            pages.length !== 0
+                                ? [<Route key={pages[0].path} path={pages[0].path} component={Page} />,
+                                <Route exact path="/login" component={Login} />
+                                ]
+                                : []
+                        }
+                    </div>
                 </Switch>
             </Router>
         )
