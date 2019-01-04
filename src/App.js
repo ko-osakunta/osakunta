@@ -20,7 +20,7 @@ class App extends React.Component {
         if (!(Object.keys(pages).length === 0)) {
             for (let i in pages) {
                 if (pages[i].type === "login") {
-                    routes.push(<Route exact path="/login" component={Login} />)
+                    routes.push(<Route exact path="/login" component={Login} key={pages[i].path} />)
                 } else {
                     routes.push(<Route exact path={pages[i].path} page={pages[i]} component={Page} key={pages[i].path} />)
                 }
