@@ -1,7 +1,10 @@
 import React from "react"
 import Page from "./components/structure/Page"
+import Banner from "./components/structure/Banner"
+import SideNav from "./components/structure/SideNav"
+import Footer from "./components/structure/Footer"
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { fetchPages, fetchContact, fetchUser } from "./actions"
+import { fetchPages, fetchContact, fetchUser, fetchTopNav } from "./actions"
 import { connect } from "react-redux"
 import Login from './components/pagetypes/Login'
 
@@ -11,6 +14,7 @@ class App extends React.Component {
         this.props.fetchPages()
         this.props.fetchContact()
         this.props.fetchUser()
+        this.props.fetchTopNav()
     }
 
     renderRoutes = () => {
@@ -29,24 +33,23 @@ class App extends React.Component {
     render() {
         const { pages } = this.props
 
+        let routes = this.renderRoutes();
+        console.log(routes)
         return (
-            <Router>
-                <Switch>
-                    <div>
-                        {
-                            pages.length !== 0
-                                ? [<Route key={pages[0].path} path={pages[0].path} component={Page} />,
-                                <Route exact path="/login" component={Login} />
-                                ]
-                                : []
-                        }
-                    </div>
-                </Switch>
-            </Router>
+            <div>
+                <Banner />
+                <SideNav />
+                <Router>
+                    <Switch>
+                        {routes}
+                    </Switch>
+                </Router>
+                <Footer />
+            </div>
         )
     }
 }
 
 const mapStateToProps = ({ pages }) => ({ pages }) // Not an identity function!
 
-export default connect(mapStateToProps, { fetchPages, fetchContact, fetchUser })(App)
+export default connect(mapStateToProps, { fetchPages, fetchContact, fetchUser, fetchTopNav })(App)
