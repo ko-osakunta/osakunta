@@ -101,21 +101,13 @@ export const fetchPageTextByPath = (path) => dispatch => {
         })
 }
 
-export const fetchPageByPath = (path) => dispatch => {
-    database.ref('pages')
-        .orderByChild('path')
-        .equalTo(`${path}`)
-        .once('value')
-        .then(snapshot => {
-            let data = null
-            snapshot.forEach(snap => {
-                data = snap.val()
-            })
-            dispatch({
-                type: types.FETCH_PAGE_BY_PATH,
-                payload: data
-            })
-        })
+export const fetchPageByPath = path => (dispatch, getState) => {
+    const pages = getState().pages
+    const page = pages.filter(page => page.path === path)[0]
+    dispatch({
+        type: types.FETCH_PAGE_BY_PATH,
+        payload: page
+    })
 }
 
 export const fetchPageTextByTitle = (page) => dispatch => {
