@@ -24,12 +24,12 @@ class SideNav extends React.Component {
                 <div id="sideNavigation" className="sidenav" ref={sidenav => {this.sidenav=sidenav}}>
                     <a
                         href="javascript:void(0)"
-                        classname="closebtn"
+                        className="closebtn"
                         onClick={() => this.closeNav()}
                     >
                         &times;
                     </a>
-                    {topNav.map(page => <NavButton data={page} />)}
+                    {topNav.map(page => <NavButton data={page} key={page.title} />)}
                 </div>
             </div>
         )

@@ -22,7 +22,7 @@ class App extends React.Component {
                 if (pages[i].type === "login") {
                     routes.push(<Route exact path="/login" component={Login} />)
                 } else {
-                    routes.push(<Route exact path={pages[i].path} page={pages[i]} component={Page} />)
+                    routes.push(<Route exact path={pages[i].path} page={pages[i]} component={Page} key={pages[i].path} />)
                 }
             }
         }
