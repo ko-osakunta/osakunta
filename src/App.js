@@ -47,11 +47,13 @@ class App extends React.Component {
         const routes = this.renderRoutes(pages)
         return <div>
             <Banner />
-            <SideNav />
             <Router>
-                <Switch>
-                    {routes}
-                </Switch>
+                <div>
+                    <SideNav />
+                    <Switch>
+                        {routes}
+                    </Switch>
+                </div>
             </Router>
             <Footer />
         </div>
