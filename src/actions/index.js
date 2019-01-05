@@ -6,9 +6,9 @@ export const signIn = () => dispatch => {
         .signInWithRedirect(googleProvider)
         .then(result => { })
         .catch(error => {
-            console.log(error);
-        });
-};
+            console.log(error)
+        })
+}
 
 export const signOut = () => dispatch => {
     firebaseAuth
@@ -17,26 +17,26 @@ export const signOut = () => dispatch => {
             // Sign-out successful.
         })
         .catch(error => {
-            console.log(error);
-        });
-};
+            console.log(error)
+        })
+}
 
 export const fetchUser = () => dispatch => {
     firebaseAuth.onAuthStateChanged(user => {
-      if (user) {
-        dispatch({
-          type: types.FETCH_USER,
-          payload: user
-        });
-      } else {
-        dispatch({
-          type: types.FETCH_USER,
-          payload: null
-        });
-      }
-    });
-  };
-  
+        if (user) {
+            dispatch({
+                type: types.FETCH_USER,
+                payload: user
+            })
+        } else {
+            dispatch({
+                type: types.FETCH_USER,
+                payload: null
+            })
+        }
+    })
+}
+
 
 export const createNewPage = (pagePath, value) => () => {
     database.ref('pages').push().set({

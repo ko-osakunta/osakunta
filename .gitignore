@@ -14,7 +14,6 @@
 #firebase
 /firebase.json
 /database.rules.json
-/firestore.indexes
 /firestore.rules
 /storage.rules
 /firestore.indexes.json
