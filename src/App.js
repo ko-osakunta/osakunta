@@ -18,7 +18,7 @@ class App extends React.Component {
         this.props.fetchTopNav()
     }
 
-    returnCorrectComponent(pageType, page) {
+    returnCorrectComponent(pageType) {
         switch (pageType) {
             case "login":
                 return Login
@@ -29,36 +29,32 @@ class App extends React.Component {
         }
     }
 
-    renderRoutes = () => {
+    renderRoutes() {
         const { pages } = this.props
-        console.log(pages)
         return pages.map(page => {
             const Component = this.returnCorrectComponent(page.type)
             return <Route
-                        exact path={page.path}
-                        component={Component}
-                        key={page.path}
-                    />
+                exact path={page.path}
+                component={Component}
+                key={page.path}
+            />
         })
     }
 
     render() {
         const { pages } = this.props
 
-        const routes = this.renderRoutes(pages);
-        console.log(routes)
-        return (
-            <div>
-                <Banner />
-                <SideNav />
-                <Router>
-                    <Switch>
-                        {routes}
-                    </Switch>
-                </Router>
-                <Footer />
-            </div>
-        )
+        const routes = this.renderRoutes(pages)
+        return <div>
+            <Banner />
+            <SideNav />
+            <Router>
+                <Switch>
+                    {routes}
+                </Switch>
+            </Router>
+            <Footer />
+        </div>
     }
 }
 
