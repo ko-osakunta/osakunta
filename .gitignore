@@ -12,11 +12,12 @@
 /build
 
 #firebase
-.firebaserc
-.database.rules.json
-.firestore.indexes.json
-.firestore.rules
-.storage.rules
+/firebase.json
+/database.rules.json
+/firestore.indexes
+/firestore.rules
+/storage.rules
+/firestore.indexes.json
 
 # misc
 .DS_Store
