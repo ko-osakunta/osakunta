@@ -1,5 +1,4 @@
 import React from "react"
-import Page from "./components/structure/Page"
 import Banner from "./components/structure/Banner"
 import SideNav from "./components/structure/SideNav"
 import Footer from "./components/structure/Footer"
@@ -25,40 +24,39 @@ class App extends React.Component {
                 return Login
             case "admin":
                 return requireAuth(Admin)
+            default:
+                return AdminCreatedPage
         }
-        return Page
     }
 
-    renderRoutes = () => {
+    renderRoutes() {
         const { pages } = this.props
-        console.log(pages)
-        return pages.map(page =>
-            <Route
+        return pages.map(page => {
+            const Component = this.returnCorrectComponent(page.type)
+            return <Route
                 exact path={page.path}
-                component={this.returnCorrectComponent(page.type)}
+                component={Component}
                 key={page.path}
             />
-            
-        )
+        })
     }
 
     render() {
         const { pages } = this.props
 
-        const routes = this.renderRoutes(pages);
-        console.log(routes)
-        return (
-            <div>
-                <Banner />
-                <SideNav />
-                <Router>
+        const routes = this.renderRoutes(pages)
+        return <div>
+            <Banner />
+            <Router>
+                <div>
+                    <SideNav />
                     <Switch>
                         {routes}
                     </Switch>
-                </Router>
-                <Footer />
-            </div>
-        )
+                </div>
+            </Router>
+            <Footer />
+        </div>
     }
 }
 

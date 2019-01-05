@@ -5,56 +5,33 @@ import { fetchPageByPath } from "../../actions"
 import { stateToHTML } from 'draft-js-export-html'
 import { convertFromRaw } from 'draft-js'
 
-//Here is the main text of the page that admin can edit
-class PageText extends React.Component {
-
+const PageText = ({ text }) =>
+    <div className="pageText">
+        <div dangerouslySetInnerHTML={{ __html: textToHtml(text) }} />
+    </div>
     
-    componentWillMount() {
-        const path = window.location.pathname
-        /* console.log(path)
-        this.props.fetchPageByPath(path); */
-    }
+const textToHtml = (text) =>
+    stateToHTML(convertFromRaw(JSON.parse(text)), options)
 
-    getAlign(alignment) {
-        return (alignment === 'center' ? "middle" : alignment);
-    }
-
-    renderText() {
-        const page = this.props.page
-        let options = {
-            entityStyleFn: (entity) => {
-              const entityType = entity.get('type').toLowerCase();
-              if (entityType === 'image') {
-                const data = entity.getData();
-                console.log(data)
-                return {
-                  element: 'img',
-                  attributes: {
+const options = {
+    entityStyleFn: (entity) => {
+        const entityType = entity.get('type').toLowerCase()
+        if (entityType === 'image') {
+            const data = entity.getData()
+            return {
+                element: 'img',
+                attributes: {
                     src: data.src,
-                    align: this.getAlign(data.alignment),
-                    //Bubblegum-solution
+                    align: getAlign(data.alignment),
                     className: 'img-' + data.alignment,
                     width: data.width + '%'
-                  },
-                };
-              }
-            },
-          };    
-        if (!(Object.keys(page).length === 0)) {
-            const pageText = stateToHTML(convertFromRaw(JSON.parse(page.text)), options);
-            console.log(pageText)
-            return <div dangerouslySetInnerHTML={{ __html: pageText}} />
+                }
+            }
         }
     }
-
-    render() {
-        return (
-            <div className="pageText">
-                {this.renderText()}
-            </div>
-        )
-    }
 }
+
+const getAlign = alignment => alignment === 'center' ? "middle" : alignment
 
 const mapStateToProps = ({ page }) => ({ page }) // Not an identity function!
 

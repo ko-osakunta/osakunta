@@ -6,7 +6,9 @@ import AddNewPage from './AddNewPage';
 //Doesn't have text because fetchPageByPath isn't called here..
 const Admin = () =>
     <div id="page">
-        <PageText />
+        <div className="pageText">
+            Adminin muokkaussivu. Toistaiseksi voit lisätä uusia sivuja sivulle.
+        </div>
         <AddNewPage />
     </div>
 

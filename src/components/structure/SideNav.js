@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux"
+import { Link } from "react-router-dom"
 //import { fetchTopNav } from "../../actions"
 
 class SideNav extends React.Component {
@@ -36,7 +37,7 @@ class SideNav extends React.Component {
     }
 }
 
-const NavButton = ({ data }) => <a href={data.path}>{data.title}</a>
+const NavButton = ({ data }) => <Link to={data.path}>{data.title}</Link>
 
 const mapStateToProps = ({ topNav }) => ({ topNav }) // Not an identity function!
 
