@@ -7,7 +7,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { fetchPages, fetchContact, fetchUser, fetchTopNav } from "./actions"
 import { connect } from "react-redux"
 import Login from './components/pagetypes/Login'
-
+import Admin from "./components/admin/Admin";
+import AdminCreatedPage from "./components/pagetypes/AdminCreatedPage";
+import requireAuth from './components/helpers/requireAuth'
 class App extends React.Component {
 
     componentDidMount() {
@@ -17,8 +19,17 @@ class App extends React.Component {
         this.props.fetchTopNav()
     }
 
+    returnCorrectComponent(pageType) {
+        switch (pageType) {
+            case "login":
+                return Login
+            case "admin":
+                return requireAuth(Admin)
+        }
+        return Page
+    }
+
     renderRoutes = () => {
-        var routes = []
         const { pages } = this.props
         console.log(pages)
         return pages.map(page =>
