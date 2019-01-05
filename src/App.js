@@ -38,6 +38,7 @@ class App extends React.Component {
                 component={page.type === "login" ? Login : Page}
                 key={page.path}
             />
+            
         )
     }
 
