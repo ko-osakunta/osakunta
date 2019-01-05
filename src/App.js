@@ -1,5 +1,4 @@
 import React from "react"
-import Page from "./components/structure/Page"
 import Banner from "./components/structure/Banner"
 import SideNav from "./components/structure/SideNav"
 import Footer from "./components/structure/Footer"
