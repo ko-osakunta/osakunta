@@ -34,8 +34,8 @@ class App extends React.Component {
         console.log(pages)
         return pages.map(page =>
             <Route
-                exact path={page.type === "login" ? "/login" : page.path}
-                component={page.type === "login" ? Login : Page}
+                exact path={page.path}
+                component={this.returnCorrectComponent(page.type)}
                 key={page.path}
             />
             
@@ -45,7 +45,7 @@ class App extends React.Component {
     render() {
         const { pages } = this.props
 
-        let routes = this.renderRoutes();
+        const routes = this.renderRoutes(pages);
         console.log(routes)
         return (
             <div>

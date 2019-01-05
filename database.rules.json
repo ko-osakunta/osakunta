@@ -1,6 +1,0 @@
-{
-  "rules": {
-    ".read": true,
-    ".write": "root.child('allowed_users').child(auth.uid).val() == true"
-  }
-}

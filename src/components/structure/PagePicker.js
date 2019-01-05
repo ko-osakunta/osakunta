@@ -6,7 +6,7 @@ import Login from '../pagetypes/Login'
 import Admin from '../admin/Admin'
 import PageNotFound from '../pagetypes/PageNotFound';
 
-//This page returns the correct type of page
+//This page returns the correct type of page. Could be useless class as of now
 class PagePicker extends React.Component {
 
     componentWillMount() {
@@ -16,8 +16,6 @@ class PagePicker extends React.Component {
 
     returnPage() {
         const { page } = this.props
-        console.log(window.localStorage.getItem('firebaseUser'))
-        console.log(page)
 
         //This will unfortunately redirect at /login
         /* if (page === null) {
@@ -27,10 +25,6 @@ class PagePicker extends React.Component {
         switch (page.type) {
             case "adminCreated":
                 return <AdminCreatedPage />
-            case "admin":
-                return <Admin />
-            case "login":
-                return <Login />
         }
         //Return 404
 

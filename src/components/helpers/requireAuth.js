@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
+//This class will check whether the user is authenticated or not
 export default function(ComposedComponent) {
   class Authentication extends Component {
     static contextTypes = {
@@ -28,7 +29,7 @@ export default function(ComposedComponent) {
     }
   }
 
-  function mapStateToProps(state) {
+  const mapStateToProps = (state) => {
     return { authenticated: state.auth };
   }
 
