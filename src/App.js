@@ -19,27 +19,28 @@ class App extends React.Component {
         this.props.fetchTopNav()
     }
 
-    returnCorrectComponent(pageType) {
+    returnCorrectComponent(pageType, page) {
         switch (pageType) {
             case "login":
                 return Login
             case "admin":
                 return requireAuth(Admin)
+            default:
+                return AdminCreatedPage
         }
-        return Page
     }
 
     renderRoutes = () => {
         const { pages } = this.props
         console.log(pages)
-        return pages.map(page =>
-            <Route
-                exact path={page.path}
-                component={this.returnCorrectComponent(page.type)}
-                key={page.path}
-            />
-            
-        )
+        return pages.map(page => {
+            const Component = this.returnCorrectComponent(page.type)
+            return <Route
+                        exact path={page.path}
+                        component={Component}
+                        key={page.path}
+                    />
+        })
     }
 
     render() {
