@@ -8,6 +8,7 @@ import { connect } from "react-redux"
 import Login from './components/pagetypes/Login'
 import Admin from "./components/admin/Admin";
 import AdminCreatedPage from "./components/pagetypes/AdminCreatedPage";
+import PageNotFound from "./components/pagetypes/PageNotFound"
 import requireAuth from './components/helpers/requireAuth'
 class App extends React.Component {
 
@@ -52,6 +53,9 @@ class App extends React.Component {
                     <SideNav />
                     <Switch>
                         {routes}
+                        {pages.length !== 0 &&
+                                <Route path="*" component={PageNotFound} />
+                        }
                     </Switch>
                 </div>
             </Router>
