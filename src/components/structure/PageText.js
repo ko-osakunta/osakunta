@@ -4,9 +4,10 @@ import { fetchPageByPath } from "../../actions"
 
 import { stateToHTML } from 'draft-js-export-html'
 import { convertFromRaw } from 'draft-js'
+import styles from "./PageText.module.css"
 
 const PageText = ({ text }) =>
-    <div className="pageText">
+    <div className={styles.pageText}>
         <div dangerouslySetInnerHTML={{ __html: textToHtml(text) }} />
     </div>
     

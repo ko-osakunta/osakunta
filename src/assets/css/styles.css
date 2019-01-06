@@ -17,96 +17,10 @@ body {
   min-height: 100vh;
 }
 
-.banner {
-  
-  width: 100%;
-  height: 250px;
-  background-image: url(../../assets/img/Praasniekat2013_01.png);
-  background-position: center;
-}
-
-#page {
-  text-align: left;
-  padding-left: 5%;
-  padding-right: 5%;
-  padding-top: 2%;
-  padding-bottom: 5%;
-}
-
-.pageText {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0px 0px 10px -1px #000;
-  padding-top: 20px;
-  padding-right: 20px;
-  padding-bottom: 20px;
-  padding-left: 20px;
-  margin-bottom: 30px;
-}
-
-.footer {
-  position: absolute;
-  /*right: 0;*/
-  bottom: 0;
-  /*left: 0;*/
-  padding: 1rem;
-  background-color: #232222;
-  text-align: center;
-  color: #ffffff;
-  height: 176px;
-  width: 100%;
-}
-
 body::after {
   content: '';
   display: block;
   height: 166px;
-}
-
-.sidenav {
-  height: 100%;
-  width: 0px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-}
-
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: Gray;
-  display: block;
-  transition: 0.3s;
-}
-
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
-.sidenav .closebtn {
-  color: Gray;
-  background: none;
-  border: none;
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-.sidenav .closebtn:hover {
-    color: #f1f1f1;
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
 }
 
 .editorClass {
@@ -145,22 +59,6 @@ body::after {
   cursor: pointer;
 }
 
-.editor {
-  background-color: #FFF;
-  box-sizing: border-box;
-  border: 1px solid #ddd;
-  cursor: text;
-  padding: 16px;
-  border-radius: 2px;
-  margin-bottom: 2em;
-  box-shadow: inset 0px 1px 8px -3px #ABABAB;
-  background: #fefefe;
-}
-
-.editor :global(.public-DraftEditor-content) {
-  min-height: 140px;
-}
-
 .img-left {
   display: block;
   margin-left: 0;
@@ -183,131 +81,6 @@ body::after {
   margin-bottom: 20px;
 }
 
-.headlineButtonWrapper {
-  display: inline-block;
-}
-
-.headlineButton {
-  background: #fbfbfb;
-  color: #888;
-  font-size: 18px;
-  border: 0;
-  padding-top: 5px;
-  vertical-align: bottom;
-  height: 34px;
-  width: 36px;
-}
-
-.headlineButton:hover,
-.headlineButton:focus {
-  background: #f3f3f3;
-}
-
-.addImage {
-  background: #FFF;
-  display: inline-block;
-}
-
-.addImagePopover {
-  margin-top: 10px;
-  background: #FFF;
-  position: absolute;
-  height: 54px;
-  width: 300px;
-  border-radius: 2px;
-  padding: 10px;
-  box-shadow: 0px 4px 30px 0px rgba(220,220,220,1);
-  z-index: 1000;
-}
-
-.addImageClosedPopover {
-  display: none;
-}
-
-.addImageButton {
-  box-sizing: border-box;
-  background: #fff;
-  border: 1px solid #ddd;
-  padding: 0;
-  color: #888;
-  margin: 0;
-  cursor: pointer;
-  height: 1.5em;
-  width: 2.5em;
-  font-size: 1.5em;
-  line-height: 1.2em;
-  margin: 0;
-}
-
-.addImageButton:focus {
-  outline: 0; /* reset for :focus */
-}
-
-.addImageButton:hover {
-  background: #f3f3f3;
-}
-
-.addImageButton:active {
-  background: #e6e6e6;
-}
-
-.addImagePressedButton {
-  background: #ededed;
-}
-
-.addImageBottomGradient {
-  width: 100%;
-  height: 1em;
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  background-color: white;
-  pointer-events: none;
-  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
-}
-
-.addImageInput {
-  box-sizing: border-box;
-  border: 1px solid #ddd;
-  cursor: text;
-  padding: 4px;
-  width: 78%;
-  border-radius: 2px;
-  margin-bottom: 1em;
-  box-shadow: inset 0px 1px 8px -3px #ABABAB;
-  background: #fefefe;
-}
-
-.addImageConfirmButton {
-  box-sizing: border-box;
-  background: #fff;
-  border: 1px solid #ddd;
-  padding: 0;
-  color: #888;
-  margin: 0;
-  border-radius: 2.1em;
-  cursor: pointer;
-  height: 2.1em;
-  width: 18%;
-  font-size: 1em;
-  line-height: 2.1em;
-  margin: 0;
-  margin-left: 4%;
-}
-
-.addImageConfirmButton:focus {
-  outline: 0; /* reset for :focus */
-}
-
-.addImageConfirmButton:hover {
-  background: #f3f3f3;
-}
-
-.addImageConfirmButton:active {
-  background: #e6e6e6;
-}
-
 .btn:active, .btn.active {
 	background-image: none;
 	outline: 0;
@@ -320,24 +93,6 @@ a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:acti
 }
 .section-title {
 	margin-bottom: 50px;
-}
-.btn-sidenav {
-	font-family: 'Montserrat', sans-serif;
-	text-transform: uppercase;
-	color: #444;
-	background-color: transparent;
-	border: 2px solid rgb(161, 174, 175);
-	margin: 0;
-	font-size: 14px;
-	border-radius: 0;
-	margin-top: 20px;
-  margin-right: 30px;
-  margin-left: 50px;
-	transition: all 0.5s;
-}
-.btn-sidenav:hover, .btn-sidenav:focus, .btn-sidenav.focus, .btn-sidenav:active, .btn-sidenav.active {
-	color: #eee;
-	background-color:rgb(161, 174, 175);
 }
 
 .social-signin {

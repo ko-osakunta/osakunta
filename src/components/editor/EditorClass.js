@@ -32,6 +32,8 @@ import { stateFromHTML } from 'draft-js-import-html';
 import ImageAdd from './ImageAdd';
 import HeadlinesButton from './HeadlinesButton'
 
+import styles from "./EditorClass.module.css"
+
 const linkPlugin = createLinkPlugin();
 const inlineToolbarPlugin = createInlineToolbarPlugin();
 
@@ -109,7 +111,7 @@ class EditorClass extends React.Component {
         console.log(JSON.stringify(convertToRaw(this.state.editorState.getCurrentContent())))
         return (
             <div>
-                <div className="editor" onClick={this.focus}>
+                <div className={styles.editor} onClick={this.focus}>
                     <Editor
                         editorState={this.state.editorState}
                         onChange={this.onChange}

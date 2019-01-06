@@ -1,5 +1,6 @@
 import React from 'react'
 import HeadlinesPicker from './HeadlinesPicker'
+import styles from "./HeadlinesButton.module.css"
 
 class HeadlinesButton extends React.Component {
     // When using a click event inside overridden content, mouse down
@@ -15,8 +16,8 @@ class HeadlinesButton extends React.Component {
 
     render() {
         return (
-            <div onMouseDown={this.onMouseDown} className={'headlineButtonWrapper'}>
-                <button onClick={this.onClick} className={'headlineButton'}>
+            <div onMouseDown={this.onMouseDown} className={styles.headlineButtonWrapper}>
+                <button onClick={this.onClick} className={styles.headlineButton}>
                     H
           </button>
             </div>

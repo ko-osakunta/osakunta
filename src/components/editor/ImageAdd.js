@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import styles from "./ImageAdd.module.css"
+
 export default class ImageAdd extends Component {
   // Start the popover closed
   state = {
@@ -55,14 +57,14 @@ export default class ImageAdd extends Component {
 
   render() {
     const popoverClassName = this.state.open ?
-      'addImagePopover' :
-      'addImageClosedPopover';
+          styles.addImagePopover :
+          styles.addImageClosedPopover
     const buttonClassName = this.state.open ?
-      'addImagePressedButton' :
-      'addImageButton';
+          styles.addImagePressedButton :
+          styles.addImageButton
 
     return (
-      <div className={'addImage'}>
+      <div className={styles.addImage}>
         <button
           className={'btn-primary'}
           onMouseUp={this.openPopover}
@@ -77,12 +79,12 @@ export default class ImageAdd extends Component {
           <input
             type="text"
             placeholder="Paste the image url …"
-            className={'addImageInput'}
+            className={styles.addImageInput}
             onChange={this.changeUrl}
             value={this.state.url}
           />
           <button
-            className={'addImageConfirmButton'}
+            className={styles.addImageConfirmButton}
             type="button"
             onClick={this.addImage}
           >

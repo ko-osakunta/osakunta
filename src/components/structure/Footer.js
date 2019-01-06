@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from "react-redux"
+import styles from "./Footer.module.css"
 
 const Footer = ({ contact }) =>
-    <div className="footer">
+    <div className={styles.footer}>
         {
             Object.keys(contact).length !== 0 &&
                 <table className="footer">

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
-//import { fetchTopNav } from "../../actions"
+import styles from "./SideNav.module.css"
 
 class SideNav extends React.Component {
 
@@ -21,10 +21,10 @@ class SideNav extends React.Component {
         const { topNav } = this.props
         return (
             <div>
-                <button className="btn btn-sidenav btn-lg page-scroll" onClick={e => this.openNav()}>☰ open</button>
-                <div id="sideNavigation" className="sidenav" ref={sidenav => {this.sidenav=sidenav}}>
+                <button className={`btn ${styles.btn_sidenav} btn-lg page-scroll`} onClick={e => this.openNav()}>☰ open</button>
+                <div id="sideNavigation" className={styles.sidenav} ref={sidenav => {this.sidenav=sidenav}}>
                     <button
-                        className="closebtn"
+                        className={styles.closebtn}
                         onClick={() => this.closeNav()}
                     >
                         &times;
