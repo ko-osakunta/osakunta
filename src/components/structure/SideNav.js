@@ -24,7 +24,11 @@ class SideNav extends React.Component {
                     &times;
                 </button>
                 {topNav.map(page =>
-                    <Link to={page.path} onClick={() => this.closeNav()}>
+                    <Link
+                        to={page.path}
+                        onClick={() => this.closeNav()}
+                        key={page.path}
+                    >
                         {page.title}
                     </Link>
                 )}
