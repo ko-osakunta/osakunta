@@ -23,13 +23,12 @@ class SideNav extends React.Component {
             <div>
                 <button className="btn btn-sidenav btn-lg page-scroll" onClick={e => this.openNav()}>☰ open</button>
                 <div id="sideNavigation" className="sidenav" ref={sidenav => {this.sidenav=sidenav}}>
-                    <a
-                        href="javascript:void(0)"
+                    <button
                         className="closebtn"
                         onClick={() => this.closeNav()}
                     >
                         &times;
-                    </a>
+                    </button>
                     {topNav.map(page => <NavButton data={page} key={page.title} />)}
                 </div>
             </div>
