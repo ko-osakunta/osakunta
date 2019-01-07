@@ -29,7 +29,6 @@
     background: none;
     border: none;
     position: absolute;
-    top: 0;
     right: 25px;
     font-size: 36px;
     margin-left: 50px;
@@ -53,7 +52,7 @@
       margin: 0;
       font-size: 14px;
       border-radius: 0;
-      margin-top: 20px;
+      margin-top: 265px;
     margin-right: 30px;
     margin-left: 50px;
       transition: all 0.5s;
