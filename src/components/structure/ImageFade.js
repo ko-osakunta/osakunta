@@ -16,14 +16,13 @@ class ImageFade extends React.Component {
     componentWillReceiveProps(newProps) {
         const oldImg = this.state.topImg
         const newImg = newProps.img
-        if (oldImg !== newImg) {
-            this.setState({ bottomImg: false, topImg: false }, () =>
-                this.setState({ bottomImg: oldImg, topImg: newImg, bottomOpacity: 1 }, () => {
-                    
-                    this.timeout = setTimeout(() => this.setState({ bottomOpacity: 0 }), 20)
-                })
-            )
-        }
+        this.setState({ bottomImg: false, topImg: false }, () =>
+            this.setState({ bottomImg: oldImg, topImg: newImg, bottomOpacity: 1 }, () => {
+
+                this.timeout = setTimeout(() => this.setState({ bottomOpacity: 0 }), 20)
+            })
+        )
+
     }
 
     render() {
