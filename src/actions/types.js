@@ -10,3 +10,5 @@ export const FETCH_CONTACT = "FETCH_CONTACT"
 export const FETCH_USER = "FETCH_USER"
 
 export const UPDATE_EDITOR_STATE = "UPDATE_EDITOR_STATE"
+
+export const FETCH_IMAGES = "FETCH_IMAGES"

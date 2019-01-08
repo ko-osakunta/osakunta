@@ -3,12 +3,13 @@ import Banner from "./components/structure/Banner"
 import SideNav from "./components/structure/SideNav"
 import Footer from "./components/structure/Footer"
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { fetchPages, fetchContact, fetchUser, fetchTopNav } from "./actions"
+import { fetchPages, fetchContact, fetchUser, fetchTopNav, fetchImages } from "./actions"
 import { connect } from "react-redux"
 import Login from './components/pagetypes/Login'
 import Admin from "./components/admin/Admin";
 import AdminCreatedPage from "./components/pagetypes/AdminCreatedPage";
 import PageNotFound from "./components/pagetypes/PageNotFound"
+import ImageGallery from "./components/pagetypes/ImageGallery.js"
 import requireAuth from './components/helpers/requireAuth'
 class App extends React.Component {
 
@@ -17,35 +18,13 @@ class App extends React.Component {
         this.props.fetchContact()
         this.props.fetchUser()
         this.props.fetchTopNav()
-    }
-
-    returnCorrectComponent(pageType) {
-        switch (pageType) {
-            case "login":
-                return Login
-            case "admin":
-                return requireAuth(Admin)
-            default:
-                return AdminCreatedPage
-        }
-    }
-
-    renderRoutes() {
-        const { pages } = this.props
-        return pages.map(page => {
-            const Component = this.returnCorrectComponent(page.type)
-            return <Route
-                exact path={page.path}
-                component={Component}
-                key={page.path}
-            />
-        })
+        this.props.fetchImages()
     }
 
     render() {
         const { pages } = this.props
+        const routes = renderRoutes(pages)
 
-        const routes = this.renderRoutes(pages)
         return <div>
             <Banner />
             <Router>
@@ -64,6 +43,35 @@ class App extends React.Component {
     }
 }
 
+const renderRoutes = (pages) =>
+    pages
+        .map(({ type, path }) => ({
+            component: returnCorrectComponent(type),
+            path
+        }))
+        .concat(localPages)
+        .map(({ component, path }) =>
+            <Route exact path={path} component={component} key={path} />
+        )
+
+const returnCorrectComponent = (pageType) => {
+    switch (pageType) {
+        case "login":
+            return Login
+        case "admin":
+            return requireAuth(Admin)
+        default:
+            return AdminCreatedPage
+    }
+}
+
+const localPages = [
+    {
+        component: ImageGallery,
+        path: "/gallery"
+    }
+]
+
 const mapStateToProps = ({ pages }) => ({ pages }) // Not an identity function!
 
-export default connect(mapStateToProps, { fetchPages, fetchContact, fetchUser, fetchTopNav })(App)
+export default connect(mapStateToProps, { fetchPages, fetchContact, fetchUser, fetchTopNav, fetchImages })(App)

@@ -160,3 +160,9 @@ export const fetchTopNav = () => dispatch => {
             })
         })
 }
+
+export const fetchImages = () => dispatch => {
+    dispatch({
+        type: types.FETCH_IMAGES
+    })
+}
