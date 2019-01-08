@@ -12,7 +12,7 @@ export default function(ComposedComponent) {
     componentWillMount() {
       if (this.props.authenticated === null) {
         alert("Kirjaudu sisään näyttääksesi admin-sivun!")
-        this.context.router.history.push("/");
+        this.context.router.history.push("/login");
       }
     }
 

@@ -6,11 +6,12 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { fetchPages, fetchContact, fetchUser, fetchImages } from "./actions"
 import { connect } from "react-redux"
 import Login from './components/pagetypes/Login'
-import Admin from "./components/admin/Admin";
-import AdminCreatedPage from "./components/pagetypes/AdminCreatedPage";
+import Admin from "./components/admin/Admin"
+import AdminCreatedPage from "./components/pagetypes/AdminCreatedPage"
 import PageNotFound from "./components/pagetypes/PageNotFound"
 import ImageGallery from "./components/pagetypes/ImageGallery.js"
 import requireAuth from './components/helpers/requireAuth'
+
 class App extends React.Component {
 
     componentDidMount() {
