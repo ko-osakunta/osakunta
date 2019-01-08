@@ -60,6 +60,19 @@ export const fetchTopImage = (image) => dispatch => {
         })
 }
 
+export const fetchBannerImages = (image) => dispatch => {
+    storage.ref()
+        .child(`banner/${image}`)
+        .getDownloadURL()
+        .then((url) => {
+            dispatch({
+                type: types.FETCH_BANNER_IMAGES,
+                payload: url
+            })
+        })
+}
+
+
 export const fetchPages = () => dispatch => {
     database.ref('pages')
         .once('value')

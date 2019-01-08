@@ -9,6 +9,7 @@ import contactReducer from './reducers/contactReducer'
 import pageReducer from './reducers/pageReducer'
 import authReducer from './reducers/authReducer'
 import galleryReducer from './reducers/galleryReducer'
+import bannerReducer from './reducers/bannerReducer'
 
 const reducer = combineReducers({
     topImage: topImageReducer,
@@ -18,7 +19,8 @@ const reducer = combineReducers({
     contact: contactReducer,
     page: pageReducer,
     auth: authReducer,
-    images: galleryReducer
+    images: galleryReducer,
+    banner: bannerReducer
 })
 
 const store = createStore(
