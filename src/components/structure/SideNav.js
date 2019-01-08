@@ -14,6 +14,7 @@ class SideNav extends React.Component {
 
     render() {
         const { pages } = this.props
+
         return <div>
             <button className={`btn ${styles.btn_sidenav} btn-lg page-scroll`} onClick={() => this.openNav()}>☰ open</button>
             <div id="sideNavigation" className={styles.sidenav} ref={sidenav => {this.sidenav=sidenav}}>
@@ -37,6 +38,6 @@ class SideNav extends React.Component {
     }
 }
 
-const mapStateToProps = ({ pages }) => ({ pages }) // Not an identity function!
+const mapStateToProps = ({ pages: { local, remote } }) => ({ pages: remote.concat(local) })
 
 export default connect(mapStateToProps)(SideNav)

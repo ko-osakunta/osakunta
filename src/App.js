@@ -42,13 +42,15 @@ class App extends React.Component {
     }
 }
 
-const renderRoutes = (pages) =>
-    pages
-        .map(({ type, path }) => ({
-            component: returnCorrectComponent(type),
-            path
-        }))
-        .concat(localPages)
+const mapToComponents = (remote) =>
+    remote.map(({ type, path }) => ({
+        component: returnCorrectComponent(type),
+        path
+    }))
+
+const renderRoutes = ({ local, remote }) =>
+    mapToComponents(remote)
+        .concat(local)
         .map(({ component, path }) =>
             <Route exact path={path} component={component} key={path} />
         )
@@ -63,13 +65,6 @@ const returnCorrectComponent = (pageType) => {
             return AdminCreatedPage
     }
 }
-
-const localPages = [
-    {
-        component: ImageGallery,
-        path: "/gallery"
-    }
-]
 
 const mapStateToProps = ({ pages }) => ({ pages }) // Not an identity function!
 
