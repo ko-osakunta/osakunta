@@ -32,7 +32,7 @@ class App extends React.Component {
                     <SideNav />
                     <Switch>
                         {routes}
-                        {pages.length !== 0 &&
+                        {pages.remote.length !== 0 &&
                                 <Route path="*" component={PageNotFound} />
                         }
                     </Switch>
