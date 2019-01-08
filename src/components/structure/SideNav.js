@@ -13,7 +13,7 @@ class SideNav extends React.Component {
     }
 
     render() {
-        const { topNav } = this.props
+        const { pages } = this.props
         return <div>
             <button className={`btn ${styles.btn_sidenav} btn-lg page-scroll`} onClick={() => this.openNav()}>☰ open</button>
             <div id="sideNavigation" className={styles.sidenav} ref={sidenav => {this.sidenav=sidenav}}>
@@ -23,7 +23,7 @@ class SideNav extends React.Component {
                 >
                     &times;
                 </button>
-                {topNav.map(page =>
+                {pages.map(page =>
                     <Link
                         to={page.path}
                         onClick={() => this.closeNav()}
@@ -37,6 +37,6 @@ class SideNav extends React.Component {
     }
 }
 
-const mapStateToProps = ({ topNav }) => ({ topNav }) // Not an identity function!
+const mapStateToProps = ({ pages }) => ({ pages }) // Not an identity function!
 
 export default connect(mapStateToProps)(SideNav)

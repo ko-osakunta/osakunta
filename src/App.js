@@ -3,7 +3,7 @@ import Banner from "./components/structure/Banner"
 import SideNav from "./components/structure/SideNav"
 import Footer from "./components/structure/Footer"
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import { fetchPages, fetchContact, fetchUser, fetchTopNav, fetchImages } from "./actions"
+import { fetchPages, fetchContact, fetchUser, fetchImages } from "./actions"
 import { connect } from "react-redux"
 import Login from './components/pagetypes/Login'
 import Admin from "./components/admin/Admin";
@@ -17,7 +17,6 @@ class App extends React.Component {
         this.props.fetchPages()
         this.props.fetchContact()
         this.props.fetchUser()
-        this.props.fetchTopNav()
         this.props.fetchImages()
     }
 
@@ -74,4 +73,4 @@ const localPages = [
 
 const mapStateToProps = ({ pages }) => ({ pages }) // Not an identity function!
 
-export default connect(mapStateToProps, { fetchPages, fetchContact, fetchUser, fetchTopNav, fetchImages })(App)
+export default connect(mapStateToProps, { fetchPages, fetchContact, fetchUser, fetchImages })(App)

@@ -148,7 +148,7 @@ export const removePageByKey = (pageKey) => () => {
     database.ref('/pages').child(`${pageKey}`).remove()
 }
 //currently the same as pages.. might have different functionality in the future
-export const fetchTopNav = () => dispatch => {
+/*export const fetchTopNav = () => dispatch => {
     database.ref('pages')
         .once('value')
         .then(snapshot => {
@@ -159,7 +159,7 @@ export const fetchTopNav = () => dispatch => {
                 payload: pages
             })
         })
-}
+}*/
 
 export const fetchImages = () => dispatch => {
     dispatch({
