@@ -33,10 +33,10 @@ class Banner extends React.Component {
 
     //The method will randomize a new banner image which is not the same as the previous one
     changeCounter = () => {
-        let number = this.state.index
-        console.log(number)
         //In case there's just one banner image..
         if (max !== 1) {
+            let number = this.state.index
+
             while (number === this.state.index) {
                 console.log(number)
                 number = Math.floor(Math.random() * max) + 1

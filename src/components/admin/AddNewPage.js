@@ -4,7 +4,7 @@ import { createNewPage } from "../../actions";
 
 //This form creates a new page to the site
 class AddNewPage extends React.Component {
-    
+
     constructor() {
         super();
         this.state = {
@@ -29,7 +29,14 @@ class AddNewPage extends React.Component {
 
     isUsed(property, value) {
         const { pages } = this.props
-        return pages.filter((page) => page[property] === value).length !== 0
+        let containsValue = false
+        for (let key in pages) {
+            if (pages[key][property] === value) {
+                containsValue = true
+            }
+        }
+        return containsValue
+        //return pages.filter((page) => page[property] === value).length !== 0
     }
 
     //This method will normalize characters for path, and then remove all non-latin characters
@@ -40,21 +47,19 @@ class AddNewPage extends React.Component {
     }
 
     onChange = (event) => {
-        this.setState({value: event.target.value});
+        this.setState({ value: event.target.value });
     }
 
     render() {
         return (
             <div>
-                <div>
-                        Uuden sivun nimi:
-                    <input type="text" name="text" value={this.state.value} onChange={this.onChange}/>
-                        <button className="btn-primary" onClick={this.onClick}>
-                            Lisää uusi sivu
+                Uuden sivun nimi:
+                    <input type="text" name="text" value={this.state.value} onChange={this.onChange} />
+                <button className="btn-primary" onClick={this.onClick}>
+                    Lisää uusi sivu
                         </button>
-                </div>
             </div>
-            
+
         )
     }
 }
@@ -62,4 +67,4 @@ class AddNewPage extends React.Component {
 
 const mapStateToProps = ({ pages }) => ({ pages }) // Not an identity function!
 
-export default connect(mapStateToProps, {createNewPage})(AddNewPage);
+export default connect(mapStateToProps, { createNewPage })(AddNewPage);
