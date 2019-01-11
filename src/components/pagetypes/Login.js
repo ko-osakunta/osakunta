@@ -43,7 +43,6 @@ class Login extends Component {
             .catch(error => {
                 console.log(error)
             });
-
         event.preventDefault();
     };
 

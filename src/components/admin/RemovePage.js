@@ -4,7 +4,7 @@ import { fetchKeyByPath, removePageByKey } from "../../actions";
 
 //Pressing the button in this class will remove the page. Admin tool.
 class RemovePage extends React.Component {
-    
+
     componentWillMount() {
         const path = window.location.pathname
         this.props.fetchKeyByPath(path)
@@ -20,19 +20,22 @@ class RemovePage extends React.Component {
     }
 
     render() {
-        return (
-            <div>
+        //Only authorized users may view this page
+        if (this.props.auth) {
+            return (
                 <div>
-                    <button className="btn-primary" onClick={this.onClick}>
-                        Poista nykyinen sivu
-                    </button>
+                    <div>
+                        <button className="btn-primary" onClick={this.onClick}>
+                            Poista nykyinen sivu
+                        </button>
+                    </div>
                 </div>
-            </div>
-            
-        )
+            )
+        }
+        return null
     }
 }
 
-const mapStateToProps = ({ pageKey }) => ({ pageKey }) // Not an identity function!
+const mapStateToProps = ({ auth, pageKey }) => ({ auth, pageKey }) // Not an identity function!
 
-export default connect(mapStateToProps, {fetchKeyByPath, removePageByKey})(RemovePage);
+export default connect(mapStateToProps, { fetchKeyByPath, removePageByKey })(RemovePage);
