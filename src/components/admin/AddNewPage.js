@@ -14,9 +14,8 @@ class AddNewPage extends React.Component {
 
     //When called this method will check if formatted path and title exist, 
     //and creates a new page if they don't
-    onClick() {
-        var pagePath = this.convertValueToPath();
-
+    onClick = () => {
+        let pagePath = this.convertValueToPath();   
         try {
             this.props.createNewPage(pagePath, this.state.value)
             window.location.reload()
@@ -27,7 +26,7 @@ class AddNewPage extends React.Component {
 
     //This method will normalize characters for path, and then remove all non-latin characters
     convertValueToPath() {
-        var pagePath = this.state.value.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+        let pagePath = this.state.value.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
         pagePath = '/' + pagePath.replace(/[^a-zA-Z0-9]+/g, "");
         return pagePath.toLowerCase()
     }
@@ -37,6 +36,7 @@ class AddNewPage extends React.Component {
     }
 
     render() {
+        console.log(this.state.value)
         return (
             <div>
                 Uuden sivun nimi:
