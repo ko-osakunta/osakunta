@@ -4,7 +4,7 @@ import styles from "./Footer.module.css"
 
 const Footer = ({ contact }) =>
     Object.keys(contact).length !== 0 &&
-            <div class={styles.footer}>
+            <div className={styles.footer}>
                 <div>
                     {renderAsHtml(contact.nation)}
                     {renderAsHtml(contact.HYnation)}
