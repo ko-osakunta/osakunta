@@ -1,25 +1,6 @@
 import { database, storage, firebaseAuth, googleProvider } from '../config/firebase'
 import * as types from "./types"
 
-export const signIn = () => dispatch => {
-    firebaseAuth
-        .signInWithRedirect(googleProvider)
-        .then(result => { })
-        .catch(error => {
-            console.log(error)
-        })
-}
-
-export const signOut = () => dispatch => {
-    firebaseAuth
-        .signOut()
-        .then(() => {
-            // Sign-out successful.
-        })
-        .catch(error => {
-            console.log(error)
-        })
-}
 
 export const fetchUser = () => dispatch => {
     firebaseAuth.onAuthStateChanged(user => {

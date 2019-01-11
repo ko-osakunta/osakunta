@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 //This class will check whether the user is authenticated or not
-export default function(ComposedComponent) {
+export default function (ComposedComponent) {
   class Authentication extends Component {
     static contextTypes = {
       router: PropTypes.object
