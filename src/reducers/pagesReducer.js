@@ -1,11 +1,24 @@
 import { FETCH_PAGES } from "../actions/types"
 import ImageGallery from "../components/pagetypes/ImageGallery"
+import Admin from "../components/admin/Admin"
+import Login from "../components/pagetypes/Login"
+import requireAuth from "../components/helpers/requireAuth"
 
 const local = [
     {
         component: ImageGallery,
         path: "/gallery",
         title: "Galleria"
+    },
+    {
+        component: requireAuth(Admin),
+        path: "/admin",
+        title: "Admin"
+    },
+    {
+        component: Login,
+        path: "/login",
+        title: "Kirjautuminen"
     }
 ]
 
