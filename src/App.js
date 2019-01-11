@@ -27,17 +27,15 @@ class App extends React.Component {
 
         return <div>
             <Banner />
-            <Router>
-                <div>
-                    <SideNav />
-                    <Switch>
-                        {routes}
-                        {pages.length !== 0 &&
-                                <Route path="*" component={PageNotFound} />
-                        }
-                    </Switch>
-                </div>
-            </Router>
+            <div>
+                <SideNav />
+                <Switch>
+                    {routes}
+                    {pages.length !== 0 &&
+                            <Route path="*" component={PageNotFound} />
+                    }
+                </Switch>
+            </div>
             <Footer />
         </div>
     }

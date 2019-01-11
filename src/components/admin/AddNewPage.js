@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from "react-redux";
+import { push } from "connected-react-router"
 import { createNewPage } from "../../actions";
 
 //This form creates a new page to the site
@@ -19,7 +20,7 @@ class AddNewPage extends React.Component {
 
         try {
             this.props.createNewPage(pagePath, this.state.value)
-            window.location.reload()
+            this.props.push("/")
         } catch(error) {
             window.alert(error)
         }
@@ -37,7 +38,6 @@ class AddNewPage extends React.Component {
     }
 
     render() {
-        console.log(this.state.value)
         return (
             <div>
                 Uuden sivun nimi:
@@ -54,4 +54,4 @@ class AddNewPage extends React.Component {
 
 const mapStateToProps = ({ pages }) => ({ pages }) // Not an identity function!
 
-export default connect(mapStateToProps, { createNewPage })(AddNewPage);
+export default connect(mapStateToProps, { createNewPage, push })(AddNewPage);

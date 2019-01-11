@@ -1,6 +1,8 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import { connectRouter, routerMiddleware } from 'connected-react-router'
+import { createBrowserHistory } from 'history'
 import topImageReducer from './reducers/topImageReducer'
 import topNavReducer from './reducers/topNavReducer'
 import pagesReducer from './reducers/pagesReducer'
@@ -11,7 +13,8 @@ import authReducer from './reducers/authReducer'
 import galleryReducer from './reducers/galleryReducer'
 import bannerReducer from './reducers/bannerReducer'
 
-const reducer = combineReducers({
+const createReducer = history => combineReducers({
+    router: connectRouter(history),
     topImage: topImageReducer,
     topNav: topNavReducer,
     pages: pagesReducer,
@@ -23,8 +26,16 @@ const reducer = combineReducers({
     banner: bannerReducer
 })
 
+export const history = createBrowserHistory()
+
 const store = createStore(
-    reducer, composeWithDevTools(applyMiddleware(thunk))
+    createReducer(history),
+    composeWithDevTools(
+        applyMiddleware(
+            routerMiddleware(history),
+            thunk
+        )
+    )
 )
 
 export default store
