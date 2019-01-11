@@ -38,7 +38,26 @@ export const fetchUser = () => dispatch => {
 }
 
 
-export const createNewPage = (pagePath, value) => () => {
+export const createNewPage = (pagePath, value) => (dispatch, getState) => {
+    const { pages: { local, remote } } = getState()
+    const pages = local.concat(remote)
+
+    const pathUsed = pages
+        .filter(({ path }) => path === pagePath)
+        .length !== 0
+
+    if (pathUsed) {
+        throw "Sivu on jo olemassa tällä polulla!"
+    }
+
+    const titleUsed = pages
+        .filter(({ title }) => title === value.toLowerCase())
+        .length !== 0
+
+    if (titleUsed) {
+        throw "Sivu on jo olemassa tällä nimellä"
+    }
+
     database.ref('pages').push().set({
         path: pagePath,
         text: "{\"blocks\":[{\"key\":\"2onp9\",\"text\":\"Uusi sivu luotu! Adminina voit muokata sitä oheisesta lomakkeesta.\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",

@@ -14,29 +14,15 @@ class AddNewPage extends React.Component {
 
     //When called this method will check if formatted path and title exist, 
     //and creates a new page if they don't
-    onClick = () => {
+    onClick() {
         var pagePath = this.convertValueToPath();
 
-        if (this.isUsed("title", this.state.value.toLowerCase())) {
-            window.alert("Sivu on jo olemassa tällä nimellä!");
-        } else if (this.isUsed("path", pagePath)) {
-            window.alert("Sivu on jo olemassa tällä polulla!");
-        } else {
+        try {
             this.props.createNewPage(pagePath, this.state.value)
             window.location.reload()
+        } catch(error) {
+            window.alert(error)
         }
-    }
-
-    isUsed(property, value) {
-        const { pages } = this.props
-        let containsValue = false
-        for (let key in pages) {
-            if (pages[key][property] === value) {
-                containsValue = true
-            }
-        }
-        return containsValue
-        //return pages.filter((page) => page[property] === value).length !== 0
     }
 
     //This method will normalize characters for path, and then remove all non-latin characters
