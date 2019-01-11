@@ -20,8 +20,7 @@ export const fetchUser = () => dispatch => {
 
 
 export const createNewPage = (pagePath, value) => (dispatch, getState) => {
-    const { pages: { local, remote } } = getState()
-    const pages = local.concat(remote)
+    const { pages } = getState()
 
     const pathUsed = pages
         .filter(({ path }) => path === pagePath)

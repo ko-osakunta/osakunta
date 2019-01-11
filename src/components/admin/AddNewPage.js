@@ -15,7 +15,8 @@ class AddNewPage extends React.Component {
     //When called this method will check if formatted path and title exist, 
     //and creates a new page if they don't
     onClick = () => {
-        let pagePath = this.convertValueToPath();   
+        const pagePath = this.convertValueToPath()
+
         try {
             this.props.createNewPage(pagePath, this.state.value)
             window.location.reload()
