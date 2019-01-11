@@ -32,7 +32,7 @@ class App extends React.Component {
                     <SideNav />
                     <Switch>
                         {routes}
-                        {pages.remote.length !== 0 &&
+                        {pages.length !== 0 &&
                                 <Route path="*" component={PageNotFound} />
                         }
                     </Switch>
@@ -43,18 +43,10 @@ class App extends React.Component {
     }
 }
 
-const mapToComponents = (remote) =>
-    remote.map(({ path }) => ({
-        component: AdminCreatedPage,
-        path
-    }))
-
-const renderRoutes = ({ local, remote }) =>
-    mapToComponents(remote)
-        .concat(local)
-        .map(({ component, path }) =>
-            <Route exact path={path} component={component} key={path} />
-        )
+const renderRoutes = (pages) =>
+    pages.map(({ component, path }) =>
+        <Route exact path={path} component={component} key={path} />
+    )
 
 const mapStateToProps = ({ pages }) => ({ pages }) // Not an identity function!
 

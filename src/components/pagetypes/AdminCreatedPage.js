@@ -7,9 +7,9 @@ import requireAuth from "../helpers/requireAuth"
 import styles from "./AdminCreatedPage.module.css"
 
 //This particular type of page can be created, and removed by admin
-const AdminCreatedPage = ({ pages: { remote }, match }) =>
+const AdminCreatedPage = ({ pages, match }) =>
     <div className={styles.page}>
-        <PageText text={getPageText(remote, match.path)} />
+        <PageText text={getPageText(pages, match.path)} />
         {requireAuth(EditorClass)}
         {requireAuth(RemovePage)}
     </div>

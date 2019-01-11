@@ -38,6 +38,6 @@ class SideNav extends React.Component {
     }
 }
 
-const mapStateToProps = ({ pages: { local, remote } }) => ({ pages: remote.concat(local) })
+const mapStateToProps = ({ pages }) => ({ pages }) // Not an identity function!
 
 export default connect(mapStateToProps)(SideNav)

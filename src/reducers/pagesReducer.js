@@ -2,6 +2,7 @@ import { FETCH_PAGES } from "../actions/types"
 import ImageGallery from "../components/pagetypes/ImageGallery"
 import Admin from "../components/admin/Admin"
 import Login from "../components/pagetypes/Login"
+import AdminCreatedPage from "../components/pagetypes/AdminCreatedPage"
 import requireAuth from "../components/helpers/requireAuth"
 
 const local = [
@@ -22,10 +23,14 @@ const local = [
     }
 ]
 
-export default (state = { local, remote: [] }, action) => {
+export default (state = [], action) => {
     switch (action.type) {
         case FETCH_PAGES:
-            return { local: state.local, remote: action.payload }
+            //console.log(action.payload)
+            return action.payload
+                .map(({ type, ...rest }) =>
+                    ({ component: AdminCreatedPage, ...rest }))
+                .concat(local)
         default:
             return state
     }
