@@ -44,8 +44,8 @@ class App extends React.Component {
 }
 
 const mapToComponents = (remote) =>
-    remote.map(({ type, path }) => ({
-        component: returnCorrectComponent(type),
+    remote.map(({ path }) => ({
+        component: AdminCreatedPage,
         path
     }))
 
@@ -55,17 +55,6 @@ const renderRoutes = ({ local, remote }) =>
         .map(({ component, path }) =>
             <Route exact path={path} component={component} key={path} />
         )
-
-const returnCorrectComponent = (pageType) => {
-    switch (pageType) {
-        case "login":
-            return Login
-        case "admin":
-            return requireAuth(Admin)
-        default:
-            return AdminCreatedPage
-    }
-}
 
 const mapStateToProps = ({ pages }) => ({ pages }) // Not an identity function!
 
