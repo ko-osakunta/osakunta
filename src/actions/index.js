@@ -74,8 +74,7 @@ export const fetchBannerImages = (image) => dispatch => {
 
 export const fetchPages = () => dispatch => {
     database.ref('pages')
-        .once('value')
-        .then(snapshot => {
+        .on('value', snapshot => {
             const pages = Object.entries(snapshot.val())
                 .map(([, page]) => page)
             dispatch({
