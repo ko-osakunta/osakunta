@@ -41,17 +41,25 @@ class Login extends Component {
                 this.context.router.history.push("/");
             })
             .catch(error => {
-                this.setState({ error });
+                console.log(error)
             });
 
         event.preventDefault();
     };
 
+    logOut = event => {
+        firebaseAuth
+            .signOut()
+            .then(() => {
+                this.context.router.history.push("/");
+            })
+    }
+
 
     returnLoginButton() {
         const { auth, email, password, error } = this.props
-        console.log(email)
-        if (auth) {
+        console.log(auth)
+        if (!auth) {
             return (
                 <div>
                     <input
@@ -76,9 +84,9 @@ class Login extends Component {
             )
         } else {
             return (
-                <button type="button" onClick={firebaseAuth.doSignOut}>
-                    Sign Out
-        </button>
+                <button className="btn-primary" type="button" onClick={this.logOut}>
+                    Kirjaudu ulos
+            </button>
             )
         }
 
