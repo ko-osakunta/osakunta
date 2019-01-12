@@ -27,12 +27,15 @@ class ImageFade extends React.Component {
 
     render() {
         const { topImg, bottomOpacity, bottomImg } = this.state
+        console.log(topImg)
+        console.log(bottomImg)
         return (
             <div>
                 {
                     <div>
                         <img className={styles.imagefade}
-                            src={topImg}
+                            src={typeof topImg !== "undefined" && topImg.url}
+                            alt="banner"
                         />
                     </div>}
                 {
@@ -41,7 +44,8 @@ class ImageFade extends React.Component {
                             opacity: bottomOpacity,
                             transition: `opacity 0.5s ease-out 0s`
                         }}
-                            src={bottomImg}
+                            src={typeof bottomImg !== "undefined" && bottomImg.url}
+                            alt="banner"
                         />
                     </div>}
             </div>

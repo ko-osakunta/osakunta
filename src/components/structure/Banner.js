@@ -10,12 +10,9 @@ import pic2 from './Praasniekat2013_2.png'
 import kalja1 from './kuva1.jpg'
 import kalja2 from './kuva2.jpg'
 
-const pics = [
-    pic1, pic2, kalja1, kalja2
-]
 
 let counter = 0;
-let max = pics.length - 1;
+let max = 4 - 1;
 
 class Banner extends React.Component {
 
@@ -46,15 +43,18 @@ class Banner extends React.Component {
     }
 
     render() {
+        const { banners } = this.props
+        console.log(banners)
+        console.log(banners[this.state.index])
         return (
             <div>
-                <ImageFade img={pics[this.state.index]} />
+                <ImageFade img={banners[this.state.index]} />
             </div>
 
         )
     }
 }
 
-const mapStateToProps = ({ topImage }) => ({ topImage }) // Not an identity function!
+const mapStateToProps = ({ banners }) => ({ banners }) // Not an identity function!
 
 export default connect(mapStateToProps)(Banner)

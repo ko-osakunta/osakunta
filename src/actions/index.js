@@ -1,4 +1,4 @@
-import { database, storage, firebaseAuth, googleProvider } from '../config/firebase'
+import { database, storage, firebaseAuth } from '../config/firebase'
 import * as types from "./types"
 
 
@@ -47,6 +47,7 @@ export const createNewPage = (pagePath, value) => (dispatch, getState) => {
     })
 }
 
+//Old banner, remove when safe
 export const fetchTopImage = (image) => dispatch => {
     storage.ref()
         .child(`${image}`)
@@ -59,18 +60,48 @@ export const fetchTopImage = (image) => dispatch => {
         })
 }
 
-export const fetchBannerImages = (image) => dispatch => {
+export const uploadBannerToDatabase = (pageUrl) => dispatch => {
+    database.ref('banners').push().set({
+        url: pageUrl
+    })
+}
+
+/* export const fetchSingleImage = (url) => dispatch => {
     storage.ref()
-        .child(`banner/${image}`)
+        .child(`banners/${url}`)
         .getDownloadURL()
         .then((url) => {
             dispatch({
-                type: types.FETCH_BANNER_IMAGES,
+                type: types.FETCH_BANNERS,
                 payload: url
             })
         })
-}
+} */
 
+/* export const fetchBannerImages = (image) => dispatch => {
+    storage.ref()
+        .child(`banners/${image}`)
+        .getDownloadURL()
+        .then((url) => {
+            dispatch({
+                type: types.FETCH_BANNERS,
+                payload: url
+            })
+        })
+} */
+
+export const fetchBanners = () => dispatch => {
+    database.ref('banners')
+        .on('value', snapshot => {
+            const banners = Object.entries(snapshot.val())
+                .map(([, banner]) => banner)
+                
+            dispatch({
+                type: types.FETCH_BANNERS,
+                payload: banners
+            })
+        })
+}
 
 export const fetchPages = () => dispatch => {
     database.ref('pages')

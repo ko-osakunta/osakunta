@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from "react-redux";
 import { push } from "connected-react-router"
-import { createNewPage } from "../../actions";
+import { createNewPage, uploadBannerToDatabase } from "../../actions";
 
 //This form creates a new page to the site
 class AddNewPage extends React.Component {
@@ -21,7 +21,7 @@ class AddNewPage extends React.Component {
         try {
             this.props.createNewPage(pagePath, this.state.value)
             this.props.push("/")
-        } catch(error) {
+        } catch (error) {
             window.alert(error)
         }
     }

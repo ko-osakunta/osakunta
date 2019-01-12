@@ -23,7 +23,7 @@ const createReducer = history => combineReducers({
     page: pageReducer,
     auth: authReducer,
     images: galleryReducer,
-    banner: bannerReducer
+    banners: bannerReducer
 })
 
 export const history = createBrowserHistory()
