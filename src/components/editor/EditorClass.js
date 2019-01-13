@@ -62,7 +62,7 @@ const plugins = [inlineToolbarPlugin,
     resizeablePlugin,
     imagePlugin];
 
-let contentState = stateFromHTML('<em>Tämä on muokkauslomake. Voit muokata tällä oheista tekstiä. Korosta teksti niin voit tyylitellä sitä!</em>');
+let contentState = stateFromHTML('<p>Tämä on muokkauslomake. Voit muokata tällä oheista tekstiä. Korosta teksti niin voit tyylitellä sitä!</p>');
 
 class EditorClass extends React.Component {
 

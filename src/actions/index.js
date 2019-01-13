@@ -66,30 +66,6 @@ export const uploadBannerToDatabase = (pageUrl) => dispatch => {
     })
 }
 
-/* export const fetchSingleImage = (url) => dispatch => {
-    storage.ref()
-        .child(`banners/${url}`)
-        .getDownloadURL()
-        .then((url) => {
-            dispatch({
-                type: types.FETCH_BANNERS,
-                payload: url
-            })
-        })
-} */
-
-/* export const fetchBannerImages = (image) => dispatch => {
-    storage.ref()
-        .child(`banners/${image}`)
-        .getDownloadURL()
-        .then((url) => {
-            dispatch({
-                type: types.FETCH_BANNERS,
-                payload: url
-            })
-        })
-} */
-
 export const fetchBanners = () => dispatch => {
     database.ref('banners')
         .on('value', snapshot => {
