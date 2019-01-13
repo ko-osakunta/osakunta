@@ -75,6 +75,7 @@ export const uploadBanner = (image) => dispatch => {
             uploadBannerToDatabase(image.name, url)
         })
     })
+    alert("Banneri lisätty!")
 }
 
 export const uploadBannerToDatabase = (imageName, imageUrl) => {
