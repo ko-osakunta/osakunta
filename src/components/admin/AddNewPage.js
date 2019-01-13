@@ -20,7 +20,7 @@ class AddNewPage extends React.Component {
 
         try {
             this.props.createNewPage(pagePath, this.state.value)
-            this.props.push("/")
+            this.props.push(pagePath)
         } catch (error) {
             window.alert(error)
         }
