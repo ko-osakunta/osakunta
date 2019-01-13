@@ -33,7 +33,18 @@ export const createNewPage = (pagePath, value) => (dispatch, getState) => {
 
     database.ref('pages').push().set({
         path: pagePath,
-        text: "{\"blocks\":[{\"key\":\"2onp9\",\"text\":\"Uusi sivu luotu! Adminina voit muokata sitä oheisesta lomakkeesta.\",\"type\":\"unstyled\",\"depth\":0,\"inlineStyleRanges\":[],\"entityRanges\":[],\"data\":{}}],\"entityMap\":{}}",
+        text: JSON.stringify({
+            blocks: [{
+                key: "2onp9",
+                text: "Uusi sivu luotu! Adminina voit muokata sitä oheisesta lomakkeesta.",
+                type: "unstyled",
+                depth: 0,
+                inlineStyleRanges: [],
+                entityRanges: [],
+                data: {},
+            }],
+            entityMap: {}
+        }),
         title: value,
         deletable: true,
         type: 'adminCreated'
