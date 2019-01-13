@@ -1,6 +1,5 @@
 import React from 'react'
-import PageText from './../structure/PageText'
-import AddNewPage from './AddNewPage';
+import AddNewPage from "./AddNewPage"
 import styles from "../structure/PageText.module.css"
 
 //Admin tools
@@ -9,8 +8,8 @@ const Admin = () =>
         <div className={styles.pageText}>
             <p>Adminin muokkaussivu. Toistaiseksi voit lisätä uusia sivuja sivulle.</p>
             <a href="https://console.firebase.google.com/project/ko-osakunta/overview">Linkki konsoliin</a>
+            <AddNewPage />
         </div>
-        <AddNewPage />
     </div>
 
-export default Admin;
+export default Admin
