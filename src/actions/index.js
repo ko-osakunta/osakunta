@@ -27,7 +27,7 @@ export const createNewPage = (pagePath, value) => (dispatch, getState) => {
         .length !== 0
 
     if (pathUsed) {
-        throw "Sivu on jo olemassa tällä polulla!"
+        throw new Error("Sivu on jo olemassa tällä polulla!")
     }
 
     const titleUsed = pages
@@ -35,7 +35,7 @@ export const createNewPage = (pagePath, value) => (dispatch, getState) => {
         .length !== 0
 
     if (titleUsed) {
-        throw "Sivu on jo olemassa tällä nimellä"
+        throw new Error("Sivu on jo olemassa tällä nimellä")
     }
 
     database.ref('pages').push().set({
