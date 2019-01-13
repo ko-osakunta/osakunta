@@ -64,11 +64,23 @@ export const fetchTopImage = (image) => dispatch => {
         })
 }
 
-export const uploadImageToData
+export const uploadBanner = (image) => dispatch => {
+    const uploadTask = storage.ref(`banners/${image.name}`).put(image)
+    uploadTask.on('state_changed', snapshot => {
+        console.log("Kuvaa ladataan..")
+    }, error => {
+        console.log(error)
+    }, () => {
+        storage.ref('banners').child(image.name).getDownloadURL().then(url => {
+            uploadBannerToDatabase(image.name, url)
+        })
+    })
+}
 
-export const uploadBannerToDatabase = (pageUrl) => dispatch => {
+export const uploadBannerToDatabase = (imageName, imageUrl) => {
     database.ref('banners').push().set({
-        url: pageUrl
+        name: imageName,
+        url: imageUrl
     })
 }
 
@@ -79,7 +91,7 @@ export const fetchBanners = () => dispatch => {
         .on('value', snapshot => {
             const banners = Object.entries(snapshot.val())
                 .map(([, banner]) => banner)
-                
+
             dispatch({
                 type: types.FETCH_BANNERS,
                 payload: banners
