@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import styles from "./Banner.module.css"
 
-class Banner extends React.Component {
+    /*class Banner extends React.Component {
 
     constructor() {
         super()
@@ -34,6 +34,37 @@ class Banner extends React.Component {
             </div>
         )
     }
+}*/
+
+const Banner = ({ banners }) => {
+    const [visible, setVisible] = useState(randomElem(banners))
+
+    if (!visible && banners.length !== 0) {
+        setVisible(randomElem(banners))
+    }
+
+    useEffect(() => {
+        const id = setTimeout(() => {
+            const invisible = banners.filter(b => b !== visible)
+            setVisible(randomElem(invisible))
+        }, 15000)
+
+        return () => {
+            clearTimeout(id)
+        }
+    })
+
+    return (
+        <div>
+            {banners.map(b =>
+                <img
+                    src={b.url}
+                    key={b.url}
+                    className={b === visible ? styles.visible : styles.invisible}
+                />
+            )}
+        </div>
+    )
 }
 
 const randomElem = (array) => array[Math.floor(Math.random() * array.length)]
