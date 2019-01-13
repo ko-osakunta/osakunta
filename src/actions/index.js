@@ -4,17 +4,10 @@ import * as types from "./types"
 
 export const fetchUser = () => dispatch => {
     firebaseAuth.onAuthStateChanged(user => {
-        if (user) {
-            dispatch({
-                type: types.FETCH_USER,
-                payload: user
-            })
-        } else {
-            dispatch({
-                type: types.FETCH_USER,
-                payload: null
-            })
-        }
+        dispatch({
+            type: types.FETCH_USER,
+            payload: user ? user : null
+        })
     })
 }
 
