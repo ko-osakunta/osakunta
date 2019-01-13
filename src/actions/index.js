@@ -60,11 +60,15 @@ export const fetchTopImage = (image) => dispatch => {
         })
 }
 
+export const uploadImageToData
+
 export const uploadBannerToDatabase = (pageUrl) => dispatch => {
     database.ref('banners').push().set({
         url: pageUrl
     })
 }
+
+
 
 export const fetchBanners = () => dispatch => {
     database.ref('banners')
@@ -165,19 +169,6 @@ export const fetchKeyByPath = (path) => dispatch => {
 export const removePageByKey = (pageKey) => () => {
     database.ref('/pages').child(`${pageKey}`).remove()
 }
-//currently the same as pages.. might have different functionality in the future
-/*export const fetchTopNav = () => dispatch => {
-    database.ref('pages')
-        .once('value')
-        .then(snapshot => {
-            const pages = Object.entries(snapshot.val())
-                .map(([, page]) => page)
-            dispatch({
-                type: types.FETCH_TOPNAV,
-                payload: pages
-            })
-        })
-}*/
 
 export const fetchImages = () => dispatch => {
     dispatch({
