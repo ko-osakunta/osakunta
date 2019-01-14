@@ -15,20 +15,20 @@ export const fetchUser = () => dispatch => {
 export const createNewPage = (pagePath, value) => (dispatch, getState) => {
     const { pages } = getState()
 
-    const pathUsed = pages
-        .filter(({ path }) => path === pagePath)
-        .length !== 0
-
-    if (pathUsed) {
-        throw new Error("Sivu on jo olemassa tällä polulla!")
-    }
-
     const titleUsed = pages
         .filter(({ title }) => title === value.toLowerCase())
         .length !== 0
 
     if (titleUsed) {
         throw new Error("Sivu on jo olemassa tällä nimellä")
+    }
+
+    const pathUsed = pages
+        .filter(({ path }) => path === pagePath)
+        .length !== 0
+
+    if (pathUsed) {
+        throw new Error("Sivu on jo olemassa tällä polulla!")
     }
 
     database.ref('pages').push().set({
