@@ -85,17 +85,51 @@ export const uploadBannerToDatabase = (imageName, imageUrl) => {
     })
 }
 
-
-
 export const fetchBanners = () => dispatch => {
     database.ref('banners')
         .on('value', snapshot => {
-            const banners = Object.entries(snapshot.val())
-                .map(([, banner]) => banner)
+            const banners = snapshot.val()
+                ? Object.entries(snapshot.val()).map(([, banner]) => banner)
+                : []
 
             dispatch({
                 type: types.FETCH_BANNERS,
                 payload: banners
+            })
+        })
+}
+
+export const uploadImage = (image) => () => {
+    const uploadTask = storage.ref(`images/${image.name}`).put(image)
+    uploadTask.on('state_changed',
+        snapshot => {
+            console.log("Kuvaa ladataan..")
+        }, error => {
+            console.log(error)
+        }, () => {
+            storage.ref('images')
+                .child(image.name)
+                .getDownloadURL()
+                .then(url => {
+                    uploadImageToDatabase(image.name, url)
+                })
+        })
+}
+
+const uploadImageToDatabase = (name, url) => {
+    database.ref('images').push().set({ name, url })
+}
+
+export const fetchImages = () => dispatch => {
+    database.ref('images')
+        .on('value', snapshot => {
+            const images = snapshot.val()
+                ? Object.entries(snapshot.val()).map(([, image]) => image)
+                : []
+
+            dispatch({
+                type: types.FETCH_IMAGES,
+                payload: images
             })
         })
 }
@@ -185,10 +219,4 @@ export const fetchKeyByPath = (path) => dispatch => {
 
 export const removePageByKey = (pageKey) => () => {
     database.ref('/pages').child(`${pageKey}`).remove()
-}
-
-export const fetchImages = () => dispatch => {
-    dispatch({
-        type: types.FETCH_IMAGES
-    })
 }

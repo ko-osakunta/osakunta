@@ -1,11 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import ImageUploader from "./ImageUploader"
 
-const ImageGallery = ({ urls }) =>
-    <div>
-        {urls.map(url => <img src={url} alt="asd" />)}
+const ImageGallery = ({ images }) => {
+    return <div>
+        {images.map(({ url }) => <img src={url} key={url} />)}
+        <ImageUploader />
     </div>
+}
 
-const mapStateToProps = ({ images }) => ({ urls: images })
+const mapStateToProps = ({ images }) => ({ images })
 
 export default connect(mapStateToProps)(ImageGallery)
