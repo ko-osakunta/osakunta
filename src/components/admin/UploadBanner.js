@@ -1,32 +1,16 @@
-import React, { Component } from 'react';
-import { uploadBanner } from '../../actions'
-import { connect } from "react-redux"
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
+import { uploadBanner } from "../../actions"
 
-class UploadBanner extends Component {
-    constructor(props) {
-        super(props);   
-        this.state = {
-            image: null
-        }
-        this.handleChange = this.handleChange.bind(this);
-    }
+const UploadBanner = ({ uploadBanner }) => {
+    const [image, setImage] = useState(null)
 
-    handleChange = (event) => {
-        if (event.target.files[0]) {
-            const image = event.target.files[0];
-            this.setState({ image });
-        }
-    }
-
-    render() {
-        return (
-            <div>  
-                <input type="file" onChange={this.handleChange} />
-                {this.state.image !== null && <button onClick={() => this.props.uploadBanner(this.state.image)}>Lataa kuva</button>}
-                
-            </div>
-        )
-    }
+    return (
+        <div>
+            <input type="file" onChange={e => setImage(e.target.files[0] ? e.target.files[0] : null)} />
+            {image !== null && <button onClick={() => uploadBanner(image)}>Lataa kuva</button>}
+        </div>
+    )
 }
 
 export default connect(null, { uploadBanner })(UploadBanner)
