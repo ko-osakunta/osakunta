@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import Banner from "./components/structure/Banner"
 import SideNav from "./components/structure/SideNav"
 import Footer from "./components/structure/Footer"
@@ -12,40 +12,44 @@ import PageNotFound from "./components/pagetypes/PageNotFound"
 import ImageGallery from "./components/pagetypes/ImageGallery.js"
 import requireAuth from './components/helpers/requireAuth'
 
-class App extends React.Component {
+const App = (props) => {
+    const {
+        pages,
+        fetchBanners,
+        fetchPages,
+        fetchContact,
+        fetchUser, 
+        fetchImages
+    } = props
 
-    componentDidMount() {
-        this.props.fetchBanners()
-        this.props.fetchPages()
-        this.props.fetchContact()
-        this.props.fetchUser()
-        this.props.fetchImages()
-    }
+    const routes = renderRoutes(pages)
 
-    render() {
-        const { pages } = this.props
-        const routes = renderRoutes(pages)
+    useEffect(() => {
+        fetchBanners()
+        fetchPages()
+        fetchContact()
+        fetchUser()
+        fetchImages()
+    }, [])
 
-        return <div>
-            <Banner />
-            <div>
-                <SideNav />
-                <Switch>
-                    {routes}
-                    {pages.length !== 0 &&
-                            <Route path="*" component={PageNotFound} />
-                    }
-                </Switch>
-            </div>
-            <Footer />
+    return <div>
+        <Banner />
+        <div>
+            <SideNav />
+            <Switch>
+                {routes}
+                {pages.length !== 0 &&
+                        <Route path="*" component={PageNotFound} />
+                }
+            </Switch>
         </div>
-    }
+        <Footer />
+    </div>
 }
 
 const renderRoutes = (pages) =>
     pages.map(({ component, path }) =>
-        <Route exact path={path} component={component} key={path} />
-    )
+        <Route exact path={path} component={component} key={path} />)
 
 const mapStateToProps = ({ pages }) => ({ pages }) // Not an identity function!
 
