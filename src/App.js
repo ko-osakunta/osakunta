@@ -48,8 +48,12 @@ const App = (props) => {
 }
 
 const renderRoutes = (pages) =>
-    pages.map(({ component, path }) =>
-        <Route exact path={path} component={component} key={path} />)
+    pages.map(({ Component, path, ...rest }) =>
+        <Route
+            exact path={path}
+            render={(props) => <Component {...props} page={{ path, ...rest }} />}
+            key={path}
+        />)
 
 const mapStateToProps = ({ pages }) => ({ pages }) // Not an identity function!
 

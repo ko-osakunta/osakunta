@@ -138,7 +138,7 @@ export const fetchPages = () => dispatch => {
     database.ref('pages')
         .on('value', snapshot => {
             const pages = Object.entries(snapshot.val())
-                .map(([, page]) => page)
+                .map(([key, page]) => ({ key, ...page}))
             dispatch({
                 type: types.FETCH_PAGES,
                 payload: pages
