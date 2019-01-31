@@ -12,6 +12,7 @@
 /build
 
 /.firebase
+
 #firebase
 /firebase.json
 /database.rules.json

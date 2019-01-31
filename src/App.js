@@ -34,7 +34,7 @@ const App = (props) => {
 
     return <div>
         <Banner />
-        <div>
+        <div className={"pageSection"}>
             <SideNav />
             <Switch>
                 {routes}
@@ -49,7 +49,7 @@ const App = (props) => {
 
 const renderRoutes = (pages) =>
     pages.map(({ Component, path, ...rest }) =>
-        <Route
+        <Route 
             exact path={path}
             render={(props) => <Component {...props} page={{ path, ...rest }} />}
             key={path}
