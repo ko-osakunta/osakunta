@@ -8,7 +8,9 @@ import styles from "./PageText.module.css"
 
 const PageText = ({ text }) =>
     <div className={styles.pageText}>
+        <hr className={styles.hr} />
         <div dangerouslySetInnerHTML={{ __html: textToHtml(text) }} />
+        <hr className={styles.hr} />
     </div>
     
 const textToHtml = (text) =>

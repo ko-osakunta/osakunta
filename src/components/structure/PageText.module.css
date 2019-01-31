@@ -1,11 +1,15 @@
 .pageText {
     background-color: #fff;
-    /* border-radius: 10px; */
-    /* box-shadow: 0px 0px 10px -1px #000; */
     margin-top: 20px;
     padding-top: 20px;
-    padding-right: 150px;
-    padding-left: 150px;
-    padding-bottom: 50px;
-    margin-bottom: 30px;
+    /* Padding will be 8% of page's width from both sides */
+    padding-right: 8vw;
+    padding-left: 8vw;
+    padding-bottom: 20px;
+}
+
+.hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }

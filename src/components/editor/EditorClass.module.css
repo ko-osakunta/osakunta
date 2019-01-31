@@ -8,6 +8,8 @@
     margin-bottom: 2em;
     box-shadow: inset 0px 1px 8px -3px #ABABAB;
     background: #fefefe;
+    margin-right: 8vw;
+    margin-left: 8vw;
 }
   
 .editor :global(.public-DraftEditor-content) {
