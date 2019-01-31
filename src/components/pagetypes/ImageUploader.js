@@ -13,4 +13,6 @@ const ImageUploader = ({ uploadImage }) => {
     )
 }
 
+const mapStateToProps = ({ auth }) => ({ auth }) // Not an identity function!
+
 export default connect(null, { uploadImage })(ImageUploader)

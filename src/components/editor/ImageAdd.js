@@ -47,8 +47,8 @@ export default class ImageAdd extends Component {
     const { editorState, onChange } = this.props;
     onChange(this.props.modifier(editorState, this.state.url));
     this.setState({
-        open: false,
-      });
+      open: false,
+    });
   };
 
   changeUrl = (evt) => {
@@ -57,11 +57,11 @@ export default class ImageAdd extends Component {
 
   render() {
     const popoverClassName = this.state.open ?
-          styles.addImagePopover :
-          styles.addImageClosedPopover
+      styles.addImagePopover :
+      styles.addImageClosedPopover
     const buttonClassName = this.state.open ?
-          styles.addImagePressedButton :
-          styles.addImageButton
+      styles.addImagePressedButton :
+      styles.addImageButton
 
     return (
       <div className={styles.addImage}>
