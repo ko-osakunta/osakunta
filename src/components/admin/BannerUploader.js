@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { uploadBanner } from "../../actions"
 
-const UploadBanner = ({ uploadBanner }) => {
+const BannerUploader = ({ uploadBanner }) => {
     const [image, setImage] = useState(null)
 
     return (
@@ -13,4 +13,4 @@ const UploadBanner = ({ uploadBanner }) => {
     )
 }
 
-export default connect(null, { uploadBanner })(UploadBanner)
+export default connect(null, { uploadBanner })(BannerUploader)

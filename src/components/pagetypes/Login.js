@@ -54,6 +54,11 @@ class Login extends Component {
             })
     }
 
+    keyPress = (event) => {
+        if (event.keyCode === 13) {
+            this.onSubmit()
+        }
+    }
 
     returnLoginButton() {
         const { auth, email, password, error } = this.props
@@ -75,7 +80,8 @@ class Login extends Component {
                         type="password"
                         placeholder="Salasana"
                     />
-                    <button className="btn-primary" type="submit" onClick={this.onSubmit}>
+                    <button className="btn-primary" type="submit" onClick={this.onSubmit}
+                        onKeyPress={this.keyPress}>
                         Kirjaudu sisään
                         </button>
                     {error && <p>{error.message}</p>}

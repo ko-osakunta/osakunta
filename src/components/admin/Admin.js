@@ -1,8 +1,8 @@
 import React from 'react'
 import AddNewPage from "./AddNewPage"
 import styles from "../structure/PageText.module.css"
-import UploadBanner from './UploadBanner';
-
+import BannerUploader from './BannerUploader'
+import ImageUploader from './ImageUploader'
 //Admin tools
 const Admin = () =>
     <div id="page">
@@ -16,7 +16,11 @@ const Admin = () =>
         </div>
         <div className={styles.pageText}>
             Lataa banneri sivulle:
-            <UploadBanner />
+            <BannerUploader />
+        </div>
+        <div className={styles.pageText}>
+            Lataa gallerian kuva sivulle:
+            <ImageUploader />
         </div>
     </div>
 
