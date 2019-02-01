@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import styles from "./SideNav.module.css"
 
 class SideNav extends React.Component {
+    
     openNav() {
         this.sidenav.style.width = "250px"
     }

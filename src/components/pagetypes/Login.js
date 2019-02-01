@@ -32,8 +32,8 @@ class Login extends Component {
     }
 
     onSubmit = event => {
+        event.preventDefault();
         const { auth, email, password } = this.state;
-
         firebaseAuth
             .signInWithEmailAndPassword(email, password)
             .then(() => {
@@ -41,7 +41,7 @@ class Login extends Component {
                 this.context.router.history.push("/");
             })
             .catch(error => {
-                console.log(error)
+                alert(error)
             });
         event.preventDefault();
     };
@@ -54,15 +54,14 @@ class Login extends Component {
             })
     }
 
-    keyPress = (event) => {
-        if (event.keyCode === 13) {
-            this.onSubmit()
+    keyPress = event => {
+        if (event.key === 'Enter') {
+            this.onSubmit(event)
         }
     }
 
     returnLoginButton() {
         const { auth, email, password, error } = this.props
-        console.log(auth)
         if (!auth) {
             return (
                 <div>
@@ -72,6 +71,7 @@ class Login extends Component {
                         onChange={this.onChange}
                         type="text"
                         placeholder="Sähköposti"
+                        onKeyPress={this.keyPress}
                     />
                     <input
                         name="password"
@@ -79,9 +79,9 @@ class Login extends Component {
                         onChange={this.onChange}
                         type="password"
                         placeholder="Salasana"
+                        onKeyPress={this.keyPress}
                     />
-                    <button className="btn-primary" type="submit" onClick={this.onSubmit}
-                        onKeyPress={this.keyPress}>
+                    <button className="btn-primary" type="submit" onClick={this.onSubmit}>
                         Kirjaudu sisään
                         </button>
                     {error && <p>{error.message}</p>}
@@ -94,10 +94,7 @@ class Login extends Component {
             </button>
             )
         }
-
     }
-
-
 
     onChange = event => {
         this.setState({ [event.target.name]: event.target.value });
