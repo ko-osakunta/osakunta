@@ -4,13 +4,17 @@ import { Link } from "react-router-dom"
 import styles from "./SideNav.module.css"
 
 class SideNav extends React.Component {
-    
+
     openNav() {
         this.sidenav.style.width = "250px"
+        this.props.openNavigation()
+        this.sidenav.style.outline = "9999px solid rgba(0,0,0,0.65)"
     }
 
     closeNav() {
         this.sidenav.style.width = "0px"
+        this.props.closeNavigation()
+        this.sidenav.style.outline = "9999px solid rgba(0,0,0,0)"
     }
 
     render() {

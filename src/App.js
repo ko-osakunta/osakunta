@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import Banner from "./components/structure/Banner"
 import SideNav from "./components/structure/SideNav"
 import Footer from "./components/structure/Footer"
@@ -13,16 +13,19 @@ import ImageGallery from "./components/pagetypes/ImageGallery.js"
 import requireAuth from './components/helpers/requireAuth'
 
 const App = (props) => {
+
     const {
         pages,
         fetchBanners,
         fetchPages,
         fetchContact,
-        fetchUser, 
+        fetchUser,
         fetchImages
     } = props
 
     const routes = renderRoutes(pages)
+
+    const [width, changeWidth] = useState('0px')
 
     useEffect(() => {
         fetchBanners()
@@ -33,23 +36,24 @@ const App = (props) => {
     }, [])
 
     return <div>
-        <Banner />
-        <div className={"pageSection"}>
-            <SideNav />
+        <div style={{ marginLeft: width, marginRight: '-' + width, transition: '0.6s ease' }} className="main">
+            <Banner />
+            <SideNav openNavigation={() => changeWidth('250px')}
+                closeNavigation={() => changeWidth('0px')} />
             <Switch>
                 {routes}
                 {pages.length !== 0 &&
-                        <Route path="*" component={PageNotFound} />
+                    <Route path="*" component={PageNotFound} />
                 }
             </Switch>
+            <Footer />
         </div>
-        <Footer />
-    </div>
+    </div >
 }
 
 const renderRoutes = (pages) =>
     pages.map(({ Component, path, ...rest }) =>
-        <Route 
+        <Route
             exact path={path}
             render={(props) => <Component {...props} page={{ path, ...rest }} />}
             key={path}
