@@ -13,7 +13,6 @@ import ImageGallery from "./components/pagetypes/ImageGallery.js"
 import requireAuth from './components/helpers/requireAuth'
 
 const App = (props) => {
-
     const {
         pages,
         fetchBanners,
@@ -36,10 +35,12 @@ const App = (props) => {
     }, [])
 
     return <div>
-        <div style={{ marginLeft: width, marginRight: '-' + width, transition: '0.6s ease' }} className="main">
+        <div className="main" style={{ marginLeft: width, marginRight: '-' + width, transition: '0.6s ease'}}>
             <Banner />
-            <SideNav openNavigation={() => changeWidth('250px')}
-                closeNavigation={() => changeWidth('0px')} />
+            <SideNav
+                openNavigation={() => changeWidth('300px')}
+                closeNavigation={() => changeWidth('0px')}
+            />
             <Switch>
                 {routes}
                 {pages.length !== 0 &&

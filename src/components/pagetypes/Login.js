@@ -90,7 +90,7 @@ class Login extends Component {
         } else {
             return (
                 <button className="btn-primary" type="button" onClick={this.logOut}>
-                    Kirjaudu ulos
+                    Kirjaudu ulos tililtä {auth.email}
             </button>
             )
         }

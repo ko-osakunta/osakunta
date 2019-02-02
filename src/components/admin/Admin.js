@@ -7,20 +7,27 @@ import ImageUploader from './ImageUploader'
 const Admin = () =>
     <div id="page">
         <div className={styles.pageText}>
-            <p>Adminin muokkaussivu. Toistaiseksi voit lisätä uusia sivuja sivulle.</p>
+            <hr className={styles.hr} />
+            <p>Adminin hallintatyökalut.</p>
             <a href="https://console.firebase.google.com/project/ko-osakunta/overview">Linkki konsoliin</a>
         </div>
         <div className={styles.pageText}>
+            <hr className={styles.hr} />
             Luo uusi sivu:
             <AddNewPage />
         </div>
         <div className={styles.pageText}>
+            <hr className={styles.hr} />
+
             Lataa banneri sivulle:
             <BannerUploader />
         </div>
         <div className={styles.pageText}>
+            <hr className={styles.hr} />
+
             Lataa gallerian kuva sivulle:
             <ImageUploader />
+            <hr className={styles.hr} />
         </div>
     </div>
 
