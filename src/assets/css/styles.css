@@ -13,13 +13,14 @@ body {
   height: 100%;
   background-position: top;
   background-size: cover;
-  background-image: url('../img/ko_logo_vaalea_harmaa.svg');
   position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   transition: 0.6s ease;
+  background-image: url('../img/ko_logo_harmaa_smoothed.png');
+
 }
 
 body::after {
@@ -30,7 +31,7 @@ body::after {
 
 .editorClass {
   color: #333;
-  width: 75%;
+  width: 75%; 
   outline-style: dashed; 
   outline-color: #333; 
 }
