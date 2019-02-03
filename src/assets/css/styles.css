@@ -13,6 +13,7 @@ body {
   height: 100%;
   background-position: top;
   background-size: cover;
+  background-image: url('../img/ko_logo_vaalea_harmaa.svg');
   position: relative;
   width: 100%;
   display: flex;
@@ -28,7 +29,6 @@ body::after {
 }
 
 .editorClass {
-  background-color:	rgb(211,211,211);
   color: #333;
   width: 75%;
   outline-style: dashed; 

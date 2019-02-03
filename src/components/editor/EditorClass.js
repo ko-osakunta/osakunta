@@ -88,8 +88,6 @@ class EditorClass extends React.Component {
         const { pageKey } = this.props
         updates['pages/' + pageKey + '/text'] = JSON.stringify(convertToRaw(contentState))
         databaseRef.update(updates);
-
-        window.location.reload();
     }
 
     onChange = (editorState) =>
