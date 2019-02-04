@@ -19,8 +19,6 @@ body {
   flex-direction: column;
   min-height: 100vh;
   transition: 0.6s ease;
-  background-image: url('../img/ko_logo_harmaa_smoothed.png');
-
 }
 
 body::after {
