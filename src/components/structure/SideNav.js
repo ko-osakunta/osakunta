@@ -26,6 +26,7 @@ class SideNav extends React.Component {
     }
 
     handleClick = event => {
+        event.preventDefault();
         if (!this.sidenav.contains(event.target)) {
             this.closeNav();
         }
