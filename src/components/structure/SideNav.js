@@ -20,14 +20,9 @@ class SideNav extends React.Component {
     }
 
     openNav() {
-        if (this.sidenav.style.width === "0px") {
-            this.sidenav.style.width = "300px";
-            this.props.openNavigation()
-            this.sidenav.style.outline = "9999px solid rgba(0,0,0,0.65)"
-        } else {
-            console.log("closing nav")
-            this.closeNav()
-        }
+        this.sidenav.style.width = "300px";
+        this.props.openNavigation()
+        this.sidenav.style.outline = "9999px solid rgba(0,0,0,0.65)"
     }
 
     closeNav() {
@@ -36,20 +31,25 @@ class SideNav extends React.Component {
         this.sidenav.style.outline = "9999px solid rgba(0,0,0,0)"
     }
 
+    // Handle click will detect if the sidenav is open and if the user clicked outside the sidenav.
+    // Side nav will be closed and other actions will be prevented.
+    // If either of these cases aren't true it will check if open-button was clicked. Sidenav will open if this was the case.
     handleClick = event => {
-        if (event.target.id !== "sidenavLink" && this.sidenav.style.width === "300px") {
+        if (this.sidenav.style.width === "300px" && !this.sidenav.contains(event.target)) {
             event.preventDefault();
-        }
-        if (!this.sidenav.contains(event.target)) {
             this.closeNav();
+        } else {
+            if (event.target.id === "openNavig") {
+                this.openNav()
+            }
         }
     }
 
     render() {
         const { pages } = this.props
         return <div>
-            <button className={`btn ${styles.btn_sidenav} btn-lg page-scroll`} onClick={() => this.openNav()}>☰ open</button>
-            <div id="sideNavigation" className={styles.sidenav} ref={sidenav => {this.sidenav=sidenav}}>
+            <button id="openNavig" className={`btn ${styles.btn_sidenav} btn-lg page-scroll`}>☰ open</button>
+            <div id="sideNavigation" className={styles.sidenav} ref={sidenav => { this.sidenav = sidenav }}>
                 <button
                     className={styles.closebtn}
                     onClick={() => this.closeNav()}
