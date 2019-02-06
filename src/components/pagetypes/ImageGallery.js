@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 const ImageGallery = ({ images }) => {
     return <div>
-        {images.map(({ url }) => <img src={url} key={url} />)}
+        {images.slice(0, 20).map(url => <img src={url} key={url} />)}
     </div>
 }
 

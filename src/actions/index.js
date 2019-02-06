@@ -1,4 +1,5 @@
 import { database, storage, firebaseAuth } from '../config/firebase'
+import axios from 'axios'
 import * as types from "./types"
 
 
@@ -121,16 +122,30 @@ const uploadImageToDatabase = (name, url) => {
 }
 
 export const fetchImages = () => dispatch => {
-    database.ref('images')
-        .on('value', snapshot => {
-            const images = snapshot.val()
-                ? Object.entries(snapshot.val()).map(([, image]) => image)
-                : []
+    axios.get('https://api.flickr.com/services/rest/', {
+        params: {
+            method: 'flickr.groups.pools.getPhotos',
+            group_id: '1597656@N20',
+            api_key: 'c5936e9f91f3c63e55e30d1d2ee372fb',
+            per_page: 500,
+            page: 1,
+            format: 'json',
+            nojsoncallback: 1
+        }
+    })
+        .then(({ data }) => {
+            const urls = data.photos.photo
+                .map(({ farm, server, id, secret }) =>
+                    `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_b.jpg`
+                )
 
             dispatch({
                 type: types.FETCH_IMAGES,
-                payload: images
+                payload: urls
             })
+        })
+        .catch((err) => {
+            console.log(err)
         })
 }
 
