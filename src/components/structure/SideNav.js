@@ -5,8 +5,14 @@ import styles from "./SideNav.module.css"
 
 class SideNav extends React.Component {
 
+    maxWidth = "300px";
+
     componentWillMount() {
         document.addEventListener('click', this.handleClick, false)
+    }
+
+    componentDidMount() {
+        this.sidenav.style.width = "0px";
     }
 
     componentWillUnmount() {
@@ -14,9 +20,14 @@ class SideNav extends React.Component {
     }
 
     openNav() {
-        this.sidenav.style.width = "300px"
-        this.props.openNavigation()
-        this.sidenav.style.outline = "9999px solid rgba(0,0,0,0.65)"
+        if (this.sidenav.style.width === "0px") {
+            this.sidenav.style.width = "300px";
+            this.props.openNavigation()
+            this.sidenav.style.outline = "9999px solid rgba(0,0,0,0.65)"
+        } else {
+            console.log("closing nav")
+            this.closeNav()
+        }
     }
 
     closeNav() {
@@ -26,7 +37,9 @@ class SideNav extends React.Component {
     }
 
     handleClick = event => {
-        event.preventDefault();
+        if (event.target.id !== "sidenavLink" && this.sidenav.style.width === "300px") {
+            event.preventDefault();
+        }
         if (!this.sidenav.contains(event.target)) {
             this.closeNav();
         }
@@ -34,7 +47,6 @@ class SideNav extends React.Component {
 
     render() {
         const { pages } = this.props
-
         return <div>
             <button className={`btn ${styles.btn_sidenav} btn-lg page-scroll`} onClick={() => this.openNav()}>☰ open</button>
             <div id="sideNavigation" className={styles.sidenav} ref={sidenav => {this.sidenav=sidenav}}>
