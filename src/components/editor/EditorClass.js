@@ -7,7 +7,7 @@ import 'draft-js-alignment-plugin/lib/plugin.css';
 import 'draft-js-focus-plugin/lib/plugin.css';
 import 'draft-js-inline-toolbar-plugin/lib/plugin.css';
 
-import Editor, { composeDecorators, createEditorStateWithText } from 'draft-js-plugins-editor';
+import Editor, { composeDecorators } from 'draft-js-plugins-editor';
 
 import createInlineToolbarPlugin, { Separator } from 'draft-js-inline-toolbar-plugin';
 import createLinkPlugin from 'draft-js-anchor-plugin';
@@ -51,7 +51,6 @@ const decorator = composeDecorators(
 );
 const imagePlugin = createImagePlugin({ decorator });
 
-
 const { AlignmentTool } = alignmentPlugin;
 
 const plugins = [inlineToolbarPlugin,
@@ -72,7 +71,6 @@ class EditorClass extends React.Component {
             editorState: EditorState.createWithContent(contentState)
         }
     }
-
 
     componentWillMount() {
         const path = window.location.pathname

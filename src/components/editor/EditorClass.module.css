@@ -3,15 +3,18 @@
     box-sizing: border-box;
     border: 1px solid #ddd;
     cursor: text;
-    padding: 16px;
-    border-radius: 2px;
     margin-bottom: 2em;
     box-shadow: inset 0px 1px 8px -3px #ABABAB;
     background: #fefefe;
-    margin-right: 8vw;
-    margin-left: 8vw;
+    margin-top: 20px;
+    padding-top: 20px;
+    /* Padding will be 8% of page's width from both sides */
+    /* padding-right: 8vw;
+    padding-left: 8vw; */
+    max-width: 1000px;
+    padding-bottom: 20px;
 }
-  
+
 .editor :global(.public-DraftEditor-content) {
     min-height: 140px;
 }
