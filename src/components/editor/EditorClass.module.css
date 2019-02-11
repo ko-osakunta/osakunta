@@ -6,13 +6,13 @@
     margin-bottom: 2em;
     box-shadow: inset 0px 1px 8px -3px #ABABAB;
     background: #fefefe;
-    margin-top: 20px;
-    padding-top: 20px;
-    /* Padding will be 8% of page's width from both sides */
-    /* padding-right: 8vw;
-    padding-left: 8vw; */
-    max-width: 1000px;
-    padding-bottom: 20px;
+    width: 1000px;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .editor :global(.public-DraftEditor-content) {

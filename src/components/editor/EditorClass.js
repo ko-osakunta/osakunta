@@ -107,46 +107,50 @@ class EditorClass extends React.Component {
         const html = stateToHTML(this.state.editorState.getCurrentContent());
         if (this.props.auth) {
             return (
-                <div>
+                <div className={styles.container}>
                     <div className={styles.editor} onClick={this.focus}>
-                        <Editor
+                        <div className={styles.textBox}>
+                            <Editor
+                                editorState={this.state.editorState}
+                                onChange={this.onChange}
+                                plugins={plugins}
+                                ref={(element) => { this.editor = element; }}
+                            />
+
+                            <AlignmentTool />
+                            <InlineToolbar>
+                                {
+                                    // may be use React.Fragment instead of div to improve perfomance after React 16
+                                    (externalProps) => (
+                                        <div>
+                                            <BoldButton {...externalProps} />
+                                            <ItalicButton {...externalProps} />
+                                            <UnderlineButton {...externalProps} />
+                                            <linkPlugin.LinkButton {...externalProps} />
+                                            <Separator {...externalProps} />
+                                            <HeadlinesButton {...externalProps} />
+                                            <UnorderedListButton {...externalProps} />
+                                            <OrderedListButton {...externalProps} />
+                                        </div>
+                                    )
+                                }
+                            </InlineToolbar>
+                        </div>
+
+
+                        <ImageAdd
                             editorState={this.state.editorState}
                             onChange={this.onChange}
-                            plugins={plugins}
-                            ref={(element) => { this.editor = element; }}
+                            modifier={imagePlugin.addImage}
                         />
-                        <AlignmentTool />
-                        <InlineToolbar>
-                            {
-                                // may be use React.Fragment instead of div to improve perfomance after React 16
-                                (externalProps) => (
-                                    <div>
-                                        <BoldButton {...externalProps} />
-                                        <ItalicButton {...externalProps} />
-                                        <UnderlineButton {...externalProps} />
-                                        <linkPlugin.LinkButton {...externalProps} />
-                                        <Separator {...externalProps} />
-                                        <HeadlinesButton {...externalProps} />
-                                        <UnorderedListButton {...externalProps} />
-                                        <OrderedListButton {...externalProps} />
-                                    </div>
-                                )
-                            }
-                        </InlineToolbar>
-                    </div>
-
-                    <ImageAdd
-                        editorState={this.state.editorState}
-                        onChange={this.onChange}
-                        modifier={imagePlugin.addImage}
-                    />
-                    <button className="btn-primary" onClick={this.postNewPage}>
-                        Vaihda teksti!
+                        <button className="btn-primary" onClick={this.postNewPage}>
+                            Vaihda teksti!
                 </button>
-                    <div>
-                        {html}
+                        <div>
+                            {html}
+                        </div>
                     </div>
-                </div>
+                </div >
             )
         }
         return null
