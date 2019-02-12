@@ -54,6 +54,7 @@ class SideNav extends React.Component {
                     className={styles.closebtn}
                     onClick={() => this.closeNav()}
                 >
+                
                     &times;
                 </button>
                 {pages.map(page =>

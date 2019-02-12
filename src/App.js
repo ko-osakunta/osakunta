@@ -35,18 +35,20 @@ const App = (props) => {
     }, [])
 
     return <div>
-        <div className="main" style={{ marginLeft: width, marginRight: '-' + width, transition: '0.6s ease'}}>
-            <Banner />
-            <SideNav
-                openNavigation={() => changeWidth('300px')}
-                closeNavigation={() => changeWidth('0px')}
-            />
-            <Switch>
-                {routes}
-                {pages.length !== 0 &&
-                    <Route path="*" component={PageNotFound} />
-                }
-            </Switch>
+        <div className="main" style={{ marginLeft: width, marginRight: '-' + width, transition: '0.6s ease' }}>
+            <div className="contentWrapper">
+                <Banner />
+                <SideNav
+                    openNavigation={() => changeWidth('300px')}
+                    closeNavigation={() => changeWidth('0px')}
+                />
+                <Switch>
+                    {routes}
+                    {pages.length !== 0 &&
+                        <Route path="*" component={PageNotFound} />
+                    }
+                </Switch>
+            </div>
             <Footer />
         </div>
     </div >
