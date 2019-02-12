@@ -11,6 +11,7 @@
 
 .container {
   width: 100%;
+  padding: 50px;
   display: flex;
   justify-content: center;
 }

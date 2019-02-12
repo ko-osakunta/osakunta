@@ -5,12 +5,7 @@ import Footer from "./components/structure/Footer"
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { fetchPages, fetchContact, fetchUser, fetchImages, fetchBanners } from "./actions"
 import { connect } from "react-redux"
-import Login from './components/pagetypes/Login'
-import Admin from "./components/admin/Admin"
-import AdminCreatedPage from "./components/pagetypes/AdminCreatedPage"
 import PageNotFound from "./components/pagetypes/PageNotFound"
-import ImageGallery from "./components/pagetypes/ImageGallery.js"
-import requireAuth from './components/helpers/requireAuth'
 
 const App = (props) => {
     const {
@@ -24,7 +19,7 @@ const App = (props) => {
 
     const routes = renderRoutes(pages)
 
-    const [width, changeWidth] = useState('0px')
+    const [open, changeOpen] = useState(false)
 
     useEffect(() => {
         fetchBanners()
@@ -34,13 +29,13 @@ const App = (props) => {
         fetchImages()
     }, [])
 
-    return <div>
-        <div className="main" style={{ marginLeft: width, marginRight: '-' + width, transition: '0.6s ease' }}>
+    return <div className="main">
+        <div className={open ? "openNav" : "closeNav"} >
             <div className="contentWrapper">
                 <Banner />
                 <SideNav
-                    openNavigation={() => changeWidth('300px')}
-                    closeNavigation={() => changeWidth('0px')}
+                    openNavigation={() => changeOpen(true)}
+                    closeNavigation={() => changeOpen(false)}
                 />
                 <Switch>
                     {routes}

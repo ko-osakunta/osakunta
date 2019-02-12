@@ -18,8 +18,10 @@ body {
   display: grid;
   min-height: 100%;
   transition: 0.6s ease;
-  cursor:'pointer';  
+  cursor:'pointer';
 }
+
+
 
 body::after {
   content: '';
@@ -29,93 +31,21 @@ body::after {
 
 /* This wrapper is used to keep the footer at the bottom of page */
 .contentWrapper {
-  min-height: 100vh;
+ min-height: 100vh;
  overflow: hidden;
  display: block;
  position: relative;
- padding-bottom: 200px;
 }
 
-.editorClass {
-  color: #333;
-  width: 75%; 
-  outline-style: dashed; 
-  outline-color: #333; 
+.openNav {
+  margin-left: 300px;
+  margin-right: -300px;
+  transition: 0.6s ease;
 }
 
-.editorButton {
-  background-color: rgb(255, 59, 196);
-  border: none;
-  color: black;
-  padding: 5px 5px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
+.closeNav {
+  margin-left: 0px;
+  margin-right: 0px;
+  transition: 0.6s ease;
 
-.editorSelect {
-  background-color: rgb(255, 9, 196);
-  width: 10%;
-  height: 5%;
-  border: none;
-  color: black;
-  padding: 5px 5px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-
-.options {
-  margin-bottom: 20px;
-}
-
-.btn:active, .btn.active {
-	background-image: none;
-	outline: 0;
-	-webkit-box-shadow: none;
-	box-shadow: none;
-}
-a:focus, .btn:focus, .btn:active:focus, .btn.active:focus, .btn.focus, .btn:active.focus, .btn.active.focus {
-	outline: none;
-	outline-offset: none;
-}
-.section-title {
-	margin-bottom: 50px;
-}
-
-.social-signin {
-  padding: 20px 40px 20px 40px;
-  font-size: 30px;
-  border-radius: 100px;
-  text-align: center;
-  text-decoration: none;
-  background: #dc453a;
-  color: white;
-  transition: opacity 0.5s;
-}
-
-.social-signin-container {
-  margin-top: 15%;
-}
-
-.social-signin:hover {
-  opacity: 0.9;
-}
-
-.social-signin-icon {
-  padding-right: 15px;
-}
-
-#sign-in {
-  margin-bottom: -20px;
-}
-
-#sign-in-header {
-  margin-bottom: 40px;
 }

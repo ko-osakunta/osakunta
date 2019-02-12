@@ -5,7 +5,12 @@ import styles from "./SideNav.module.css"
 
 class SideNav extends React.Component {
 
-    maxWidth = "300px";
+    constructor() {
+        super();
+        this.state = {
+            open: false
+        }
+    }
 
     componentWillMount() {
         document.addEventListener('click', this.handleClick, false)
@@ -54,7 +59,7 @@ class SideNav extends React.Component {
                     className={styles.closebtn}
                     onClick={() => this.closeNav()}
                 >
-                
+
                     &times;
                 </button>
                 {pages.map(page =>
