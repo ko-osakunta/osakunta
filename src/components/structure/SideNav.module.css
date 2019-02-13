@@ -7,7 +7,7 @@
     top: 0;
     left: 0;
     overflow-x: hidden;
-    transition: 0.6s ease;
+    transition: 0.3s linear;
     padding-top: 60px;
     z-index: 10; /* keep on top of other elements on the page */
     outline: 9999px solid rgba(0,0,0,0);
@@ -22,7 +22,7 @@
     top: 0;
     left: 0;
     overflow-x: hidden;
-    transition: 0.6s ease;
+    transition: 0.3s linear;
     padding-top: 60px;
     z-index: 10; /* keep on top of other elements on the page */
     width: 300px;
@@ -38,7 +38,7 @@
     top: 0;
     left: 0;
     overflow-x: hidden;
-    transition: 0.6s ease;
+    transition: 0.3s linear;
     padding-top: 60px;
     z-index: 10; /* keep on top of other elements on the page */
     width: 0px;
@@ -51,7 +51,7 @@
     font-size: 25px;
     color: Gray;
     display: block;
-    transition: 0.6s;
+    transition: 0.3s;
 }
 
 .sidenav a:hover {
