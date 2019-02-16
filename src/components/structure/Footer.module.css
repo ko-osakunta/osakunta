@@ -13,9 +13,9 @@
     text-align: center;
 }
 
-@media only screen and (max-device-width: 900px) {
+@media only screen and (max-device-width: 600px) {
     .footer {
-        grid-template-columns: repeat(auto-fit, minmax(100vw, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(100vh, 1fr));
     }
 }
     
