@@ -6,16 +6,15 @@
     margin-bottom: 2em;
     box-shadow: inset 0px 1px 8px -3px #ABABAB;
     background: #fefefe;
-    width: 1000px;
-}
+    max-width: 1000px;
 
+}
+  
 .container {
-  width: 100%;
-  padding: 50px;
-  display: flex;
-  justify-content: center;
-}
-
+    display: flex;
+    justify-content: center;
+  }
+  
 .editor :global(.public-DraftEditor-content) {
     min-height: 140px;
 }

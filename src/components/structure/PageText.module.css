@@ -22,20 +22,22 @@
 }
 
 .img-left {
-    display: inline-block;
-    margin-left: 0;
-    margin-right: auto;
-  }
-  
-  .img-right {
-    display: inline-block;
-    margin-left: auto;
-    margin-right: 0;
-  }
-  
-  .img-center {
-    display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
+  display: inline-block;
+  margin-left: 0;
+  margin-right: auto;
+  padding: 2vh;
+}
+
+.img-right {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: 0;
+  padding: 2vh;
+}
+
+.img-center {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2vh;
+}
