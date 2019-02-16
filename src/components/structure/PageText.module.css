@@ -1,12 +1,20 @@
+
 .pageText {
-    margin-top: 20px;
-    padding-top: 20px;
-    /* Padding will be 8% of page's width from both sides */
-    /* padding-right: 8vw;
-    padding-left: 8vw; */
-    max-width: 1000px;
-    padding: 25px;
-    padding-bottom: 20px;
+  margin-top: 20px;
+  padding-top: 20px;
+  /* Padding will be 8% of page's width from both sides */
+  /* padding-right: 8vw;
+  padding-left: 8vw; */
+  max-width: 1000px;
+  padding: 25px;
+  padding-bottom: 20px;
+
+}
+
+/*Centers text box position*/
+.container {
+display: flex;
+justify-content: center;
 }
 
 /*Centers text box position*/
@@ -22,20 +30,22 @@
 }
 
 .img-left {
-    display: inline-block;
-    margin-left: 0;
-    margin-right: auto;
-  }
-  
-  .img-right {
-    display: inline-block;
-    margin-left: auto;
-    margin-right: 0;
-  }
-  
-  .img-center {
-    display: inline-block;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
+  display: inline-block;
+  margin-left: 0;
+  margin-right: auto;
+  padding: 2vh;
+}
+
+.img-right {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: 0;
+  padding: 2vh;
+}
+
+.img-center {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2vh;
+}

@@ -3,19 +3,25 @@
     box-sizing: border-box;
     border: 1px solid #ddd;
     cursor: text;
+    padding: 16px;
+    border-radius: 2px;
     margin-bottom: 2em;
     box-shadow: inset 0px 1px 8px -3px #ABABAB;
     background: #fefefe;
-    width: 1000px;
+    max-width: 1000px;
 }
-
+  
 .container {
-  width: 100%;
-  padding: 50px;
-  display: flex;
-  justify-content: center;
-}
+    display: flex;
+    justify-content: center;
+  }
 
+.imageAdd {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+  
 .editor :global(.public-DraftEditor-content) {
     min-height: 140px;
 }
