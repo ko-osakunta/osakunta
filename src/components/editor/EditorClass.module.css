@@ -9,6 +9,7 @@
     box-shadow: inset 0px 1px 8px -3px #ABABAB;
     background: #fefefe;
     max-width: 1000px;
+
 }
   
 .container {
@@ -16,11 +17,11 @@
     justify-content: center;
   }
 
-.imageAdd {
+  .imageAdd {
     display: flex;
     justify-content: center;
-    margin-bottom: 40px;
-}
+    padding-bottom: 40px;
+  }
   
 .editor :global(.public-DraftEditor-content) {
     min-height: 140px;

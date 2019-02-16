@@ -41,6 +41,7 @@ const options = {
         }
     }
 }
+
 // These two are kinda bubblegum, but it'll work for our purposes
 const getWidth = width => (typeof width === "undefined") ? "40%" : width + '%'
 const getAlign = alignment => alignment === 'center' || (typeof alignment === "undefined") ? "middle" : alignment
