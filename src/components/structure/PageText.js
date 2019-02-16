@@ -42,15 +42,8 @@ const options = {
     }
 }
 
-<<<<<<< 643c96f3502be625caddd6fc12608584a218aacd
-// These two are kinda bubblegum, but it'll work for now for our purposes
-
-const getWidth = width => (typeof width === "undefined") ? "40%" : width + '%'
-
-=======
 // These two are kinda bubblegum, but it'll work for our purposes
 const getWidth = width => (typeof width === "undefined") ? "40%" : width + '%'
->>>>>>> tuning image padding
 const getAlign = alignment => alignment === 'center' || (typeof alignment === "undefined") ? "middle" : alignment
 
 const mapStateToProps = ({ page }) => ({ page }) // Not an identity function!
