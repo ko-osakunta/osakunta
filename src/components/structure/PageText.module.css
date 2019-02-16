@@ -11,10 +11,8 @@
 
 }
 
-/*Centers text box position*/
-.container {
-display: flex;
-justify-content: center;
+p {
+  margin-bottom: 0;
 }
 
 /*Centers text box position*/

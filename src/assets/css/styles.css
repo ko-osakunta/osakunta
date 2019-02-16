@@ -9,20 +9,21 @@
   transition: 0.3s linear;
 }
 
+p {
+  margin-bottom: 0;
+}
+
 body {
   background-position: top;
   background-size: cover;
   position: relative;
   width: 100%;
-  min-height: 100%;
   display: grid;
   min-height: 100%;
   transition: 0.3s linear;
   cursor:'pointer';
   font-family: 'Montserrat', sans-serif;
 }
-
-
 
 body::after {
   content: '';
