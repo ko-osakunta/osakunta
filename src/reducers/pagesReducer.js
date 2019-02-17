@@ -26,7 +26,6 @@ const local = [
 export default (state = [], action) => {
     switch (action.type) {
         case FETCH_PAGES:
-            //console.log(action.payload)
             return action.payload
                 .map(({ type, ...rest }) =>
                     ({ Component: AdminCreatedPage, ...rest }))

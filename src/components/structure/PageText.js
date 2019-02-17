@@ -16,14 +16,8 @@ const PageText = ({ text }) =>
         </div>
     </div >
 
-/* const textToHtml = (text) =>
-    stateToHTML(convertFromRaw(JSON.parse(text)), options) */
-
-function textToHtml(text) {
-    console.log(stateToHTML(convertFromRaw(JSON.parse(text)), options))
-    return stateToHTML(convertFromRaw(JSON.parse(text)), options)
-}
-
+const textToHtml = (text) =>
+    stateToHTML(convertFromRaw(JSON.parse(text)), options)
 
 const options = {
     // Adding css styles to emulate the look of it in css

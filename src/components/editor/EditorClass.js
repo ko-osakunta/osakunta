@@ -80,7 +80,6 @@ class EditorClass extends React.Component {
     postNewPage = (event) => {
         event.preventDefault();
         const contentState = this.state.editorState.getCurrentContent();
-        console.log(contentState)
 
         var updates = {}
         const { pageKey } = this.props
