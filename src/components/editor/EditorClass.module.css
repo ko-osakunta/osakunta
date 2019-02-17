@@ -17,12 +17,16 @@
 .container {
     display: flex;
     justify-content: center;
+    white-space: inherit;
+  word-break: break-word;
 }
 
   .imageAdd {
     display: flex;
     justify-content: center;
     padding-bottom: 40px;
+    white-space: inherit;
+  word-break: break-word;
   }
   
 .editor :global(.public-DraftEditor-content) {
