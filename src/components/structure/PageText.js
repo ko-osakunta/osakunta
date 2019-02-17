@@ -16,25 +16,33 @@ const PageText = ({ text }) =>
         </div>
     </div >
 
-const textToHtml = (text) =>
-    stateToHTML(convertFromRaw(JSON.parse(text)), options)
+/* const textToHtml = (text) =>
+    stateToHTML(convertFromRaw(JSON.parse(text)), options) */
+
+function textToHtml(text) {
+    console.log(stateToHTML(convertFromRaw(JSON.parse(text)), options))
+    return stateToHTML(convertFromRaw(JSON.parse(text)), options)
+}
+
 
 const options = {
     // Adding css styles to emulate the look of it in css
     // The images also have 40% displayed width on editor added. If not resized the width will be original.
     // This will add 40% tag if this is the case.
+   
+    
     entityStyleFn: (entity) => {
         const entityType = entity.get('type').toLowerCase()
+
         if (entityType === 'image') {
             const data = entity.getData()
-
-            console.log(typeof data.width === "undefined")
             return {
                 element: 'img',
                 attributes: {
                     src: data.src,
                     align: getAlign(data.alignment),
-                    className: 'img-' + data.alignment,
+                },
+                style: {
                     width: getWidth(data.width)
                 }
             }
@@ -44,7 +52,8 @@ const options = {
 
 // These two are kinda bubblegum, but it'll work for our purposes
 const getWidth = width => (typeof width === "undefined") ? "40%" : width + '%'
-const getAlign = alignment => alignment === 'center' || (typeof alignment === "undefined") ? "middle" : alignment
+
+const getAlign = alignment => alignment === 'center' ? "center" : alignment
 
 const mapStateToProps = ({ page }) => ({ page }) // Not an identity function!
 

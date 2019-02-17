@@ -137,11 +137,8 @@ class EditorClass extends React.Component {
                                     }
                                 </InlineToolbar>
                             </div>
-                            <div>
-                                {html}
-                            </div>
                         </div>
-                    </div >
+                    </div>
                     <div className={styles.imageAdd}>
                         <ImageAdd
                             editorState={this.state.editorState}
@@ -152,6 +149,9 @@ class EditorClass extends React.Component {
                             Vaihda teksti!
                 </button>
                     </div>
+                    <div className={styles.imageAdd}>
+                            {html}
+                        </div>
                 </div>
             )
         }

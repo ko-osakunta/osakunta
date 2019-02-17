@@ -78,7 +78,7 @@ export default class ImageAdd extends Component {
         >
           <input
             type="text"
-            placeholder="Paste the image url …"
+            placeholder="Pasteta kuvan osoite …"
             className={styles.addImageInput}
             onChange={this.changeUrl}
             value={this.state.url}
