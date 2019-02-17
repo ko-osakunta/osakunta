@@ -35,6 +35,7 @@ const options = {
                 attributes: {
                     src: data.src,
                     align: getAlign(data.alignment),
+                    className: 'img-' + data.alignment
                 },
                 style: {
                     width: getWidth(data.width)
@@ -47,8 +48,8 @@ const options = {
 // These two are kinda bubblegum, but it'll work for our purposes
 const getWidth = width => (typeof width === "undefined") ? "40%" : width + '%'
 
-const getAlign = alignment => alignment === 'center' ? "center" : alignment
-
+const getAlign = alignment => alignment === 'center' ? "middle" : alignment
+	
 const mapStateToProps = ({ page }) => ({ page }) // Not an identity function!
 
 export default connect(mapStateToProps, { fetchPageByPath })(PageText)
