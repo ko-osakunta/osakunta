@@ -7,8 +7,10 @@
     border-radius: 2px;
     margin-bottom: 2em;
     box-shadow: inset 0px 1px 8px -3px #ABABAB;
-    background: #fefefe;
-    max-width: 1000px;
+    background: #eeefff;
+    /*1000px (pageText width) - 50px (pageText padding on both sides) 
+    + 32px (editor padding both sides) + 4px (editor border radius both sides) */
+    max-width: 986px;
 
 }
   
