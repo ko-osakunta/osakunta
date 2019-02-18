@@ -7,7 +7,10 @@ import { connect } from 'react-redux'
 const Announcements = ({ announcements }) =>
     <div>
         {announcements !== false && announcements.map(announcement =>
-            <PageText text={announcement.text} />
+            <div>
+                <PageText text={announcement.text} />
+                <EditorClass updatePath={'announcements/' + announcement.key+ '/text'}/>
+            </div>
         )}
     </div>
     

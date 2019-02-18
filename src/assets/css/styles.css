@@ -14,7 +14,6 @@ p {
 }
 
 body {
-  touch-action: none;
   background-position: top;
   background-size: cover;
   position: relative;
@@ -35,7 +34,6 @@ body::after {
 /* This wrapper is used to keep the footer at the bottom of page */
 .contentWrapper {
  min-height: 100vh;
- overflow: hidden;
  display: block;
  position: relative;
 }

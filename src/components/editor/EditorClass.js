@@ -65,10 +65,11 @@ let contentState = stateFromHTML('<p>Tämä on muokkauslomake. Voit muokata täl
 
 class EditorClass extends React.Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            editorState: EditorState.createWithContent(contentState)
+            editorState: EditorState.createWithContent(contentState),
+            updatePath: props.updatePath
         }
     }
 
@@ -77,13 +78,12 @@ class EditorClass extends React.Component {
         this.props.fetchKeyByPath(path)
     }
 
-    postNewPage = (event) => {
+    updateContent = (event) => {
         event.preventDefault();
         const contentState = this.state.editorState.getCurrentContent();
 
         var updates = {}
-        const { pageKey } = this.props
-        updates['pages/' + pageKey + '/text'] = JSON.stringify(convertToRaw(contentState))
+        updates[this.state.updatePath] = JSON.stringify(convertToRaw(contentState))
         databaseRef.update(updates);
     }
 
@@ -144,7 +144,7 @@ class EditorClass extends React.Component {
                             onChange={this.onChange}
                             modifier={imagePlugin.addImage}
                         />
-                        <button className="btn-primary" onClick={this.postNewPage}>
+                        <button className="btn-primary" onClick={this.updateContent}>
                             Vaihda teksti!
                 </button>
                     </div>
@@ -158,6 +158,6 @@ class EditorClass extends React.Component {
     }
 }
 
-const mapStateToProps = ({ auth, pageKey }) => ({ auth, pageKey }) // Not an identity function!
+const mapStateToProps = ({ auth }) => ({ auth }) // Not an identity function!
 
 export default connect(mapStateToProps, { fetchKeyByPath })(EditorClass);
