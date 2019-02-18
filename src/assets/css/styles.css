@@ -20,7 +20,6 @@ body {
   width: 100%;
   display: grid;
   min-height: 100%;
-  transition: 0.3s linear;
   cursor:'pointer';
   font-family: 'Montserrat', sans-serif;
 }
@@ -38,6 +37,7 @@ body::after {
  position: relative;
 }
 
+/* This mess looks nice but causes performance issues and unwanted x-axis scrolling */
 /* .openNav {
   margin-left: 300px;
   margin-right: -300px;

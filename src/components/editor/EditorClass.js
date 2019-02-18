@@ -60,9 +60,7 @@ const plugins = [inlineToolbarPlugin,
     alignmentPlugin,
     resizeablePlugin,
     imagePlugin];
-
-let contentState = stateFromHTML('<p>Tämä on muokkauslomake. Voit muokata tällä oheista tekstiä. Korosta teksti niin voit tyylitellä sitä! Kuvien lisäys onnistuu alla olevasta napista.</p>');
-
+    
 class EditorClass extends React.Component {
 
     constructor(props) {

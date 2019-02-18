@@ -37,7 +37,7 @@ export const createNewPage = (pagePath, value) => (dispatch, getState) => {
         text: JSON.stringify({
             blocks: [{
                 key: "2onp9",
-                text: "Uusi sivu luotu! Adminina voit muokata sitä oheisesta lomakkeesta.",
+                text: "Uusi sivu luotu! Adminina voit muokata sitä oheisesta lomakkeesta. Kun korostat tekstiä niin voit tyylitellä sitä! Myös kuvien lisäys onnistuu!",
                 type: "unstyled",
                 depth: 0,
                 inlineStyleRanges: [],

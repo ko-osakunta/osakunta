@@ -9,11 +9,11 @@ const Announcements = ({ announcements }) =>
         {announcements !== false && announcements.map(announcement =>
             <div>
                 <PageText text={announcement.text} />
-                <EditorClass text={announcement.text} updatePath={'announcements/' + announcement.key+ '/text'}/>
+                <EditorClass text={announcement.text} updatePath={'announcements/' + announcement.key + '/text'} />
             </div>
         )}
     </div>
-    
+
 const mapStateToProps = ({ announcements }) => ({ announcements })
 
 export default connect(mapStateToProps)(Announcements)

@@ -25,15 +25,18 @@ class SideNav extends React.Component {
     }
 
     openNav() {
+        this.setState({open: true})
         this.sidenav.style.width = "300px";
-        this.props.openNavigation()
         this.sidenav.style.outline = "9999px solid rgba(0,0,0,0.65)"
+        this.props.openNavigation()
     }
 
     closeNav() {
+        this.setState({open: false})
         this.sidenav.style.width = "0px"
+        this.sidenav.style.outline = "9999px solid rgba(0,0,0,0.0)";
+
         this.props.closeNavigation()
-        this.sidenav.style.outline = "9999px solid rgba(0,0,0,0)"
     }
 
     // Handle click will detect if the sidenav is open and if the user clicked outside the sidenav.
