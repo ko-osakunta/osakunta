@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 
 const Announcements = ({ announcements }) =>
     <div>
-        {announcements !== undefined && announcements.map(announcement =>
+        {announcements !== false && announcements.map(announcement =>
             <PageText text={announcement.text} />
         )}
     </div>
