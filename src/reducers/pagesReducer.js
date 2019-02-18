@@ -3,9 +3,15 @@ import ImageGallery from "../components/pagetypes/ImageGallery"
 import Admin from "../components/admin/Admin"
 import Login from "../components/pagetypes/Login"
 import AdminCreatedPage from "../components/pagetypes/AdminCreatedPage"
+import Announcements from "../components/pagetypes/Announcements"
 import requireAuth from "../components/helpers/requireAuth"
 
 const local = [
+    {
+        Component: Announcements,
+        path: "/announcements",
+        title: "Tiedotteita"
+    },
     {
         Component: ImageGallery,
         path: "/gallery",

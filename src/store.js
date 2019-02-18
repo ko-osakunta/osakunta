@@ -12,6 +12,7 @@ import pageReducer from './reducers/pageReducer'
 import authReducer from './reducers/authReducer'
 import galleryReducer from './reducers/galleryReducer'
 import bannerReducer from './reducers/bannerReducer'
+import announcementsReducer from './reducers/announcementsReducer';
 
 const createReducer = history => combineReducers({
     router: connectRouter(history),
@@ -23,7 +24,8 @@ const createReducer = history => combineReducers({
     page: pageReducer,
     auth: authReducer,
     images: galleryReducer,
-    banners: bannerReducer
+    banners: bannerReducer,
+    announcements: announcementsReducer
 })
 
 export const history = createBrowserHistory()

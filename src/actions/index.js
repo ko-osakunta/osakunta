@@ -161,6 +161,18 @@ export const fetchPages = () => dispatch => {
         })
 }
 
+export const fetchAnnouncements = () => dispatch => {
+    database.ref('announcements')
+        .on('value', snapshot => {
+            const announcements = Object.entries(snapshot.val())
+                .map(([key, announcement]) => ({ key, ...announcement}))
+            dispatch({
+                type: types.FETCH_ANNOUNCEMENTS,
+                payload: announcements
+            })
+        })
+}
+
 export const fetchContact = () => dispatch => {
     database.ref('contact')
         .once('value')
