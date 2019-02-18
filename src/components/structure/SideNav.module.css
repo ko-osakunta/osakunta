@@ -1,4 +1,5 @@
 .sidenav {
+    background-color: #ffffff;
     height: 100%;
     width: 0px;
     padding-right: 0px;
@@ -7,7 +8,7 @@
     top: 0;
     left: 0;
     overflow-x: hidden;
-    transition: 0.3s linear;
+    transition: 0.4s linear;
     padding-top: 60px;
     z-index: 10; /* keep on top of other elements on the page */
     outline: 9999px solid rgba(0,0,0,0);
@@ -22,7 +23,7 @@
     top: 0;
     left: 0;
     overflow-x: hidden;
-    transition: 0.3s linear;
+    transition: 0.4s linear;
     padding-top: 60px;
     z-index: 10; /* keep on top of other elements on the page */
     width: 300px;
