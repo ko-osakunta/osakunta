@@ -10,6 +10,7 @@
     background: #eeefff;
     /*1000px (pageText width) - 50px (pageText padding on both sides) 
     + 32px (editor padding both sides) + 4px (editor border radius both sides) */
+    width: 100%;
     max-width: 986px;
 
 }
