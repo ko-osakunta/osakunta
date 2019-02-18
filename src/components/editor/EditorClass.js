@@ -1,5 +1,5 @@
 import React from 'react';
-import { EditorState, convertToRaw, RichUtils } from 'draft-js';
+import { EditorState, convertToRaw, RichUtils, convertFromRaw } from 'draft-js';
 import { databaseRef } from '../../config/firebase'
 import { connect } from "react-redux";
 import { fetchKeyByPath } from "../../actions"
@@ -68,14 +68,9 @@ class EditorClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            editorState: EditorState.createWithContent(contentState),
+            editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(props.text))),
             updatePath: props.updatePath
         }
-    }
-
-    componentWillMount() {
-        const path = window.location.pathname
-        this.props.fetchKeyByPath(path)
     }
 
     updateContent = (event) => {
@@ -103,6 +98,7 @@ class EditorClass extends React.Component {
     }
 
     render() {
+        console.log(this.state.editorState.getCurrentContent())
         const html = stateToHTML(this.state.editorState.getCurrentContent());
         if (this.props.auth) {
             return (

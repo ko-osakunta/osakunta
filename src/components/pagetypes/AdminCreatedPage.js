@@ -7,7 +7,7 @@ import RemovePage from "../admin/RemovePage"
 const AdminCreatedPage = ({ page }) =>
     <div>
         <PageText text={page.text} />
-        <EditorClass updatePath={'pages/' + page.key + '/text'} />
+        <EditorClass text={page.text} updatePath={'pages/' + page.key + '/text'} />
         <RemovePage page={page} />
     </div>
 
