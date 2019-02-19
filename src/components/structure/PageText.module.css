@@ -23,6 +23,15 @@ p {
 
 }
 
+h1, h2 {
+  color: #c40505;
+  text-align: center;
+}
+
+h3 {
+  color: #c40505;
+}
+
 .hr {
     border: 0;
     height: 1px;
