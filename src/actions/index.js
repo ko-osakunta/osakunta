@@ -48,7 +48,28 @@ export const createNewPage = (pagePath, value) => (dispatch, getState) => {
         }),
         title: value,
         deletable: true,
-        type: 'adminCreated'
+        type: 'adminCreated',
+        dateCreated: Date.now(),
+        dateUpdated: Date.now()
+    })
+}
+
+export const createNewAnnouncement = () => {
+    database.ref('announcements').push().set({
+        text: JSON.stringify({
+            blocks: [{
+                key: "2onp9",
+                text: "Uusi tapahtuma luotu! Adminina voit muokata sitä oheisesta lomakkeesta. Kun korostat tekstiä niin voit tyylitellä sitä! Myös kuvien lisäys onnistuu!",
+                type: "unstyled",
+                depth: 0,
+                inlineStyleRanges: [],
+                entityRanges: [],
+                data: {},
+            }],
+            entityMap: {}
+        }),
+        dateCreated: Date.now(),
+        dateUpdated: Date.now()
     })
 }
 

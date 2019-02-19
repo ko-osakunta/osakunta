@@ -1,5 +1,6 @@
 import React from 'react'
 import AddNewPage from "./AddNewPage"
+import AddNewAnnouncement from "./AddNewAnnouncement"
 import styles from "../structure/PageText.module.css"
 import BannerUploader from './BannerUploader'
 import ImageUploader from './ImageUploader'
@@ -18,8 +19,17 @@ const Admin = () =>
         </div>
         <div className={styles.pageText}>
             <hr className={styles.hr} />
+            <AddNewAnnouncement />
+        </div>
+        <div className={styles.pageText}>
+            <hr className={styles.hr} />
 
             Lataa banneri sivulle:
+            <BannerUploader />
+        </div>
+        <div className={styles.pageText}>
+            <hr className={styles.hr} />
+            
             <BannerUploader />
         </div>
         <div className={styles.pageText}>

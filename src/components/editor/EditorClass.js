@@ -60,14 +60,15 @@ const plugins = [inlineToolbarPlugin,
     alignmentPlugin,
     resizeablePlugin,
     imagePlugin];
-    
+
 class EditorClass extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(props.text))),
-            updatePath: props.updatePath
+            updatePath: props.updatePath,
+            editorOpen: false
         }
     }
 
@@ -76,7 +77,8 @@ class EditorClass extends React.Component {
         const contentState = this.state.editorState.getCurrentContent();
 
         var updates = {}
-        updates[this.state.updatePath] = JSON.stringify(convertToRaw(contentState))
+        updates[this.state.updatePath + '/text'] = JSON.stringify(convertToRaw(contentState))
+        updates[this.state.updatePath + '/dateUpdated'] = Date.now()
         databaseRef.update(updates);
     }
 
@@ -95,57 +97,70 @@ class EditorClass extends React.Component {
         return 'not-handled';
     }
 
-    render() {
-        console.log(this.state.editorState.getCurrentContent())
+    changeEditorOpen = () => {
+        this.setState({ editorOpen: !this.state.editorOpen })
+    }
+
+    editorDiv() {
         const html = stateToHTML(this.state.editorState.getCurrentContent());
+
+        return <div className={styles.editor} onClick={this.focus}>
+            <div className={styles.textBox}>
+                <Editor
+                    editorState={this.state.editorState}
+                    onChange={this.onChange}
+                    plugins={plugins}
+                    ref={(element) => { this.editor = element; }}
+                />
+
+                <AlignmentTool />
+                <InlineToolbar>
+                    {
+                        // may be use React.Fragment instead of div to improve perfomance after React 16
+                        (externalProps) => (
+                            <div>
+                                <BoldButton {...externalProps} />
+                                <ItalicButton {...externalProps} />
+                                <UnderlineButton {...externalProps} />
+                                <linkPlugin.LinkButton {...externalProps} />
+                                <Separator {...externalProps} />
+                                <HeadlinesButton {...externalProps} />
+                                <UnorderedListButton {...externalProps} />
+                                <OrderedListButton {...externalProps} />
+                            </div>
+                        )
+                    }
+                </InlineToolbar>
+            </div>
+            <div className={styles.imageAdd}>
+                <ImageAdd
+                    editorState={this.state.editorState}
+                    onChange={this.onChange}
+                    modifier={imagePlugin.addImage}
+                />
+                <button className="btn-primary" onClick={this.updateContent}>
+                    Vaihda teksti!
+                </button>
+            </div>
+            <div className={styles.containerPadding}>
+                {html}
+            </div>
+        </div >
+    }
+
+    render() {
         if (this.props.auth) {
             return (
                 <div>
+                    <div className={styles.containerPadding}>
+                        <button className="btn-primary" onClick={this.changeEditorOpen}>
+                            Avaa/sulje muokkauslomake
+                    </button>
+                    </div>
                     <div className={styles.container}>
-                        <div className={styles.editor} onClick={this.focus}>
-                            <div className={styles.textBox}>
-                                <Editor
-                                    editorState={this.state.editorState}
-                                    onChange={this.onChange}
-                                    plugins={plugins}
-                                    ref={(element) => { this.editor = element; }}
-                                />
-
-                                <AlignmentTool />
-                                <InlineToolbar>
-                                    {
-                                        // may be use React.Fragment instead of div to improve perfomance after React 16
-                                        (externalProps) => (
-                                            <div>
-                                                <BoldButton {...externalProps} />
-                                                <ItalicButton {...externalProps} />
-                                                <UnderlineButton {...externalProps} />
-                                                <linkPlugin.LinkButton {...externalProps} />
-                                                <Separator {...externalProps} />
-                                                <HeadlinesButton {...externalProps} />
-                                                <UnorderedListButton {...externalProps} />
-                                                <OrderedListButton {...externalProps} />
-                                            </div>
-                                        )
-                                    }
-                                </InlineToolbar>
-                            </div>
-                        </div>
+                        {this.state.editorOpen && this.editorDiv()}
                     </div>
-                    <div className={styles.imageAdd}>
-                        <ImageAdd
-                            editorState={this.state.editorState}
-                            onChange={this.onChange}
-                            modifier={imagePlugin.addImage}
-                        />
-                        <button className="btn-primary" onClick={this.updateContent}>
-                            Vaihda teksti!
-                </button>
-                    </div>
-                    <div className={styles.imageAdd}>
-                            {html}
-                        </div>
-                </div>
+                </div >
             )
         }
         return null

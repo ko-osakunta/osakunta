@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from "react-redux";
 import { push } from "connected-react-router"
-import { createNewPage, uploadBannerToDatabase } from "../../actions"
+import { createNewPage } from "../../actions"
 
 const AddNewPage = ({ createNewPage, push }) => {
     const [input, setInput] = useState("")

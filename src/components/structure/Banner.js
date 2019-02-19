@@ -21,7 +21,7 @@ const Banner = ({ banners }) => {
     })
 
     return (
-        <div>
+        <div className={styles.bannerContainer}>
             {banners.map(b =>
                 <img
                     src={b.url}
