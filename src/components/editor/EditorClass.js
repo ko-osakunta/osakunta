@@ -102,37 +102,39 @@ class EditorClass extends React.Component {
     }
 
     editorDiv() {
-        const html = stateToHTML(this.state.editorState.getCurrentContent());
+        return <div>
+            <div className={styles.container}>
+                <div className={styles.editor} onClick={this.focus}>
+                    <div className={styles.textBox}>
+                        <Editor
+                            editorState={this.state.editorState}
+                            onChange={this.onChange}
+                            plugins={plugins}
+                            ref={(element) => { this.editor = element; }}
+                        />
 
-        return <div className={styles.editor} onClick={this.focus}>
-            <div className={styles.textBox}>
-                <Editor
-                    editorState={this.state.editorState}
-                    onChange={this.onChange}
-                    plugins={plugins}
-                    ref={(element) => { this.editor = element; }}
-                />
-
-                <AlignmentTool />
-                <InlineToolbar>
-                    {
-                        // may be use React.Fragment instead of div to improve perfomance after React 16
-                        (externalProps) => (
-                            <div>
-                                <BoldButton {...externalProps} />
-                                <ItalicButton {...externalProps} />
-                                <UnderlineButton {...externalProps} />
-                                <linkPlugin.LinkButton {...externalProps} />
-                                <Separator {...externalProps} />
-                                <HeadlinesButton {...externalProps} />
-                                <UnorderedListButton {...externalProps} />
-                                <OrderedListButton {...externalProps} />
-                            </div>
-                        )
-                    }
-                </InlineToolbar>
+                        <AlignmentTool />
+                        <InlineToolbar>
+                            {
+                                // may be use React.Fragment instead of div to improve perfomance after React 16
+                                (externalProps) => (
+                                    <div>
+                                        <BoldButton {...externalProps} />
+                                        <ItalicButton {...externalProps} />
+                                        <UnderlineButton {...externalProps} />
+                                        <linkPlugin.LinkButton {...externalProps} />
+                                        <Separator {...externalProps} />
+                                        <HeadlinesButton {...externalProps} />
+                                        <UnorderedListButton {...externalProps} />
+                                        <OrderedListButton {...externalProps} />
+                                    </div>
+                                )
+                            }
+                        </InlineToolbar>
+                    </div>
+                </div>
             </div>
-            <div className={styles.imageAdd}>
+            <div className={styles.containerPadding}>
                 <ImageAdd
                     editorState={this.state.editorState}
                     onChange={this.onChange}
@@ -142,22 +144,19 @@ class EditorClass extends React.Component {
                     Vaihda teksti!
                 </button>
             </div>
-            <div className={styles.containerPadding}>
-                {html}
-            </div>
-        </div >
+        </div>
     }
 
     render() {
         if (this.props.auth) {
             return (
                 <div>
-                    <div className={styles.containerPadding}>
+                    <div className={styles.container}>
                         <button className="btn-primary" onClick={this.changeEditorOpen}>
                             Avaa/sulje muokkauslomake
                     </button>
                     </div>
-                    <div className={styles.container}>
+                    <div>
                         {this.state.editorOpen && this.editorDiv()}
                     </div>
                 </div >
