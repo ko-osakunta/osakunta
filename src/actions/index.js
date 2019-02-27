@@ -111,7 +111,7 @@ export const fetchBanners = () => dispatch => {
     database.ref('banners')
         .on('value', snapshot => {
             const banners = snapshot.val()
-                ? Object.entries(snapshot.val()).map(([, banner]) => banner)
+                ? Object.values(snapshot.val())
                 : []
 
             dispatch({
