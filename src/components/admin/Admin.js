@@ -2,8 +2,10 @@ import React from 'react'
 import AddNewPage from "./AddNewPage"
 import AddNewAnnouncement from "./AddNewAnnouncement"
 import styles from "../structure/PageText.module.css"
-import BannerUploader from './BannerUploader'
-import ImageUploader from './ImageUploader'
+import BannerUploader from "./BannerUploader"
+import ImageUploader from "./ImageUploader"
+import ImagePicker from "./ImagePicker"
+
 //Admin tools
 const Admin = () =>
     <div id="page">
@@ -37,6 +39,10 @@ const Admin = () =>
 
             Lataa gallerian kuva sivulle:
             <ImageUploader />
+        </div>
+        <div className={styles.pageText}>
+            <hr className={styles.hr} />
+            <ImagePicker />
             <hr className={styles.hr} />
         </div>
     </div>
