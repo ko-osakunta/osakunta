@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import Banner from "./components/structure/Banner"
 import SideNav from "./components/structure/SideNav"
 import Footer from "./components/structure/Footer"
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import { fetchPages, fetchContact, fetchUser, fetchImages, fetchBanners, fetchAnnouncements } from "./actions"
 import { connect } from "react-redux"
 import PageNotFound from "./components/pagetypes/PageNotFound"

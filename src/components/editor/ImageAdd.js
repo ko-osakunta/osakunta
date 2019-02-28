@@ -59,9 +59,6 @@ export default class ImageAdd extends Component {
     const popoverClassName = this.state.open ?
       styles.addImagePopover :
       styles.addImageClosedPopover
-    const buttonClassName = this.state.open ?
-      styles.addImagePressedButton :
-      styles.addImageButton
 
     return (
       <div className={styles.addImage}>

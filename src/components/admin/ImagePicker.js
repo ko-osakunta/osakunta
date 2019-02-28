@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import { uploadBannerToDb, deleteBannerFromDb } from "../../actions"
 import styles from "./ImagePicker.module.css"

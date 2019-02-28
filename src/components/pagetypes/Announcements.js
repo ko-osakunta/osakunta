@@ -1,7 +1,6 @@
 import React from "react"
 import PageText from "../structure/PageText"
 import EditorClass from "../editor/EditorClass"
-import RemovePage from "../admin/RemovePage"
 import { connect } from 'react-redux'
 import moment from 'moment'
 

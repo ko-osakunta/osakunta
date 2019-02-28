@@ -1,7 +1,5 @@
-
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { signIn, signOut } from "../../actions";
 import PropTypes from "prop-types";
 import { firebaseAuth } from '../../config/firebase'
 
@@ -33,7 +31,7 @@ class Login extends Component {
 
     onSubmit = event => {
         event.preventDefault();
-        const { auth, email, password } = this.state;
+        const { email, password } = this.state;
         firebaseAuth
             .signInWithEmailAndPassword(email, password)
             .then(() => {

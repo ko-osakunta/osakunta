@@ -21,14 +21,10 @@ import {
     ItalicButton,
     BoldButton,
     UnderlineButton,
-    CodeButton,
     UnorderedListButton,
     OrderedListButton,
-    BlockquoteButton
 } from 'draft-js-buttons';
 
-import { stateToHTML } from 'draft-js-export-html';
-import { stateFromHTML } from 'draft-js-import-html';
 import ImageAdd from './ImageAdd';
 import HeadlinesButton from './HeadlinesButton'
 
