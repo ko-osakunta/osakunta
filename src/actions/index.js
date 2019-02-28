@@ -142,8 +142,8 @@ const uploadImageToDatabase = (name, url) => {
     database.ref('images').push().set({ name, url })
 }
 
-export const fetchImages = () => dispatch => {
-    axios.get('https://api.flickr.com/services/rest/', {
+export const fetchImages = () => async dispatch => {
+    const res = await axios.get('https://api.flickr.com/services/rest/', {
         params: {
             method: 'flickr.groups.pools.getPhotos',
             group_id: '1597656@N20',
@@ -154,19 +154,22 @@ export const fetchImages = () => dispatch => {
             nojsoncallback: 1
         }
     })
-        .then(({ data }) => {
-            const urls = data.photos.photo
-                .map(({ farm, server, id, secret }) =>
-                    `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_b.jpg`
-                )
+
+    const flickrUrls = res.data.photos.photo
+        .map(({ farm, server, id, secret }) =>
+            `https://farm${farm}.staticflickr.com/${server}/${id}_${secret}_b.jpg`
+        )
+
+    database.ref('images')
+        .on('value', snapshot => {
+            const dbUrls = snapshot.val()
+                ? Object.values(snapshot.val()).map(({ url }) => url)
+                : []
 
             dispatch({
                 type: types.FETCH_IMAGES,
-                payload: urls
+                payload: [ ...dbUrls, ...flickrUrls.slice(0, 20) ]
             })
-        })
-        .catch((err) => {
-            console.log(err)
         })
 }
 

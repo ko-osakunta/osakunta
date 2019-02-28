@@ -11,7 +11,7 @@ const ImagePicker = ({ images, banners }) => {
             setSelected([ ...selected, url ])
 
     return <div className={styles.container}>
-        {images.slice(0, 20)
+        {images
             .map(url =>
                 <img
                     src={url}
