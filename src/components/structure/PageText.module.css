@@ -2,14 +2,12 @@
 .pageText {
   margin-top: 20px;
   padding-top: 20px;
-  /* Padding will be 8% of page's width from both sides */
-  /* padding-right: 8vw;
-  padding-left: 8vw; */
   max-width: 1000px;
   padding: 25px;
   padding-bottom: 20px;
   white-space: inherit;
-  word-break: break-word;
+  overflow-wrap: break-word;
+  /* word-break: break-word; */
 }
 
 p {
