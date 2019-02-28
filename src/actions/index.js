@@ -94,24 +94,25 @@ export const uploadBanner = (image) => dispatch => {
         console.log(error)
     }, () => {
         storage.ref('banners').child(image.name).getDownloadURL().then(url => {
-            uploadBannerToDatabase(image.name, url)
+            uploadBannerToDb(url)
         })
     })
     alert("Banneri lisätty!")
 }
 
-export const uploadBannerToDatabase = (imageName, imageUrl) => {
-    database.ref('banners').push().set({
-        name: imageName,
-        url: imageUrl
-    })
+export const uploadBannerToDb = url => {
+    database.ref('banners').push().set({ url })
+}
+
+export const deleteBannerFromDb = key => {
+    database.ref('banners').child(key).remove()
 }
 
 export const fetchBanners = () => dispatch => {
     database.ref('banners')
         .on('value', snapshot => {
             const banners = snapshot.val()
-                ? Object.values(snapshot.val())
+                ? Object.entries(snapshot.val()).map(([key, value]) => ({ key, ...value }))
                 : []
 
             dispatch({

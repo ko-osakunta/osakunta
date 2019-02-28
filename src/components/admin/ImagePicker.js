@@ -1,14 +1,18 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import { uploadBannerToDb, deleteBannerFromDb } from "../../actions"
 import styles from "./ImagePicker.module.css"
 
 const ImagePicker = ({ images, banners }) => {
-    const [selected, setSelected] = useState(banners)
+    const bannerUrls = banners.map(({ url }) => url)
 
     const toggle = (url) => () =>
-        selected.includes(url) ?
-            setSelected(selected.filter(u => u !== url)) :
-            setSelected([ ...selected, url ])
+        bannerUrls.includes(url)
+            ? deleteBannerFromDb(getBannerKey(url))
+            : uploadBannerToDb(url)
+
+    const getBannerKey = bannerUrl => banners.filter(({ url }) => url === bannerUrl)[0].key
+
 
     return <div className={styles.container}>
         {images
@@ -17,7 +21,7 @@ const ImagePicker = ({ images, banners }) => {
                     src={url}
                     key={url}
                     onClick={toggle(url)}
-                    className={selected.includes(url) ? styles.toggled : styles.regular}
+                    className={bannerUrls.includes(url) ? styles.toggled : styles.regular}
                 />)
         }
     </div>
@@ -25,4 +29,4 @@ const ImagePicker = ({ images, banners }) => {
 
 const mapStateToProps = ({ images, banners }) => ({ images, banners })
 
-export default connect(mapStateToProps)(ImagePicker)
+export default connect(mapStateToProps, { uploadBannerToDb, deleteBannerFromDb })(ImagePicker)
