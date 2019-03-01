@@ -17,7 +17,7 @@
 .open {
     background-color: #ffffff;
     height: 100%;
-    width: 300px;
+    width: 360px;
     padding-right: 0px;
     position: fixed;
     z-index: 1;
@@ -27,7 +27,6 @@
     transition: 0.4s linear;
     padding-top: 60px;
     z-index: 10; /* keep on top of other elements on the page */
-    width: 50%;
     outline: 9999px solid rgba(0,0,0,0.65)
 }
 
@@ -80,6 +79,11 @@
     .open, .close {padding-top: 15px;}
     .open a, .close a {font-size: 18px;}
 }
+
+@media only screen and (max-width: 600px) {
+    .open {width: 60%}
+}
+    
 
 .btn_sidenav {
       font-family: 'Montserrat', sans-serif;
