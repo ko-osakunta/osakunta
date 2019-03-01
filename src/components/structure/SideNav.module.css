@@ -14,9 +14,10 @@
     outline: 9999px solid rgba(0,0,0,0);
 }
 
-.sidenav .open {
+.open {
+    background-color: #ffffff;
     height: 100%;
-    width: 0px;
+    width: 300px;
     padding-right: 0px;
     position: fixed;
     z-index: 1;
@@ -30,7 +31,8 @@
     outline: 9999px solid rgba(0,0,0,0.65)
 }
 
-.sidenav .close {
+.close {
+    background-color: #ffffff;
     height: 100%;
     width: 0px;
     padding-right: 0px;
@@ -46,7 +48,7 @@
     outline: 9999px solid rgba(0,0,0,0.0)
 }
 
-.sidenav a {
+.open a, .close a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
@@ -55,11 +57,11 @@
     transition: 0.3s linear;
 }
 
-.sidenav a:hover {
+.open a:hover, .close a:hover {
     color: #f1f1f1;
 }
 
-.sidenav .closebtn {
+.open .closebtn, .close .closebtn {
     color: Gray;
     background: none;
     border: none;
@@ -69,14 +71,14 @@
     margin-left: 50px;
 }
 
-.sidenav .closebtn:hover {
+.open .closebtn:hover, .close .closebtn:hover {
     color: #f1f1f1;
 }
     
 
 @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
+    .open, .close {padding-top: 15px;}
+    .open a, .close a {font-size: 18px;}
 }
 
 .btn_sidenav {

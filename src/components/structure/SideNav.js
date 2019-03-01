@@ -1,72 +1,61 @@
-import React from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 import styles from "./SideNav.module.css"
 
-class SideNav extends React.Component {
+const SideNav = ({ openNavigation, closeNavigation, pages }) => {
+    const [open, setOpen] = useState(false)
 
-    componentWillMount() {
-        document.addEventListener('click', this.handleClick, false)
+    const openNav = () => {
+        openNavigation()
+        setOpen(true)
     }
 
-    componentDidMount() {
-        this.sidenav.style.width = "0px";
+    const closeNav = () => {
+        closeNavigation()
+        setOpen(false)
     }
 
-    componentWillUnmount() {
-        document.removeEventListener('click', this.handleClick, false)
-    }
-
-    openNav() {
-        this.sidenav.style.width = "300px";
-        this.sidenav.style.outline = "9999px solid rgba(0,0,0,0.65)"
-        this.props.openNavigation()
-    }
-
-    closeNav() {
-        this.sidenav.style.width = "0px"
-        this.sidenav.style.outline = "9999px solid rgba(0,0,0,0.0)";
-        this.props.closeNavigation()
-    }
-
-    // Handle click will detect if the sidenav is open and if the user clicked outside the sidenav.
-    // Side nav will be closed and other actions will be prevented.
-    // If either of these cases aren't true it will check if open-button was clicked. Sidenav will open if this was the case.
-    handleClick = event => {
-        if (this.sidenav.style.width === "300px" && !this.sidenav.contains(event.target)) {
-            event.preventDefault();
-            this.closeNav();
+    const handleClick = event => {
+        if (open) {
+            event.preventDefault()
+            closeNav()
         } else {
             if (event.target.id === "openNavig") {
-                this.openNav()
+                openNav()
             }
         }
     }
 
-    render() {
-        const { pages } = this.props
-        return <div>
-            <button id="openNavig" className={`btn ${styles.btn_sidenav} btn-lg page-scroll`}>☰ open</button>
-            <div id="sideNavigation" className={styles.sidenav} ref={sidenav => { this.sidenav = sidenav }}>
-                <button
-                    className={styles.closebtn}
-                    onClick={() => this.closeNav()}
-                >
+    useEffect(() => {
+        document.addEventListener('click', handleClick, false)
 
-                    &times;
-                </button>
-                {pages.map(page =>
-                    <Link
-                        to={page.path}
-                        onClick={() => this.closeNav()}
-                        key={page.path}
-                    >
-                        {page.title}
-                    </Link>
-                )}
-            </div>
+        return () => {
+            document.removeEventListener('click', handleClick, false)
+        }
+    })
+
+    return <>
+        <button id="openNavig" className={`btn ${styles.btn_sidenav} btn-lg page-scroll`}>☰ open</button>
+        <div id="sideNavigation" className={open ? styles.open : styles.close}>
+            <button
+                className={styles.closebtn}
+                onClick={() => closeNav()}
+            >
+
+                &times;
+            </button>
+            {pages.map(page =>
+                <Link
+                    to={page.path}
+                    onClick={() => closeNav()}
+                    key={page.path}
+                >
+                    {page.title}
+                </Link>
+            )}
         </div>
-    }
+    </>
 }
 
 const mapStateToProps = ({ pages }) => ({ pages }) // Not an identity function!
