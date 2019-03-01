@@ -10,11 +10,7 @@ const AddNewAnnouncement = () => {
         }
     }
 
-    return (
-        <div>
-            <button className="btn-primary" onClick={onClick}>Lisää uusi tapahtuma</button>
-        </div>
-    )
+    return <button className="btn-primary" onClick={onClick}>Lisää uusi tapahtuma</button>
 }
 
 export default AddNewAnnouncement

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { connect } from "react-redux";
-import { push } from "connected-react-router"
+import { connect } from 'react-redux'
+import { push } from 'connected-react-router'
 import { createNewPage } from "../../actions"
 
 const AddNewPage = ({ createNewPage, push }) => {
@@ -17,13 +17,11 @@ const AddNewPage = ({ createNewPage, push }) => {
         }
     }
 
-    return (
-        <div>
-            Uuden sivun nimi:
-            <input type="text" name="text" value={input} onChange={e => setInput(e.target.value)} />
-            <button className="btn-primary" onClick={onClick}>Lisää uusi sivu</button>
-        </div>
-    )
+    return <div>
+        Uuden sivun nimi:
+        <input type="text" name="text" value={input} onChange={e => setInput(e.target.value)} />
+        <button className="btn-primary" onClick={onClick}>Lisää uusi sivu</button>
+    </div>
 }
 
 const convertValueToPath = (input) => {
