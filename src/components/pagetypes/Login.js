@@ -13,7 +13,7 @@ const Login = ({ history, auth }) => {
             .then(() => {
                 setEmail("")
                 setPassword("")
-                history.push("/admin")
+                history.push("/")
             })
             .catch(error => {
                 alert(error)
@@ -65,9 +65,11 @@ const Login = ({ history, auth }) => {
             </button>
         </div>
     } else {
-        return <button className="btn-primary" type="button" onClick={logOut}>
+        return <div>
+            <button className="btn-primary" type="button" onClick={logOut}>
                 Kirjaudu ulos tililtä {auth.email}
-        </button>
+            </button>
+        </div>
     }
 }
 
