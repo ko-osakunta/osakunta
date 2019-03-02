@@ -6,8 +6,12 @@
   padding: 25px;
   padding-bottom: 20px;
   white-space: inherit;
+  
   overflow-wrap: break-word;
-  /* word-break: break-word; */
+}
+
+@media only screen and (max-width: 1000px) {
+  .pageText{width: 100vw}
 }
 
 p {
