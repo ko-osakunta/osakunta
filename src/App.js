@@ -33,18 +33,20 @@ const App = (props) => {
 
     return <div className="main">
         <div className={open ? "openNav" : "closeNav"} >
-            <div className="contentWrapper">
+            <div className="pageWrapper">
                 <Banner />
                 <SideNav
                     openNavigation={() => changeOpen(true)}
                     closeNavigation={() => changeOpen(false)}
                 />
-                <Switch>
-                    {routes}
-                    {pages.length !== 0 &&
-                        <Route path="*" component={PageNotFound} />
-                    }
-                </Switch>
+                <div className="contentWrapper">
+                    <Switch>
+                        {routes}
+                        {pages.length !== 0 &&
+                            <Route path="*" component={PageNotFound} />
+                        }
+                    </Switch>
+                </div>
             </div>
             <Footer />
         </div>

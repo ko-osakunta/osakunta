@@ -35,10 +35,15 @@ body::after {
 }
 
 /* This wrapper is used to keep the footer at the bottom of page */
-.contentWrapper {
+.pageWrapper {
  min-height: 100vh;
  display: block;
  position: relative;
+}
+
+.contentWrapper {
+  margin-top: 200px;
+  background: white;
 }
 
 /* This mess looks nice but causes performance issues and unwanted x-axis scrolling */

@@ -24,7 +24,6 @@ const options = {
     // The images also have 40% displayed width on editor added. If not resized the width will be original.
     // This will add 40% tag if this is the case.
    
-    
     entityStyleFn: (entity) => {
         const entityType = entity.get('type').toLowerCase()
 
