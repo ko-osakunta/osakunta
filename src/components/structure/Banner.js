@@ -21,7 +21,7 @@ const Banner = ({ banners }) => {
     })
 
     return (
-        <div>
+        <div className={styles.container}>
             {banners.map(b =>
                 <img
                     src={b.url}
@@ -29,6 +29,7 @@ const Banner = ({ banners }) => {
                     className={b === visible ? styles.visible : styles.invisible}
                 />
             )}
+            <div class={styles.imageText}>Karjalainen osakunta</div>
         </div>
     )
 }
