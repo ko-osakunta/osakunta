@@ -22,13 +22,16 @@ const Banner = ({ banners }) => {
 
     return (
         <div className={styles.container}>
-            {banners.map(b =>
-                <img
-                    src={b.url}
-                    key={b.url}
-                    className={b === visible ? styles.visible : styles.invisible}
-                />
-            )}
+            <div className={styles.banner}>
+                {banners.map(b =>
+                    <img
+                        src={b.url}
+                        key={b.url}
+                        className={b === visible ? `${styles.banner} ${styles.visible}`
+                            : `${styles.banner} ${styles.invisible}`}
+                    />
+                )}
+            </div>
             <div class={styles.imageText}>Karjalainen osakunta</div>
         </div>
     )

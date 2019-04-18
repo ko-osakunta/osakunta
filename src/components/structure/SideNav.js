@@ -37,7 +37,8 @@ const SideNav = ({ openNavigation, closeNavigation, pages }) => {
 
     return <>
         <button id="openNavig" className={`btn ${styles.btn_sidenav} btn-lg page-scroll`}>☰ open</button>
-        <div id="sideNavigation" className={open ? styles.open : styles.close}>
+        <div id="sideNavigation" className={open ? `${styles.sidenav} ${styles.open}`
+            : `${styles.sidenav} ${styles.close}`}>
             <button
                 className={styles.closebtn}
                 onClick={() => closeNav()}
@@ -55,7 +56,7 @@ const SideNav = ({ openNavigation, closeNavigation, pages }) => {
                 </Link>
             )}
         </div>
-    </>
+        </>
 }
 
 const mapStateToProps = ({ pages }) => ({ pages }) // Not an identity function!
