@@ -56,6 +56,7 @@ export const createNewPage = (pagePath, value) => (dispatch, getState) => {
 
 export const createNewAnnouncement = () => {
     database.ref('announcements').push().set({
+        title: 'Testiotsikko',
         text: JSON.stringify({
             blocks: [{
                 key: "2onp9",

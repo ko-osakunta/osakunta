@@ -9,7 +9,6 @@ const AddNewAnnouncement = () => {
             window.alert(error.message)
         }
     }
-
     return <button className="btn-primary" onClick={onClick}>Lisää uusi tapahtuma</button>
 }
 

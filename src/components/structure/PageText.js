@@ -8,13 +8,7 @@ import { convertFromRaw } from 'draft-js'
 import styles from "./PageText.module.css"
 
 const PageText = ({ text }) =>
-    <div className={styles.container} >
-        <div className={styles.pageText}>
-            <hr className={styles.hr} />
-            <div dangerouslySetInnerHTML={{ __html: textToHtml(text) }} />
-            <hr className={styles.hr} />
-        </div>
-    </div >
+    <div dangerouslySetInnerHTML={{ __html: textToHtml(text) }} />
 
 const textToHtml = (text) =>
     stateToHTML(convertFromRaw(JSON.parse(text)), options)
@@ -23,7 +17,7 @@ const options = {
     // Adding css styles to emulate the look of it in css
     // The images also have 40% displayed width on editor added. If not resized the width will be original.
     // This will add 40% tag if this is the case.
-   
+
     entityStyleFn: (entity) => {
         const entityType = entity.get('type').toLowerCase()
 
@@ -48,7 +42,7 @@ const options = {
 const getWidth = width => (typeof width === "undefined") ? "40%" : width + '%'
 
 const getAlign = alignment => alignment === 'center' ? "middle" : alignment
-	
+
 const mapStateToProps = ({ page }) => ({ page }) // Not an identity function!
 
 export default connect(mapStateToProps, { fetchPageByPath })(PageText)

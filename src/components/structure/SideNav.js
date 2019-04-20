@@ -36,7 +36,7 @@ const SideNav = ({ openNavigation, closeNavigation, pages }) => {
     })
 
     return <>
-        <button id="openNavig" className={`btn ${styles.btn_sidenav} btn-lg page-scroll`}>☰ open</button>
+        <button id="openNavig" className={`btn ${styles.btn_sidenav} btn-lg page-scroll`}>☰ Valikko</button>
         <div id="sideNavigation" className={open ? `${styles.sidenav} ${styles.open}`
             : `${styles.sidenav} ${styles.close}`}>
             <button

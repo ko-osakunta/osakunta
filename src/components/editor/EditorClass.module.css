@@ -8,9 +8,9 @@
     margin-bottom: 2em;
     box-shadow: inset 0px 1px 8px -3px #ABABAB;
     background: #eeefff;
+    width: 100%;
     /*1000px (pageText width) - 50px (pageText padding on both sides) 
     + 32px (editor padding both sides) + 4px (editor border radius both sides) */
-    width: 100%;
     max-width: 986px;
 
 }
@@ -19,7 +19,7 @@
     display: flex;
     justify-content: center;
     white-space: inherit;
-  word-break: break-word;
+    word-break: break-word;
 }
 
   .containerPadding {

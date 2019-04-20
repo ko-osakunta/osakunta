@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import moment from 'moment'
 import PageText from "../structure/PageText"
 import EditorClass from "../editor/EditorClass"
-import styles from "../structure/PageText.module.css"
+import styles from "./Announcements.module.css"
 
 
 const Announcements = ({ announcements }) => <>
@@ -11,9 +11,15 @@ const Announcements = ({ announcements }) => <>
         .map(({ dateCreated, dateUpdated, text, key }) =>
             <div key={key}>
                 <div className={styles.container}>
-                    <p>Luotu: {moment(dateCreated).format('LLL')} Päivitetty: {moment(dateUpdated).format('LLL')}</p>
+                    <div className={styles.announcementData}>                    
+                        <h3>Luotu: {moment(dateCreated).format('LLL')}</h3>
+                        <i>Päivitetty: {moment(dateUpdated).format('LLL')}</i>
+                        <div className={styles.text}>
+                            <PageText text={text} />
+                        </div>
+                        <hr className={styles.hr} />
+                    </div>
                 </div>
-                <PageText text={text} />
                 <EditorClass text={text} updatePath={'announcements/' + key} />
             </div>
         )
