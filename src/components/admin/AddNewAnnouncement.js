@@ -2,6 +2,7 @@ import React from 'react'
 import { createNewAnnouncement } from "../../actions"
 
 const AddNewAnnouncement = () => {
+
     const onClick = () => {
         try {
             createNewAnnouncement()

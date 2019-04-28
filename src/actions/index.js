@@ -1,7 +1,7 @@
 import { database, storage, firebaseAuth } from '../config/firebase'
 import axios from 'axios'
 import * as types from "./types"
-
+import convertToRaw from 'draft-js'
 
 export const fetchUser = () => dispatch => {
     firebaseAuth.onAuthStateChanged(user => {
@@ -13,11 +13,11 @@ export const fetchUser = () => dispatch => {
 }
 
 
-export const createNewPage = (pagePath, value) => (dispatch, getState) => {
+export const createNewPage = (pagePath, newTitle, pageText) => (dispatch, getState) => {
     const { pages } = getState()
 
     const titleUsed = pages
-        .filter(({ title }) => title === value.toLowerCase())
+        .filter(({ title }) => title === newTitle.toLowerCase())
         .length !== 0
 
     if (titleUsed) {
@@ -34,19 +34,8 @@ export const createNewPage = (pagePath, value) => (dispatch, getState) => {
 
     database.ref('pages').push().set({
         path: pagePath,
-        text: JSON.stringify({
-            blocks: [{
-                key: "2onp9",
-                text: "Uusi sivu luotu! Adminina voit muokata sitä oheisesta lomakkeesta. Kun korostat tekstiä niin voit tyylitellä sitä! Myös kuvien lisäys onnistuu!",
-                type: "unstyled",
-                depth: 0,
-                inlineStyleRanges: [],
-                entityRanges: [],
-                data: {},
-            }],
-            entityMap: {}
-        }),
-        title: value,
+        text: pageText,
+        title: newTitle,
         deletable: true,
         type: 'adminCreated',
         dateCreated: Date.now(),

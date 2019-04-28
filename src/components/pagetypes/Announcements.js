@@ -8,11 +8,12 @@ import styles from "./Announcements.module.css"
 
 const Announcements = ({ announcements }) => <>
     {announcements.sort((a, b) => b.dateUpdated - a.dateUpdated)
-        .map(({ dateCreated, dateUpdated, text, key }) =>
+        .map(({ dateCreated, dateUpdated, text, title, key }) =>
             <div key={key}>
                 <div className={styles.container}>
-                    <div className={styles.announcementData}>                    
-                        <h3>Luotu: {moment(dateCreated).format('LLL')}</h3>
+                    <div className={styles.announcementData}>
+                        <h3>{title}</h3>                    
+                        <p>Luotu: {moment(dateCreated).format('LLL')}</p>
                         <i>Päivitetty: {moment(dateUpdated).format('LLL')}</i>
                         <div className={styles.text}>
                             <PageText text={text} />

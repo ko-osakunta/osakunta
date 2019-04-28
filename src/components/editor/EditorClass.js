@@ -62,7 +62,6 @@ class EditorClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            editorState: EditorState.createWithContent(convertFromRaw(JSON.parse(props.text))),
             updatePath: props.updatePath,
             editorOpen: false
         }
@@ -70,7 +69,7 @@ class EditorClass extends React.Component {
 
     updateContent = (event) => {
         event.preventDefault();
-        const contentState = this.state.editorState.getCurrentContent();
+        const contentState = this.props.editorState.getCurrentContent();
 
         var updates = {}
         updates[this.state.updatePath + '/text'] = JSON.stringify(convertToRaw(contentState))
@@ -78,16 +77,14 @@ class EditorClass extends React.Component {
         databaseRef.update(updates);
     }
 
-    onChange = (editorState) =>
-        this.setState({ editorState });
-
     focus = () =>
         this.editor.focus();
 
     handleKeyCommand = (command) => {
-        const newState = RichUtils.handleKeyCommand(this.state.editorState, command)
-        if (newState) {
-            this.onChange(newState);
+        const newState = RichUtils.handleKeyCommand(this.props.editorState, command)
+        console.log(newState)
+        if(newState) {
+            this.props.changeValue(newState);
             return 'handled';
         }
         return 'not-handled';
@@ -103,8 +100,8 @@ class EditorClass extends React.Component {
                 <div className={styles.editor} onClick={this.focus}>
                     <div className={styles.textBox}>
                         <Editor
-                            editorState={this.state.editorState}
-                            onChange={this.onChange}
+                            editorState={this.props.editorState}
+                            onChange={this.props.changeValue}
                             plugins={plugins}
                             ref={(element) => { this.editor = element; }}
                         />
@@ -132,8 +129,8 @@ class EditorClass extends React.Component {
             </div>
             <div className={styles.containerPadding}>
                 <ImageAdd
-                    editorState={this.state.editorState}
-                    onChange={this.onChange}
+                    editorState={this.props.editorState}
+                    onChange={this.props.changeValue}
                     modifier={imagePlugin.addImage}
                 />
                 <button className="btn-primary" onClick={this.updateContent}>
@@ -150,7 +147,7 @@ class EditorClass extends React.Component {
                     <div className={styles.container}>
                         <button className="btn-primary" onClick={this.changeEditorOpen}>
                             Avaa/sulje muokkauslomake
-                    </button>
+                        </button>
                     </div>
                     <div>
                         {this.state.editorOpen && this.editorDiv()}

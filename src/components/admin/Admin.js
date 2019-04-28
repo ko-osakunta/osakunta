@@ -7,8 +7,8 @@ import ImageUploader from "./ImageUploader"
 import ImagePicker from "./ImagePicker"
 
 //Admin tools
-const Admin = () =>
-    <div id="page">
+const Admin = () => {
+    return <div id="page">
         <div className={styles.pageText}>
             <hr className={styles.hr} />
             <p>Adminin hallintatyökalut.</p>
@@ -31,7 +31,7 @@ const Admin = () =>
         </div>
         <div className={styles.pageText}>
             <hr className={styles.hr} />
-            
+
             <BannerUploader />
         </div>
         <div className={styles.pageText}>
@@ -46,5 +46,6 @@ const Admin = () =>
             <hr className={styles.hr} />
         </div>
     </div>
+}
 
 export default Admin
