@@ -43,6 +43,14 @@ export const createNewPage = (pagePath, newTitle, pageText) => (dispatch, getSta
     })
 }
 
+export const updateContent = (updatePath, pageText) => {
+    let updates = {}
+    updates[updatePath + '/text'] = pageText
+    updates[updatePath + '/dateUpdated'] = Date.now()
+    console.log(updates)
+    database.ref().update(updates)
+}
+
 export const createNewAnnouncement = () => {
     database.ref('announcements').push().set({
         title: 'Testiotsikko',
@@ -159,7 +167,7 @@ export const fetchImages = () => async dispatch => {
 
             dispatch({
                 type: types.FETCH_IMAGES,
-                payload: [ ...dbUrls, ...flickrUrls.slice(0, 20) ]
+                payload: [...dbUrls, ...flickrUrls.slice(0, 20)]
             })
         })
 }
@@ -168,7 +176,7 @@ export const fetchPages = () => dispatch => {
     database.ref('pages')
         .on('value', snapshot => {
             const pages = Object.entries(snapshot.val())
-                .map(([key, page]) => ({ key, ...page}))
+                .map(([key, page]) => ({ key, ...page }))
             dispatch({
                 type: types.FETCH_PAGES,
                 payload: pages
@@ -180,7 +188,7 @@ export const fetchAnnouncements = () => dispatch => {
     database.ref('announcements')
         .on('value', snapshot => {
             const announcements = Object.entries(snapshot.val())
-                .map(([key, announcement]) => ({ key, ...announcement}))
+                .map(([key, announcement]) => ({ key, ...announcement }))
             dispatch({
                 type: types.FETCH_ANNOUNCEMENTS,
                 payload: announcements

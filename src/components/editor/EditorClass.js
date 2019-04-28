@@ -62,19 +62,8 @@ class EditorClass extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            updatePath: props.updatePath,
             editorOpen: false
         }
-    }
-
-    updateContent = (event) => {
-        event.preventDefault();
-        const contentState = this.props.editorState.getCurrentContent();
-
-        var updates = {}
-        updates[this.state.updatePath + '/text'] = JSON.stringify(convertToRaw(contentState))
-        updates[this.state.updatePath + '/dateUpdated'] = Date.now()
-        databaseRef.update(updates);
     }
 
     focus = () =>
@@ -82,8 +71,7 @@ class EditorClass extends React.Component {
 
     handleKeyCommand = (command) => {
         const newState = RichUtils.handleKeyCommand(this.props.editorState, command)
-        console.log(newState)
-        if(newState) {
+        if (newState) {
             this.props.changeValue(newState);
             return 'handled';
         }
@@ -133,9 +121,6 @@ class EditorClass extends React.Component {
                     onChange={this.props.changeValue}
                     modifier={imagePlugin.addImage}
                 />
-                <button className="btn-primary" onClick={this.updateContent}>
-                    Vaihda teksti!
-                </button>
             </div>
         </div>
     }

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 import { createNewPage } from "../../actions"
 import EditorClass from '../editor/EditorClass'
-import { EditorState, convertFromRaw,convertToRaw } from 'draft-js'
+import { EditorState, convertFromRaw, convertToRaw } from 'draft-js'
 
 const AddNewPage = ({ createNewPage, push }) => {
     const [input, setInput] = useState("")
