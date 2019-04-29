@@ -25,7 +25,6 @@ const AddNewAnnouncement = ({ createNewAnnouncement, push }) => {
             createNewAnnouncement(title, JSON.stringify(convertToRaw(editorState.getCurrentContent())))
             push("/announcements")
         } catch (error) {
-            console.log(error)
             window.alert(error.message)
         }
     }
