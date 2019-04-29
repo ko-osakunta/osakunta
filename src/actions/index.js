@@ -47,25 +47,13 @@ export const updateContent = (updatePath, pageText) => {
     let updates = {}
     updates[updatePath + '/text'] = pageText
     updates[updatePath + '/dateUpdated'] = Date.now()
-    console.log(updates)
     database.ref().update(updates)
 }
 
-export const createNewAnnouncement = () => {
+export const createNewAnnouncement = (title, announcementText) => {
     database.ref('announcements').push().set({
-        title: 'Testiotsikko',
-        text: JSON.stringify({
-            blocks: [{
-                key: "2onp9",
-                text: "Uusi tapahtuma luotu! Adminina voit muokata sitä oheisesta lomakkeesta. Kun korostat tekstiä niin voit tyylitellä sitä! Myös kuvien lisäys onnistuu!",
-                type: "unstyled",
-                depth: 0,
-                inlineStyleRanges: [],
-                entityRanges: [],
-                data: {},
-            }],
-            entityMap: {}
-        }),
+        title: title,
+        text: announcementText,
         dateCreated: Date.now(),
         dateUpdated: Date.now()
     })

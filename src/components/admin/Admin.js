@@ -21,6 +21,7 @@ const Admin = () => {
         </div>
         <div className={styles.pageText}>
             <hr className={styles.hr} />
+            Luo uusi ilmoitus:
             <AddNewAnnouncement />
         </div>
         <div className={styles.pageText}>

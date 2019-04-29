@@ -6,11 +6,11 @@ import EditorClass from '../editor/EditorClass'
 import { EditorState, convertFromRaw, convertToRaw } from 'draft-js'
 
 const AddNewPage = ({ createNewPage, push }) => {
-    const [input, setInput] = useState("")
+    const [title, setTitle] = useState("")
     const [editorState, setEditorState] = useState(EditorState.createWithContent(convertFromRaw({
         blocks: [{
             key: "2onp9",
-            text: "Uuden sivun teksti. Voit muokata sitä oheisesta lomakkeesta. Kun korostat tekstiä niin voit tyylitellä sitä! Myös kuvien lisäys onnistuu!",
+            text: "Uuden sivun teksti. Voit muokata sitä tällä lomakkeella. Kun korostat tekstiä niin voit tyylitellä sitä! Myös kuvien lisäys onnistuu!",
             type: "unstyled",
             depth: 0,
             inlineStyleRanges: [],
@@ -21,21 +21,20 @@ const AddNewPage = ({ createNewPage, push }) => {
     })))
 
     const onClick = () => {
-        const pagePath = convertValueToPath(input)
-        
+        const pagePath = convertValueToPath(title)
+        console.log(pagePath)
         try {
-            createNewPage(pagePath, input, JSON.stringify(convertToRaw(editorState.getCurrentContent())))
+            createNewPage(pagePath, title, JSON.stringify(convertToRaw(editorState.getCurrentContent())))
             push(pagePath)
         } catch (error) {
-            console.log(error)
             window.alert(error.message)
         }
     }
     
     return <div>
         Uuden sivun nimi:
-        <input type="text" name="text" value={input} onChange={e => setInput(e.target.value)} />
-        <EditorClass editorState={editorState} changeValue={editorState => setEditorState(editorState)} updatePath={'pages/daasdaafff'} />
+        <input type="text" name="text" value={title} onChange={e => setTitle(e.target.value)} />
+        <EditorClass editorState={editorState} changeValue={editorState => setEditorState(editorState)} />
         <button className="btn-primary" onClick={onClick}>Lisää uusi sivu</button>
     </div>
 }
