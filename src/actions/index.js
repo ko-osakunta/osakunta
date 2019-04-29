@@ -50,7 +50,9 @@ export const updateContent = (updatePath, pageText) => {
     database.ref().update(updates)
 }
 
-export const createNewAnnouncement = (title, announcementText) => {
+export const createNewAnnouncement = (title, announcementText) => dispatch => {
+    console.log(title)
+    console.log(announcementText)
     database.ref('announcements').push().set({
         title: title,
         text: announcementText,
