@@ -1,0 +1,45 @@
+29.10.2018 - 4.50h - Stackin tutkimista ja konfiguroimista projektia varten
+30.10.2018 - 7.50h - WordPress ei osoittautunut hyvin soveltuvaksi backiksi , vaihdoin Firebaseen. Jonkinlainen skeleton pystytetty.
+31.10.2018 - 3.50h - Dynaamista sisältöä testattu
+01.11.2018 - 4.00h - Lomake osaa nyt käsitellä html:ää.
+13.11.2018 - 3.50h - Reduxointia
+14.11.2018 - 4.00h - Lisää Reduxointia
+20.11.2018 - 2.00h - Koodin siistimistä
+21.11.2018 - 5.00h - Valikko nyt käyttää dynaamista dataa
+22.11.2018 - 2.50h - Uusi työympäristö, routtaamisen implementointi aloitettu
+25.11.2018 - 4.00h - Routtaamisessa edistystä
+26.11.2018 - 9.50h - Sivu näyttää sille kuuluvaa sisältöä, ja jokaisen sivun sisältöä voi muokata lomakkeella
+27.11.2018 - 2.00h - Koodin siistimistä
+28.11.2018 - 6.50h - Käyttäjä voi nyt lisätä ja poistaa sivuja
+01.12.2018 - 4.50h - Luodun sivun polku siistitään, polku ja nimi validoidaan
+03.12.2018 - 6.50h - Editoria on parannettu.
+04.12.2018 - 3.50h - Nettisivutoimikunta kokoontui, "asiakastapaaminen." Grpc:n kanssa tappelemista.
+05.12.2018 - 4.50h - Bootstrap Studiolla ulkoasun suunnittelu alkoi
+07.12.2018 - 2.00h - Ohjelma ei toiminut toisen tekijän koneella, selvitystä mistä tämä voisi johtua
+11.12.2018 - 6.00h - Alapalkki toteutettu
+12.12.2018 - 5.00h - Sivusta aukeava menu toteutettu
+15.12.2018 - 2.00h - Koodia refaktoroitu siten, että uniikkeja sivuja voi lisätä.
+16.12.2018 - 4.00h - Adminsivut luotu, editorin luominen aloitettu alusta
+18.12.2018 - 7.50h - Editori luotu uusiksi, paljon uusia vaihtoehtoja (mm. kuvat ja linkit)
+31.12.2018 - 3.00h - Kansiorakenteen siistimistä, ulkoasun testaamista ja autentikoinnin toteutusta
+03.01.2019 - 9.00h - Autentikointia
+04.01.2019 - 8.00h - Autentikointi valmis, tarpeettoman rerenderöinnin kartoitusta
+05.01.2019 - 4.00h - Rerenderöity korjattu, salaisen datan poistoa githubista. Bannerin työstöä.
+06.01.2019 - 4.50h - Lisää bannerin työstöä
+07.01.2019 - 4.50h - Banneri toimii (lokaaleilla) vaihtuvilla kuvilla, firebasen kuvannoudon selvitystä
+09.01.2019 - 1.00h - Debuggausta
+10.01.2019 - 2.50h - Google-autentikaatio ei sittenkään ole sopiva tälle sivulle, vaihtoa toiseen
+11.01.2019 - 4.00h - Autentikointi vaihdettu ja korjattu, kuvien tietokantatoiminnallisuutta suunniteltu.
+12.01.2019 - 3.50h - Bannerin kuvan latautuvat firebasen palvelimelta, kuvan uploadauksen työstä.
+13.01.2019 - 3.00h - Lomake on tehty ja toimii, lähettää bannerin kuvia kantaan.
+16.01.2019 - 2.00h - Nettisivutoimikunnan kokous, esiteltiin ja suunniteltiin projektia
+31.01.2019 - 6.00h - Ulkoasun kohennusta, bugien korjausta
+01.02.2019 - 3.00h - Ulkoasun säätöä, koodin refaktorointia
+02.02.2019 - 6.00h - Sivupalkki työntää sivun syrjään ja harmantaa sen. Tausta tukee paremmin kuvia.
+06.02.2019 - 2.50h - Sivupalkin korjaus
+11.02.2019 - 6.50h - Ulkoasun työstöä
+16.02.2019 - 7.00h - Responsiivisuuden työstöä, editorin parantelua
+17.02.2019 - 8.00h - Samaa hommaa mitä eilenkin
+18.02.2019 - 6.00h - Ilmoitukset lisätty, editorin käytettävyyttä parannettu
+19.02.2019 - 4.00h - Ilmoituksia voi nyt lisätä
+---------- 195.00h 

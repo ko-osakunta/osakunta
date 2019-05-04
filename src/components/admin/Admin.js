@@ -33,11 +33,6 @@ const Admin = () => {
         <div className={styles.pageText}>
             <hr className={styles.hr} />
 
-            <BannerUploader />
-        </div>
-        <div className={styles.pageText}>
-            <hr className={styles.hr} />
-
             Lataa gallerian kuva sivulle:
             <ImageUploader />
         </div>
